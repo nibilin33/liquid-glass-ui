@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.liquid-glass {
+  @apply bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl shadow-glass transition-all;
+}
