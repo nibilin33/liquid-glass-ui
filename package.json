@@ -9,7 +9,8 @@
     "build": "next build",
     "lint": "eslint . --ext .ts,.tsx",
     "build:npm": "tsc -p tsconfig.build.json && cpx \"components/*.css\" dist",
-    "dev": "tsc --watch",
+    "dev": "next dev",
+    "tsc:watch": "tsc --watch",
     "start": "next start"
   },
   "dependencies": {

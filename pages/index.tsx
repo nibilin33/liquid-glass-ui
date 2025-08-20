@@ -6,12 +6,10 @@ import { useState } from 'react'
 import { useTheme } from '../context/ThemeContext'
 
 export default function Home() {
-  const { toggleTheme } = useTheme()
   const [open, setOpen] = useState(false)
 
   return (
     <div className="p-6 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 min-h-screen">
-      <GlassButton onClick={toggleTheme}>切换普通/Glass模式</GlassButton>
       <GlassButton onClick={() => setOpen(true)}>打开 Modal</GlassButton>
 
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
