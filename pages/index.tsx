@@ -1,52 +1,102 @@
-'use client'
-import { GlassButton } from '../components/GlassButton'
-import { GlassInput } from '../components/GlassInput'
-import { GlassCard } from '../components/GlassCard'
-import { GlassModal } from '../components/GlassModal'
-import { GlassTabs } from '../components/GlassTabs'
-import { GlassDropdown } from '../components/GlassDropdown'
-import { GlassSidebar } from '../components/GlassSidebar'
-import { GlassTooltip } from '../components/GlassTooltip'
-import { useState } from 'react'
+import { SetStateAction, useState } from "react";
+import { GlassButton } from "../components/GlassButton";
+import { GlassCard } from "../components/GlassCard";
+import { GlassInput } from "../components/GlassInput";
+import { Badge } from "../components/GlassBadge";
+import { GlassModal } from "../components/GlassModal";
+import { GlassSidebar } from "../components/GlassSidebar";
+import { GlassTooltip } from "../components/GlassTooltip";
+import { GlassTabs } from "../components/GlassTabs";
+import { GlassDropdown } from "../components/GlassDropdown";
 
-export default function Showcase() {
-  const [modalOpen, setModalOpen] = useState(false)
-  return (
-    <div className="min-h-screen p-8 bg-gradient-to-br from-green-200 via-emerald-300 to-gray-500">
-      <h1 className="text-3xl font-bold mb-8 text-white drop-shadow-lg">Liquid Glass UI 组件展示</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <GlassCard title="按钮 Button">
-          <GlassButton onClick={() => setModalOpen(true)}>酷炫弹窗</GlassButton>
-        </GlassCard>
-        <GlassCard title="输入框 Input">
-          <GlassInput placeholder="请输入内容…" />
-        </GlassCard>
-        <GlassCard title="Tabs 标签页">
-          <GlassTabs tabs={[{label:'Tab 1',content:'内容1'},{label:'Tab 2',content:'内容2'}]} />
-        </GlassCard>
-        <GlassCard title="下拉菜单 Dropdown">
-          <GlassDropdown
-            label="请选择一个选项"
-            items={[
-              { label: "选项A", onClick: () => {} },
-              { label: "选项B", onClick: () => {} },
-              { label: "选项C", onClick: () => {} }
-            ]}
-          />
-        </GlassCard>
-        <GlassCard title="侧边栏 Sidebar">
-          <GlassSidebar items={["首页","功能","设置"]} />
-        </GlassCard>
-        <GlassCard title="Tooltip 气泡提示">
-          <GlassTooltip text="提示内容">
-            <span className="underline cursor-pointer">鼠标悬停</span>
-          </GlassTooltip>
-        </GlassCard>
+const components = [
+  { name: "Button", category: "基础", preview: <GlassButton>按钮</GlassButton>, code: `<GlassButton>按钮</GlassButton>` },
+  { name: "Card", category: "基础", preview: <GlassCard title="卡片">内容</GlassCard>, code: `<GlassCard title="卡片">内容</GlassCard>` },
+  { name: "Input", category: "基础", preview: <GlassInput placeholder="输入内容" />, code: `<GlassInput placeholder="输入内容" />` },
+  {
+    name: "Badge",
+    category: "基础",
+    preview: (
+      <div className="flex gap-2 flex-wrap">
+        <Badge color="green">绿色</Badge>
+        <Badge color="blue">蓝色</Badge>
+        <Badge color="amber">黄色</Badge>
+        <Badge color="red">红色</Badge>
+        <Badge color="teal">青色</Badge>
+        <Badge color="gray">灰色</Badge>
       </div>
-      <GlassModal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-        <p className="text-lg">这是一个酷炫的玻璃Modal弹窗！</p>
-      </GlassModal>
-    </div>
-  )
-}
+    ),
+    code:
+      `<Badge color="green">绿色</Badge>\n` +
+      `<Badge color="blue">蓝色</Badge>\n` +
+      `<Badge color="amber">黄色</Badge>\n` +
+      `<Badge color="red">红色</Badge>\n` +
+      `<Badge color="teal">青色</Badge>\n` +
+      `<Badge color="gray">灰色</Badge>`
+  },
+  {
+    name: "Modal",
+    category: "交互",
+    preview: <GlassModal open={true} title="弹窗标题">弹窗内容</GlassModal>,
+    code: `<GlassModal open={true} title="弹窗标题">弹窗内容</GlassModal>`
+  },
+  {
+    name: "Sidebar",
+    category: "导航",
+    preview: <GlassSidebar items={[{label: "首页"}, {label: "组件库"}]} />,
+    code: `<GlassSidebar items={[{label: '首页'}, {label: '组件库'}]} />`
+  },
+  {
+    name: "Tooltip",
+    category: "交互",
+    preview: <GlassTooltip content="提示内容"><GlassButton>悬停提示</GlassButton></GlassTooltip>,
+    code: `<GlassTooltip content="提示内容"><GlassButton>悬停提示</GlassButton></GlassTooltip>`
+  },
+  {
+    name: "Tabs",
+    category: "布局",
+    preview: <GlassTabs tabs={[{label: "Tab1", content: "内容1"}, {label: "Tab2", content: "内容2"}]} />,
+    code: `<GlassTabs tabs={[{label: 'Tab1', content: '内容1'}, {label: 'Tab2', content: '内容2'}]} />`
+  },
+  {
+    name: "Dropdown",
+    category: "交互",
+    preview: <GlassDropdown label="请选择" items={[{ label: "选项一", onClick: () => {} }, { label: "选项二", onClick: () => {} }]} />,
+    code: `<GlassDropdown label="请选择" items={[{ label: '选项一', onClick: () => {} }, { label: '选项二', onClick: () => {} }]} />`
+  },
+];
 
+const categories = ["全部", "基础", "交互", "导航", "布局"];
+
+export default function RootLayout() {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("全部");
+  const filtered = components.filter(c =>
+    (category === "全部" || c.category === category) &&
+    c.name.toLowerCase().includes(search.toLowerCase())
+  );
+  return (
+    <div className="container-prose py-8 min-h-screen">
+      <div className="flex gap-4 mb-8 items-center">
+        <GlassInput placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
+        <div className="flex gap-2">
+          {categories.map(cat => (
+            <GlassButton key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"}>{cat}</GlassButton>
+          ))}
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filtered.map(c => (
+          <GlassCard key={c.name} title={c.name}>
+            <div className="mb-4">{c.preview}</div>
+            <Badge>{c.category}</Badge>
+            <div className="mt-4 flex justify-between">
+              <GlassButton onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</GlassButton>
+              <GlassButton onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</GlassButton>
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+    </div>
+  );
+}
