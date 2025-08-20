@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* .liquid-glass {
+  @apply bg-white/10 backdrop-blur-lg border border-white/30 rounded-xl shadow-glass transition-all;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.18) 100%);
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.15);
+  border: 1.5px solid rgba(255,255,255,0.35);
+}  */
+
+/* .liquid-glass {
+  @apply bg-white/30 backdrop-blur-lg border border-white/40 rounded-2xl shadow-glass transition-all;
+  background: linear-gradient(135deg, rgba(220,240,220,0.6) 0%, rgba(200,230,210,0.7) 100%);
+  box-shadow: 0 4px 24px 0 rgba(60,120,80,0.08);
+  border: 1.5px solid rgba(255,255,255,0.35);
+} */
+
 .liquid-glass {
-  @apply bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl shadow-glass transition-all;
+  @apply bg-white/30 backdrop-blur-lg border border-white/50 rounded-2xl shadow-glass transition-all;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(220,230,220,0.32) 100%);
+  box-shadow: 0 4px 24px 0 rgba(80,120,120,0.10);
+  border: 1.5px solid rgba(255,255,255,0.5);
 }
