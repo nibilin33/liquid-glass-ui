@@ -25,7 +25,14 @@ export default function Showcase() {
           <GlassTabs tabs={[{label:'Tab 1',content:'内容1'},{label:'Tab 2',content:'内容2'}]} />
         </GlassCard>
         <GlassCard title="下拉菜单 Dropdown">
-          <GlassDropdown options={["选项A","选项B","选项C"]} />
+          <GlassDropdown
+            label="请选择一个选项"
+            items={[
+              { label: "选项A", onClick: () => {} },
+              { label: "选项B", onClick: () => {} },
+              { label: "选项C", onClick: () => {} }
+            ]}
+          />
         </GlassCard>
         <GlassCard title="侧边栏 Sidebar">
           <GlassSidebar items={["首页","功能","设置"]} />
