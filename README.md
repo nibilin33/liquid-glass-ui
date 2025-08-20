@@ -1,7 +1,10 @@
 # Liquid Glass UI
 
+
 ## Description
 Liquid Glass UI is a collection of React components that demonstrate a liquid glass effect using Tailwind CSS. This project is built with Next.js and TypeScript, providing a modern and efficient way to create beautiful UI elements.
+
+![Liquid Glass UI Demo](docs/demo.png)
 
 ## Installation
 
