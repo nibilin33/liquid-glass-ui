@@ -15,6 +15,7 @@ import { ClozeInput } from "../components/ClozeInput";
 import { Recorder } from "../components/Recorder";
 import { Checkin } from "../components/Checkin";
 import { CheckinCalendar } from "../components/CheckinCalendar";
+import { LearningTimeline } from "../components/LearningTimeline";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
@@ -175,6 +176,24 @@ export default function RootLayout() {
     onCheckin={date => alert('已打卡：' + date)}
   />`
     },
+      {
+        name: "LearningTimeline",
+        category: "交互",
+        preview: (
+          <div className="space-y-6">
+            <div className="mb-2 text-xs text-gray-500">学习轨迹时间轴组件示例</div>
+            <LearningTimeline
+              nodes={[
+                { date: "2025-08-01", title: "单词记忆", description: "完成100个新单词", status: "done" },
+                { date: "2025-08-02", title: "语法练习", description: "掌握时态用法", status: "doing" },
+                { date: "2025-08-03", title: "听力训练", description: "听力材料30分钟", status: "todo" }
+              ]}
+            />
+          </div>
+        ),
+        code:
+          `<LearningTimeline\n  nodes={[\n    { date: '2025-08-01', title: '单词记忆', description: '完成100个新单词', status: 'done' },\n    { date: '2025-08-02', title: '语法练习', description: '掌握时态用法', status: 'doing' },\n    { date: '2025-08-03', title: '听力训练', description: '听力材料30分钟', status: 'todo' }\n  ]}\n/>`
+      },
     {
       name: "Recorder",
       category: "交互",
