@@ -16,7 +16,6 @@ const categories = ["全部", "基础", "交互", "导航", "布局"];
 const components = [
   { name: "Button", category: "基础", preview: <Button>按钮</Button>, code: `<Button>按钮</Button>` },
   { name: "Card", category: "基础", preview: <Card title="卡片">内容</Card>, code: `<Card title="卡片">内容</Card>` },
-  { name: "Input", category: "基础", preview: <Input placeholder="输入内容" />, code: `<Input placeholder="输入内容" />` },
   // Checkbox 示例将在组件内动态生成
   {
     name: "Badge",
@@ -42,32 +41,32 @@ const components = [
   {
     name: "Modal",
     category: "交互",
-  preview: <Modal open={true} title="弹窗标题">弹窗内容</Modal>,
-  code: `<Modal open={true} title="弹窗标题">弹窗内容</Modal>`
+    preview: <Modal open={true} title="弹窗标题">弹窗内容</Modal>,
+    code: `<Modal open={true} title="弹窗标题">弹窗内容</Modal>`
   },
   {
     name: "Sidebar",
     category: "导航",
-  preview: <Sidebar items={[{label: "首页"}, {label: "组件库"}]} />,
-  code: `<Sidebar items={[{label: '首页'}, {label: '组件库'}]} />`
+    preview: <Sidebar items={[{ label: "首页" }, { label: "组件库" }]} />,
+    code: `<Sidebar items={[{label: '首页'}, {label: '组件库'}]} />`
   },
   {
     name: "Tooltip",
     category: "交互",
-  preview: <Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>,
-  code: `<Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>`
+    preview: <Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>,
+    code: `<Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>`
   },
   {
     name: "Tabs",
     category: "布局",
-  preview: <Tabs tabs={[{label: "Tab1", content: "内容1"}, {label: "Tab2", content: "内容2"}]} />,
-  code: `<Tabs tabs={[{label: 'Tab1', content: '内容1'}, {label: 'Tab2', content: '内容2'}]} />`
+    preview: <Tabs tabs={[{ label: "Tab1", content: "内容1" }, { label: "Tab2", content: "内容2" }]} />,
+    code: `<Tabs tabs={[{label: 'Tab1', content: '内容1'}, {label: 'Tab2', content: '内容2'}]} />`
   },
   {
     name: "Dropdown",
     category: "交互",
-  preview: <Dropdown label="请选择" items={[{ label: "选项一", onClick: () => {} }, { label: "选项二", onClick: () => {} }]} />,
-  code: `<Dropdown label="请选择" items={[{ label: '选项一', onClick: () => {} }, { label: '选项二', onClick: () => {} }]} />`
+    preview: <Dropdown label="请选择" items={[{ label: "选项一", onClick: () => { } }, { label: "选项二", onClick: () => { } }]} />,
+    code: `<Dropdown label="请选择" items={[{ label: '选项一', onClick: () => {} }, { label: '选项二', onClick: () => {} }]} />`
   },
 ];
 
@@ -96,6 +95,7 @@ export default function RootLayout() {
     { name: '王十二', age: 24, city: '武汉' }
   ];
 
+  const [email, setEmail] = useState("");
   const allComponents = [
     {
       name: "Table",
@@ -126,8 +126,28 @@ export default function RootLayout() {
     {
       name: "Checkbox",
       category: "基础",
-  preview: <Checkbox label="同意协议" checked={checkboxChecked} onChange={setCheckboxChecked} />,
-  code: `<Checkbox label="同意协议" checked={checked} onChange={setChecked} />`
+      preview: <Checkbox label="同意协议" checked={checkboxChecked} onChange={setCheckboxChecked} />,
+      code: `<Checkbox label="同意协议" checked={checked} onChange={setChecked} />`
+    },
+    {
+      name: "Input",
+      category: "基础",
+      preview: (
+        <div>
+          <Input placeholder="输入内容" label="输入框" />
+          <div className="my-4" />
+          <Input
+            label="邮箱"
+            required
+            value={email}
+            onChange={(e: any) => setEmail(e.target.value)}
+            validate={async (v: any) => !v.includes('@') ? '请输入有效邮箱' : ''}
+            placeholder="请输入邮箱"
+          />
+        </div>
+
+      ),
+      code: `<Input placeholder="输入内容" label="输入框" /> <Input label="邮箱" required validate={async (v) => !v.includes('@') ? '请输入有效邮箱' : ''} />`
     },
     ...components
   ];
@@ -139,7 +159,7 @@ export default function RootLayout() {
   return (
     <div className="container-prose py-8 min-h-screen">
       <div className="flex gap-4 mb-8 items-center">
-  <Input placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
+        <Input placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
         <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
           {categories.map(cat => (
             <Button key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"} className="min-w-[80px]">
