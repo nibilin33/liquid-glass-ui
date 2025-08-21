@@ -97,12 +97,12 @@ const components = [
     preview: (
       <Tabs
         tabs={[
-          { label: "Liquid Glass Overview", content: "Liquid Glass UI brings glassmorphism to education and design." },
-          { label: "Liquid Glass Features", content: "Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI." },
+          { label: "Overview", content: "Liquid Glass UI brings glassmorphism to education and design." },
+          { label: "Features", content: "Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI." },
         ]}
       />
     ),
-    code: `<Tabs tabs={[{label: 'Liquid Glass Overview', content: 'Liquid Glass UI brings glassmorphism to education and design.'}, {label: 'Liquid Glass Features', content: 'Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI.'}]} />`,
+    code: `<Tabs tabs={[{label: 'Overview', content: 'Liquid Glass UI brings glassmorphism to education and design.'}, {label: 'Features', content: 'Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI.'}]} />`,
   },
   {
     name: "Dropdown",
