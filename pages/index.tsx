@@ -24,61 +24,61 @@ import { AbilityRadar } from "../components/AbilityRadar";
 import { Schedule } from "../components/Schedule";
 import { ReadAloud } from "../components/ReadAloud";
 
-const categories = ["全部", "基础", "交互", "导航", "布局"];
+const categories = ["All", "Basic", "Interactive", "Navigation", "Layout"];
 
 const components = [
-  { name: "Button", category: "基础", preview: <Button>按钮</Button>, code: `<Button>按钮</Button>` },
-  { name: "Card", category: "基础", preview: <Card title="卡片">内容</Card>, code: `<Card title="卡片">内容</Card>` },
+  { name: "Button", category: "Basic", preview: <Button>Button</Button>, code: `<Button>Button</Button>` },
+  { name: "Card", category: "Basic", preview: <Card title="Liquid Glass Card">Experience the modern glassmorphism effect with smooth gradients and glowing edges.</Card>, code: `<Card title="Liquid Glass Card">Experience the modern glassmorphism effect with smooth gradients and glowing edges.</Card>` },
   {
     name: "Badge",
-    category: "基础",
+    category: "Basic",
     preview: (
       <div className="flex gap-2 flex-wrap">
-        <Badge color="green">绿色</Badge>
-        <Badge color="blue">蓝色</Badge>
-        <Badge color="amber">黄色</Badge>
-        <Badge color="red">红色</Badge>
-        <Badge color="teal">青色</Badge>
-        <Badge color="gray">灰色</Badge>
+        <Badge color="green">Glass Green</Badge>
+        <Badge color="blue">Glass Blue</Badge>
+        <Badge color="amber">Glass Yellow</Badge>
+        <Badge color="red">Glass Red</Badge>
+        <Badge color="teal">Glass Teal</Badge>
+        <Badge color="gray">Glass Gray</Badge>
       </div>
     ),
     code:
-      `<Badge color="green">绿色</Badge>\n` +
-      `<Badge color="blue">蓝色</Badge>\n` +
-      `<Badge color="amber">黄色</Badge>\n` +
-      `<Badge color="red">红色</Badge>\n` +
-      `<Badge color="teal">青色</Badge>\n` +
-      `<Badge color="gray">灰色</Badge>`
+      `<Badge color="green">Green</Badge>\n` +
+      `<Badge color="blue">Blue</Badge>\n` +
+      `<Badge color="amber">Yellow</Badge>\n` +
+      `<Badge color="red">Red</Badge>\n` +
+      `<Badge color="teal">Teal</Badge>\n` +
+      `<Badge color="gray">Gray</Badge>`
   },
   {
     name: "Modal",
-    category: "交互",
-    preview: <Modal open={true} title="弹窗标题">弹窗内容</Modal>,
-    code: `<Modal open={true} title="弹窗标题">弹窗内容</Modal>`
+    category: "Interactive",
+    preview: <Modal open={true} title="Modal Title">Modal Content</Modal>,
+    code: `<Modal open={true} title="Liquid Glass Modal">A frosted glass modal with soft shadows and vibrant highlights.</Modal>`
   },
   {
     name: "Sidebar",
-    category: "导航",
-    preview: <Sidebar items={[{ label: "首页" }, { label: "组件库" }]} />,
-    code: `<Sidebar items={[{label: '首页'}, {label: '组件库'}]} />`
+    category: "Navigation",
+    preview: <Sidebar items={[{ label: "Home" }, { label: "Components" }]} />, 
+    code: `<Sidebar items={[{label: 'Dashboard'}, {label: 'Liquid Glass UI'}]} />`
   },
   {
     name: "Tooltip",
-    category: "交互",
-    preview: <Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>,
-    code: `<Tooltip content="提示内容"><Button>悬停提示</Button></Tooltip>`
+    category: "Interactive",
+    preview: <Tooltip content="Tooltip Content"><Button>Hover for Tooltip</Button></Tooltip>,
+    code: `<Tooltip content="Glass Tooltip"><Button>Hover for a glassy tip</Button></Tooltip>`
   },
   {
     name: "Tabs",
-    category: "布局",
-    preview: <Tabs tabs={[{ label: "Tab1", content: "内容1" }, { label: "Tab2", content: "内容2" }]} />,
-    code: `<Tabs tabs={[{label: 'Tab1', content: '内容1'}, {label: 'Tab2', content: '内容2'}]} />`
+    category: "Layout",
+    preview: <Tabs tabs={[{ label: "Tab1", content: "Content 1" }, { label: "Tab2", content: "Content 2" }]} />, 
+    code: `<Tabs tabs={[{label: 'Overview', content: 'Liquid Glass Overview'}, {label: 'Features', content: 'Glassmorphism Features'}]} />`
   },
   {
     name: "Dropdown",
-    category: "交互",
-    preview: <Dropdown label="请选择" items={[{ label: "选项一", onClick: () => { } }, { label: "选项二", onClick: () => { } }]} />,
-    code: `<Dropdown label="请选择" items={[{ label: '选项一', onClick: () => {} }, { label: '选项二', onClick: () => {} }]} />`
+    category: "Interactive",
+    preview: <Dropdown label="Please select" items={[{ label: "Option 1", onClick: () => { } }, { label: "Option 2", onClick: () => { } }]} />, 
+    code: `<Dropdown label="Choose a glass style" items={[{ label: 'Frosted', onClick: () => {} }, { label: 'Gradient', onClick: () => {} }]} />`
   },
 ];
 
@@ -90,21 +90,21 @@ export default function RootLayout() {
   // 在渲染时插入 GlassCheckbox 示例
   const [tablePage, setTablePage] = useState(1);
   const tableColumns = [
-    { key: 'name', title: '姓名', sortable: true },
-    { key: 'age', title: '年龄', sortable: true, render: (v: any) => <span className="font-bold text-emerald-600">{v}</span> },
-    { key: 'city', title: '城市' }
+    { key: 'name', title: 'Name', sortable: true },
+    { key: 'age', title: 'Age', sortable: true, render: (v: any) => <span className="font-bold text-emerald-600">{v}</span> },
+    { key: 'city', title: 'City' }
   ];
   const tableData = [
-    { name: '张三', age: 22, city: '上海' },
-    { name: '李四', age: 28, city: '北京' },
-    { name: '王五', age: 35, city: '广州' },
-    { name: '赵六', age: 19, city: '深圳' },
-    { name: '钱七', age: 41, city: '杭州' },
-    { name: '孙八', age: 25, city: '成都' },
-    { name: '周九', age: 30, city: '重庆' },
-    { name: '吴十', age: 27, city: '南京' },
-    { name: '郑十一', age: 33, city: '苏州' },
-    { name: '王十二', age: 24, city: '武汉' }
+    { name: 'John', age: 22, city: 'Shanghai' },
+    { name: 'Lisa', age: 28, city: 'Beijing' },
+    { name: 'William', age: 35, city: 'Guangzhou' },
+    { name: 'Zoe', age: 19, city: 'Shenzhen' },
+    { name: 'Mason', age: 41, city: 'Hangzhou' },
+    { name: 'Sunny', age: 25, city: 'Chengdu' },
+    { name: 'Joe', age: 30, city: 'Chongqing' },
+    { name: 'Wendy', age: 27, city: 'Nanjing' },
+    { name: 'Edward', age: 33, city: 'Suzhou' },
+    { name: 'Walter', age: 24, city: 'Wuhan' }
   ];
 
   const [email, setEmail] = useState("");
@@ -115,18 +115,18 @@ export default function RootLayout() {
     category: "交互",
     preview: (
       <div className="space-y-6">
-        <div className="mb-2 text-xs text-gray-500">复习计划（按周分组，长周期示例）</div>
+        <div className="mb-2 text-xs text-gray-500">Review Plan (Grouped by Week, Long-term Example)</div>
         <Schedule
           items={[
-            { week: '第1周', date: '2025-08-21', time: '08:00', title: '词汇复习', description: '背诵核心词汇', tags: ['英语'], color: '#f59e42', progress: 80 },
-            { week: '第1周', date: '2025-08-22', time: '09:00', title: '语法练习', description: '完成语法专项题', tags: ['英语'], color: '#10b981', progress: 60 },
-            { week: '第1周', date: '2025-08-23', time: '10:00', title: '听力训练', description: '听力材料30分钟', tags: ['英语'], color: '#3b82f6', progress: 40 },
-            { week: '第2周', date: '2025-08-28', time: '08:00', title: '阅读理解', description: '精读2篇文章', tags: ['英语'], color: '#6366f1', progress: 50 },
-            { week: '第2周', date: '2025-08-29', time: '09:00', title: '写作练习', description: '写一篇短文', tags: ['英语'], color: '#f43f5e', progress: 30 },
-            { week: '第2周', date: '2025-08-30', time: '10:00', title: '口语练习', description: '录音自我介绍', tags: ['英语'], color: '#14b8a6', progress: 20 },
-            { week: '第3周', date: '2025-09-04', time: '08:00', title: '词汇复习', description: '复习易错词', tags: ['英语'], color: '#f59e42', progress: 70 },
-            { week: '第3周', date: '2025-09-05', time: '09:00', title: '语法专项', description: '时态语态梳理', tags: ['英语'], color: '#10b981', progress: 40 },
-            { week: '第3周', date: '2025-09-06', time: '10:00', title: '模拟考试', description: '全真模拟一套', tags: ['英语'], color: '#3b82f6', progress: 10 }
+            { week: 'Week 1', date: '2025-08-21', time: '08:00', title: 'Vocabulary Review', description: 'Memorize core vocabulary', tags: ['English'], color: '#f59e42', progress: 80 },
+            { week: 'Week 1', date: '2025-08-22', time: '09:00', title: 'Grammar Practice', description: 'Complete grammar exercises', tags: ['English'], color: '#10b981', progress: 60 },
+            { week: 'Week 1', date: '2025-08-23', time: '10:00', title: 'Listening Training', description: '30 min listening material', tags: ['English'], color: '#3b82f6', progress: 40 },
+            { week: 'Week 2', date: '2025-08-28', time: '08:00', title: 'Reading Comprehension', description: 'Intensive reading of 2 articles', tags: ['English'], color: '#6366f1', progress: 50 },
+            { week: 'Week 2', date: '2025-08-29', time: '09:00', title: 'Writing Practice', description: 'Write a short essay', tags: ['English'], color: '#f43f5e', progress: 30 },
+            { week: 'Week 2', date: '2025-08-30', time: '10:00', title: 'Speaking Practice', description: 'Record self-introduction', tags: ['English'], color: '#14b8a6', progress: 20 },
+            { week: 'Week 3', date: '2025-09-04', time: '08:00', title: 'Vocabulary Review', description: 'Review common mistakes', tags: ['English'], color: '#f59e42', progress: 70 },
+            { week: 'Week 3', date: '2025-09-05', time: '09:00', title: 'Grammar Special', description: 'Tense and voice summary', tags: ['English'], color: '#10b981', progress: 40 },
+            { week: 'Week 3', date: '2025-09-06', time: '10:00', title: 'Mock Exam', description: 'Full mock test', tags: ['English'], color: '#3b82f6', progress: 10 }
           ]}
         />
       </div>
@@ -165,19 +165,19 @@ export default function RootLayout() {
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">阅读可视化（文本标注+思维导图）</div>
           <ReadingVisualizer
-            text={"The quick brown fox jumps over the lazy dog."}
-            annotations={[{ start: 4, end: 9, type: "重点", color: "#10b981", note: "核心词组" }, { start: 16, end: 19, type: "生词", color: "#f59e42", note: "需掌握" }]}
+            text={"Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools."}
+            annotations={[{ start: 0, end: 24, type: "Call to Action", color: "#10b981", note: "Get started" }, { start: 89, end: 133, type: "Education", color: "#f59e42", note: "Education-focused" }]}
             mindmap={{
               id: "root",
-              title: "解题思路",
+              title: "Showcase Structure",
               children: [
-                { id: "1", title: "理解主干结构", note: "主谓宾", color: "#10b981" },
-                { id: "2", title: "识别重点词组", children: [
-                  { id: "2-1", title: "brown fox", note: "形容词+名词" },
-                  { id: "2-2", title: "lazy dog", note: "形容词+名词" }
+                { id: "1", title: "Glassmorphism UI", note: "Apple-inspired design" },
+                { id: "2", title: "Education Features", children: [
+                  { id: "2-1", title: "Learning Tools", note: "Interactive components" },
+                  { id: "2-2", title: "Modern Classroom", note: "Online education" }
                 ] },
-                { id: "3", title: "生词掌握", children: [
-                  { id: "3-1", title: "jumps", note: "动作" }
+                { id: "3", title: "Easy Integration", children: [
+                  { id: "3-1", title: "Download & Use", note: "Quick setup" }
                 ] }
               ]
             }}
@@ -185,7 +185,7 @@ export default function RootLayout() {
         </div>
       ),
       code:
-        `<ReadingVisualizer text="The quick brown fox jumps over the lazy dog." annotations={[{ start: 4, end: 9, type: '重点', color: '#10b981', note: '核心词组' }, { start: 16, end: 19, type: '生词', color: '#f59e42', note: '需掌握' }]} mindmap={{ id: 'root', title: '解题思路', children: [{ id: '1', title: '理解主干结构', note: '主谓宾', color: '#10b981' }, { id: '2', title: '识别重点词组', children: [{ id: '2-1', title: 'brown fox', note: '形容词+名词' }, { id: '2-2', title: 'lazy dog', note: '形容词+名词' }] }, { id: '3', title: '生词掌握', children: [{ id: '3-1', title: 'jumps', note: '动作' }] }] }} />`,
+        `<ReadingVisualizer text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools." annotations={[{ start: 0, end: 24, type: 'Call to Action', color: '#10b981', note: 'Get started' }, { start: 89, end: 133, type: 'Education', color: '#f59e42', note: 'Education-focused' }]} mindmap={{ id: 'root', title: 'Showcase Structure', children: [{ id: '1', title: 'Glassmorphism UI', note: 'Apple-inspired design', color: '#10b981' }, { id: '2', title: 'Education Features', children: [{ id: '2-1', title: 'Learning Tools', note: 'Interactive components' }, { id: '2-2', title: 'Modern Classroom', note: 'Online education' }] }, { id: '3', title: 'Easy Integration', children: [{ id: '3-1', title: 'Download & Use', note: 'Quick setup' }] }] }} />`,
       grid: "full"
     },
     {
@@ -231,11 +231,11 @@ export default function RootLayout() {
     preview: (
       <div className="space-y-6">
         <div className="mb-2 text-xs text-gray-500">点读组件示例（点击单词播放语音）</div>
-        <ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />
+        <ReadAloud text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools." lang="en-US" />
       </div>
     ),
     code:
-      `<ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />`,
+      `<ReadAloud text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools." lang="en-US" />`,
     grid: undefined
   },
     {
