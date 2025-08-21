@@ -19,12 +19,12 @@ npm install liquid-glass-tailwind-react
 To use the `LiquidGlass` component in your Next.js application, import it as follows:
 
 ```tsx
-import { LiquidGlass } from 'liquid-glass-tailwind-react';
+import { Button } from 'liquid-glass-tailwind-react';
 
 const HomePage = () => {
   return (
     <div>
-      <LiquidGlass />
+      <Button />
     </div>
   );
 };
