@@ -1,35 +1,29 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from '../context/ThemeContext'
-import { Button } from '@material-tailwind/react'
+import { Button } from './Button'
+import { FaCheck } from 'react-icons/fa'
 
 interface GlassDropdownProps {
   label: string
   items: { label: string; onClick: () => void }[]
+  defaultIndex?: number
 }
 
 export function Dropdown({ label, items }: GlassDropdownProps) {
-  const { isGlass } = useTheme()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState<number | null>(null);
 
-  const bgClass = isGlass
-    ? 'liquid-glass text-white'
-    : 'bg-white text-black rounded-xl shadow-md'
+  // 当前显示文本
+  const displayLabel = selected !== null ? items[selected]?.label : label;
 
   return (
     <div className="relative inline-block text-left">
       <Button
-        type="button"
+        color="emerald"
         onClick={() => setOpen(!open)}
-        className={bgClass}
-        placeholder={undefined}
-        onResize={undefined}
-        onResizeCapture={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
       >
-        {label}
+        {displayLabel}
       </Button>
 
       <AnimatePresence>
@@ -39,21 +33,23 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className={`absolute mt-2 w-56 rounded-xl shadow-lg ${isGlass ? 'backdrop-blur-xl border border-white/30' : ''}`}
+            className={`absolute mt-2 w-56 rounded-xl shadow-lg border border-white/30 z-10 bg-emerald-50 p-4`}
           >
             <div className="py-1">
               {items.map((item, idx) => (
                 <motion.button
                   key={idx}
                   onClick={() => {
-                    item.onClick()
-                    setOpen(false)
+                    item.onClick();
+                    setSelected(idx);
+                    setOpen(false);
                   }}
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className={`w-full text-left px-4 py-2 text-sm ${bgClass} hover:bg-white/20`}
+                  className={`w-full text-left px-4 py-2 text-sm focus:outline-none focus:bg-emerald-200 ${selected === idx ? 'bg-emerald-200 text-emerald-700 font-bold' : 'hover:bg-emerald-100'}`}
                 >
                   {item.label}
+                {selected === idx && <FaCheck className="ml-2 text-emerald-500 inline-block" size={14} />}
                 </motion.button>
               ))}
             </div>
@@ -61,5 +57,5 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
