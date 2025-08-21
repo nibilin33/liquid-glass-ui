@@ -8,11 +8,15 @@ import { GlassSidebar } from "../components/GlassSidebar";
 import { GlassTooltip } from "../components/GlassTooltip";
 import { GlassTabs } from "../components/GlassTabs";
 import { GlassDropdown } from "../components/GlassDropdown";
+import { GlassCheckbox } from "../components/GlassCheckbox";
+
+const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
   { name: "Button", category: "基础", preview: <GlassButton>按钮</GlassButton>, code: `<GlassButton>按钮</GlassButton>` },
   { name: "Card", category: "基础", preview: <GlassCard title="卡片">内容</GlassCard>, code: `<GlassCard title="卡片">内容</GlassCard>` },
   { name: "Input", category: "基础", preview: <GlassInput placeholder="输入内容" />, code: `<GlassInput placeholder="输入内容" />` },
+  // Checkbox 示例将在组件内动态生成
   {
     name: "Badge",
     category: "基础",
@@ -66,12 +70,23 @@ const components = [
   },
 ];
 
-const categories = ["全部", "基础", "交互", "导航", "布局"];
-
 export default function RootLayout() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("全部");
-  const filtered = components.filter(c =>
+  const [checkboxChecked, setCheckboxChecked] = useState(false);
+
+  // 在渲染时插入 GlassCheckbox 示例
+  const allComponents = [
+    {
+      name: "Checkbox",
+      category: "基础",
+      preview: <GlassCheckbox label="同意协议" checked={checkboxChecked} onChange={setCheckboxChecked} />,
+      code: `<GlassCheckbox label="同意协议" checked={checked} onChange={setChecked} />`
+    },
+    ...components
+  ];
+
+  const filtered = allComponents.filter(c =>
     (category === "全部" || c.category === category) &&
     c.name.toLowerCase().includes(search.toLowerCase())
   );
