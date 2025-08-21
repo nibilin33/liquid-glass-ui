@@ -118,6 +118,15 @@ export default function RootLayout() {
                   letterMode
                 />
               </div>
+              <div>
+                <div className="mb-2 text-xs text-gray-500">letter-by-letter + prefill（部分字母预填）</div>
+                <ClozeInput
+                  text="The capital of France is {0}."
+                  answers={["Paris"]}
+                  letterMode
+                  prefill={[['P', null, null, null, null]]}
+                />
+              </div>
             </div>
           ),
           code:
