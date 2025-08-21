@@ -1,3 +1,55 @@
+/* Explanation markdown glass style */
+.explanation-markdown {
+  background: rgba(255,255,255,0.65);
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(52,181,139,0.10);
+  padding: 1.2rem 1.4rem;
+  font-size: 15px;
+  color: #176c4f;
+  line-height: 1.8;
+  font-family: inherit;
+}
+.explanation-markdown h1, .explanation-markdown h2, .explanation-markdown h3 {
+  color: #10b981;
+  font-weight: 700;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+}
+.explanation-markdown p {
+  margin: 0.7em 0;
+}
+.explanation-markdown ul, .explanation-markdown ol {
+  padding-left: 1.2em;
+  margin: 0.7em 0;
+}
+.explanation-markdown li {
+  margin-bottom: 0.3em;
+}
+.explanation-markdown code {
+  background: rgba(16,185,129,0.08);
+  color: #10b981;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', 'Menlo', 'monospace';
+}
+.explanation-markdown pre code {
+  background: rgba(16,185,129,0.12);
+  color: #176c4f;
+  border-radius: 8px;
+  padding: 1em;
+  font-size: 14px;
+  display: block;
+  overflow-x: auto;
+}
+.explanation-markdown blockquote {
+  border-left: 4px solid #10b981;
+  background: rgba(16,185,129,0.06);
+  padding: 0.5em 1em;
+  margin: 1em 0;
+  color: #176c4f;
+  border-radius: 0.5em;
+}
 /* 隐藏 material-tailwind input 的 label */
 @tailwind base;
 

@@ -1,4 +1,4 @@
-import { SetStateAction, use, useState } from "react";
+import { SetStateAction, useState } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Input } from "../components/Input";
@@ -18,6 +18,7 @@ import { CheckinCalendar } from "../components/CheckinCalendar";
 import { LearningTimeline } from "../components/LearningTimeline";
 import { QuestionNav } from "../components/QuestionNav";
 import { ImageQuiz } from "../components/ImageQuiz";
+import { Explanation } from "../components/Explanation";
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -228,6 +229,22 @@ export default function RootLayout() {
   onNext={() => true}
 />
 `
+    },
+    {
+      name: "Explanation",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">手风琴风格答案解析（支持 markdown）</div>
+          <Explanation
+            answer="42"
+            explanation={"**解析：**\n\n- 这是一个示例 markdown 解析区块。\n- 支持列表、代码、引用等格式。\n\n> 你可以在这里展示详细解题思路。\n\n```js\nconsole.log('Hello, world!')\n```"}
+            defaultOpen={false}
+          />
+        </div>
+      ),
+      code:
+        `<Explanation answer="42" explanation={"**解析：**\n\n- 这是一个示例 markdown 解析区块。\n- 支持列表、代码、引用等格式。\n\n> 你可以在这里展示详细解题思路。\n\n\`\`\`js\nconsole.log('Hello, world!')\n\`\`\`"} />`
     },
     {
       name: "Recorder",
