@@ -21,6 +21,7 @@ import { ImageQuiz } from "../components/ImageQuiz";
 import { Explanation } from "../components/Explanation";
 import { ReadingVisualizer } from "../components/ReadingVisualizer";
 import { AbilityRadar } from "../components/AbilityRadar";
+import { Schedule } from "../components/Schedule";
 import { ReadAloud } from "../components/ReadAloud";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
@@ -109,6 +110,31 @@ export default function RootLayout() {
   const [email, setEmail] = useState("");
   const [countdown, setCountdown] = useState<number | undefined>(undefined);
   const allComponents = [
+  {
+    name: "Schedule",
+    category: "交互",
+    preview: (
+      <div className="space-y-6">
+        <div className="mb-2 text-xs text-gray-500">复习计划（按周分组，长周期示例）</div>
+        <Schedule
+          items={[
+            { week: '第1周', date: '2025-08-21', time: '08:00', title: '词汇复习', description: '背诵核心词汇', tags: ['英语'], color: '#f59e42', progress: 80 },
+            { week: '第1周', date: '2025-08-22', time: '09:00', title: '语法练习', description: '完成语法专项题', tags: ['英语'], color: '#10b981', progress: 60 },
+            { week: '第1周', date: '2025-08-23', time: '10:00', title: '听力训练', description: '听力材料30分钟', tags: ['英语'], color: '#3b82f6', progress: 40 },
+            { week: '第2周', date: '2025-08-28', time: '08:00', title: '阅读理解', description: '精读2篇文章', tags: ['英语'], color: '#6366f1', progress: 50 },
+            { week: '第2周', date: '2025-08-29', time: '09:00', title: '写作练习', description: '写一篇短文', tags: ['英语'], color: '#f43f5e', progress: 30 },
+            { week: '第2周', date: '2025-08-30', time: '10:00', title: '口语练习', description: '录音自我介绍', tags: ['英语'], color: '#14b8a6', progress: 20 },
+            { week: '第3周', date: '2025-09-04', time: '08:00', title: '词汇复习', description: '复习易错词', tags: ['英语'], color: '#f59e42', progress: 70 },
+            { week: '第3周', date: '2025-09-05', time: '09:00', title: '语法专项', description: '时态语态梳理', tags: ['英语'], color: '#10b981', progress: 40 },
+            { week: '第3周', date: '2025-09-06', time: '10:00', title: '模拟考试', description: '全真模拟一套', tags: ['英语'], color: '#3b82f6', progress: 10 }
+          ]}
+        />
+      </div>
+    ),
+    code:
+      `<Schedule items={[{ week: '第1周', date: '2025-08-21', time: '08:00', title: '词汇复习', description: '背诵核心词汇', tags: ['英语'], color: '#f59e42', progress: 80 }, ...]} />`,
+    grid: 'full'
+  },
     {
       name: "AbilityRadar",
       category: "交互",
@@ -162,24 +188,12 @@ export default function RootLayout() {
         `<ReadingVisualizer text="The quick brown fox jumps over the lazy dog." annotations={[{ start: 4, end: 9, type: '重点', color: '#10b981', note: '核心词组' }, { start: 16, end: 19, type: '生词', color: '#f59e42', note: '需掌握' }]} mindmap={{ id: 'root', title: '解题思路', children: [{ id: '1', title: '理解主干结构', note: '主谓宾', color: '#10b981' }, { id: '2', title: '识别重点词组', children: [{ id: '2-1', title: 'brown fox', note: '形容词+名词' }, { id: '2-2', title: 'lazy dog', note: '形容词+名词' }] }, { id: '3', title: '生词掌握', children: [{ id: '3-1', title: 'jumps', note: '动作' }] }] }} />`,
       grid: "full"
     },
-      {
-    name: "ReadAloud",
-    category: "交互",
-    preview: (
-      <div className="space-y-6">
-        <div className="mb-2 text-xs text-gray-500">点读组件示例（点击单词播放语音）</div>
-        <ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />
-      </div>
-    ),
-    code:
-      `<ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />`,
-    grid: undefined
-  },
     {
       name: "ClozeInput",
       category: "交互",
+      grid: 'full',
       preview: (
-        <div className="space-y-6">
+        <div className="space-y-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <div className="mb-2 text-xs text-gray-500">普通模式（每个空一个输入框）</div>
             <ClozeInput
@@ -195,7 +209,7 @@ export default function RootLayout() {
               letterMode
             />
           </div>
-          <div>
+          <div className="md:col-span-2">
             <div className="mb-2 text-xs text-gray-500">letter-by-letter + prefill（部分字母预填）</div>
             <ClozeInput
               text="The capital of France is {0}."
@@ -210,6 +224,20 @@ export default function RootLayout() {
         `<ClozeInput text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}." answers={["thought", "would be easy", "find", "way", "wrong"]} />\n` +
         `<ClozeInput text="The capital of France is {0}." answers={["Paris"]} letterMode />`
     },
+
+      {
+    name: "ReadAloud",
+    category: "交互",
+    preview: (
+      <div className="space-y-6">
+        <div className="mb-2 text-xs text-gray-500">点读组件示例（点击单词播放语音）</div>
+        <ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />
+      </div>
+    ),
+    code:
+      `<ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />`,
+    grid: undefined
+  },
     {
       name: "Checkin",
       category: "交互",
@@ -227,6 +255,7 @@ export default function RootLayout() {
     {
       name: "CheckinCalendar",
       category: "交互",
+      grid: 'full',
       preview: (
         <div className="space-y-6">
           <div>
