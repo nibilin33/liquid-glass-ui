@@ -11,7 +11,7 @@ import { Dropdown } from "../components/Dropdown";
 import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
 import { Ordering } from "../components/Ordering";
-
+import { ClozeInput } from "../components/ClozeInput";
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -98,6 +98,32 @@ export default function RootLayout() {
 
   const [email, setEmail] = useState("");
   const allComponents = [
+        {
+          name: "ClozeInput",
+          category: "交互",
+          preview: (
+            <div className="space-y-6">
+              <div>
+                <div className="mb-2 text-xs text-gray-500">普通模式（每个空一个输入框）</div>
+                <ClozeInput
+                  text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}."
+                  answers={["thought", "would be easy", "find", "way", "wrong"]}
+                />
+              </div>
+              <div>
+                <div className="mb-2 text-xs text-gray-500">letter-by-letter 模式（每个字母一个输入框）</div>
+                <ClozeInput
+                  text="The capital of France is {0}."
+                  answers={["Paris"]}
+                  letterMode
+                />
+              </div>
+            </div>
+          ),
+          code:
+            `<ClozeInput text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}." answers={["thought", "would be easy", "find", "way", "wrong"]} />\n` +
+            `<ClozeInput text="The capital of France is {0}." answers={["Paris"]} letterMode />`
+        },
     {
       name: "Table",
       category: "布局",
