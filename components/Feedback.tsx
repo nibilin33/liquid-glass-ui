@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import {
+    TypeWriter
+} from './TypeWriter';
 
 export interface FeedbackProps {
 	correct: boolean;
@@ -64,12 +67,11 @@ export function Feedback({ correct, message, correctText, errorText, fontFamily 
 					</svg>
 				)}
 			</motion.div>
-			<span
+			<TypeWriter
+				text={displayText}
 				className="drop-shadow-lg tracking-wide"
-				style={{ fontFamily: fontFamily || 'Fira Mono, Menlo, Monaco, Consolas, monospace', fontSize: '0.88em', letterSpacing: '0.04em' }}
-			>
-				{displayText}
-			</span>
+				style={{ fontFamily: fontFamily || 'Fira Mono, Menlo, Monaco, Consolas, monospace', fontSize: '0.88em', letterSpacing: '0.04em', display: 'inline-flex' }}
+			/>
 		</motion.div>
 	);
 }

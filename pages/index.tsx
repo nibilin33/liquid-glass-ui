@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, use, useState } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Input } from "../components/Input";
@@ -16,7 +16,7 @@ import { Recorder } from "../components/Recorder";
 import { Checkin } from "../components/Checkin";
 import { CheckinCalendar } from "../components/CheckinCalendar";
 import { LearningTimeline } from "../components/LearningTimeline";
-
+import { QuestionNav } from "../components/QuestionNav";
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -101,6 +101,7 @@ export default function RootLayout() {
   ];
 
   const [email, setEmail] = useState("");
+  const [countdown, setCountdown] = useState<number | undefined>(undefined);
   const allComponents = [
     {
       name: "ClozeInput",
@@ -176,24 +177,57 @@ export default function RootLayout() {
     onCheckin={date => alert('已打卡：' + date)}
   />`
     },
-      {
-        name: "LearningTimeline",
-        category: "交互",
-        preview: (
-          <div className="space-y-6">
-            <div className="mb-2 text-xs text-gray-500">学习轨迹时间轴组件示例</div>
-            <LearningTimeline
-              nodes={[
-                { date: "2025-08-01", title: "单词记忆", description: "完成100个新单词", status: "done" },
-                { date: "2025-08-02", title: "语法练习", description: "掌握时态用法", status: "doing" },
-                { date: "2025-08-03", title: "听力训练", description: "听力材料30分钟", status: "todo" }
-              ]}
+    {
+      name: "LearningTimeline",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">学习轨迹时间轴组件示例</div>
+          <LearningTimeline
+            nodes={[
+              { date: "2025-08-01", title: "单词记忆", description: "完成100个新单词", status: "done" },
+              { date: "2025-08-02", title: "语法练习", description: "掌握时态用法", status: "doing" },
+              { date: "2025-08-03", title: "听力训练", description: "听力材料30分钟", status: "todo" }
+            ]}
+          />
+        </div>
+      ),
+      code:
+        `<LearningTimeline\n  nodes={[\n    { date: '2025-08-01', title: '单词记忆', description: '完成100个新单词', status: 'done' },\n    { date: '2025-08-02', title: '语法练习', description: '掌握时态用法', status: 'doing' },\n    { date: '2025-08-03', title: '听力训练', description: '听力材料30分钟', status: 'todo' }\n  ]}\n/>`
+    },
+    {
+      name: "QuestionNav",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">套题导航组件示例（含倒计时自动下一题）</div>
+          <div className="flex flex-col justify-center items-center gap-4">
+            <QuestionNav
+              current={2}
+              total={5}
+              title="语法填空题"
+              countdown={countdown}
+              onPrev={() => true}
+              onNext={() => true}
             />
+            <Button onClick={() => setCountdown(8)}>
+              显示计时
+            </Button>
           </div>
-        ),
-        code:
-          `<LearningTimeline\n  nodes={[\n    { date: '2025-08-01', title: '单词记忆', description: '完成100个新单词', status: 'done' },\n    { date: '2025-08-02', title: '语法练习', description: '掌握时态用法', status: 'doing' },\n    { date: '2025-08-03', title: '听力训练', description: '听力材料30分钟', status: 'todo' }\n  ]}\n/>`
-      },
+
+        </div>
+      ),
+      code:
+        `<QuestionNav
+  current={2}
+  total={5}
+  title="语法填空题"
+  countdown={countdown}
+  onPrev={() => true}
+  onNext={() => true}
+/>
+`
+    },
     {
       name: "Recorder",
       category: "交互",
