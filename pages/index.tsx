@@ -19,6 +19,8 @@ import { LearningTimeline } from "../components/LearningTimeline";
 import { QuestionNav } from "../components/QuestionNav";
 import { ImageQuiz } from "../components/ImageQuiz";
 import { Explanation } from "../components/Explanation";
+import { ReadingVisualizer } from "../components/ReadingVisualizer";
+
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -105,6 +107,36 @@ export default function RootLayout() {
   const [email, setEmail] = useState("");
   const [countdown, setCountdown] = useState<number | undefined>(undefined);
   const allComponents = [
+    {
+      name: "ReadingVisualizer",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">阅读可视化（文本标注+思维导图）</div>
+          <ReadingVisualizer
+            text={"The quick brown fox jumps over the lazy dog."}
+            annotations={[{ start: 4, end: 9, type: "重点", color: "#10b981", note: "核心词组" }, { start: 16, end: 19, type: "生词", color: "#f59e42", note: "需掌握" }]}
+            mindmap={{
+              id: "root",
+              title: "解题思路",
+              children: [
+                { id: "1", title: "理解主干结构", note: "主谓宾", color: "#10b981" },
+                { id: "2", title: "识别重点词组", children: [
+                  { id: "2-1", title: "brown fox", note: "形容词+名词" },
+                  { id: "2-2", title: "lazy dog", note: "形容词+名词" }
+                ] },
+                { id: "3", title: "生词掌握", children: [
+                  { id: "3-1", title: "jumps", note: "动作" }
+                ] }
+              ]
+            }}
+          />
+        </div>
+      ),
+      code:
+        `<ReadingVisualizer text="The quick brown fox jumps over the lazy dog." annotations={[{ start: 4, end: 9, type: '重点', color: '#10b981', note: '核心词组' }, { start: 16, end: 19, type: '生词', color: '#f59e42', note: '需掌握' }]} mindmap={{ id: 'root', title: '解题思路', children: [{ id: '1', title: '理解主干结构', note: '主谓宾', color: '#10b981' }, { id: '2', title: '识别重点词组', children: [{ id: '2-1', title: 'brown fox', note: '形容词+名词' }, { id: '2-2', title: 'lazy dog', note: '形容词+名词' }] }, { id: '3', title: '生词掌握', children: [{ id: '3-1', title: 'jumps', note: '动作' }] }] }} />`,
+      grid: 3// 新增 grid 占用格数
+    },
     {
       name: "ClozeInput",
       category: "交互",
@@ -374,14 +406,19 @@ export default function RootLayout() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filtered.map(c => (
-          <Card key={c.name} title={c.name}>
-            <div className="mb-4">{c.preview}</div>
-            <Badge>{c.category}</Badge>
-            <div className="mt-4 flex justify-between">
-              <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
-              <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
-            </div>
-          </Card>
+          <div
+            key={c.name}
+            style={'grid' in c ? { gridColumn: `span ${c.grid} / span ${c.grid}` } : undefined}
+          >
+            <Card title={c.name}>
+              <div className="mb-4">{c.preview}</div>
+              <Badge>{c.category}</Badge>
+              <div className="mt-4 flex justify-between">
+                <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
+                <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
+              </div>
+            </Card>
+          </div>
         ))}
       </div>
     </div>
