@@ -35,11 +35,10 @@ function renderAnnotatedText(text: string, annotations: ReadingVisualizerProps['
     result.push(
       <mark
         key={ann.start + '-' + ann.end + '-' + i}
+        className='p-1 rounded shadow-sm text-sm'
         style={{
           background: ann.color || 'rgba(16,185,129,0.18)',
           color: ann.color ? '#fff' : '#176c4f',
-          borderRadius: '6px',
-          padding: '0 2px',
           fontWeight: 500,
         }}
         title={ann.note || ann.type}
