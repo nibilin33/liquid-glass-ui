@@ -20,6 +20,7 @@ import { QuestionNav } from "../components/QuestionNav";
 import { ImageQuiz } from "../components/ImageQuiz";
 import { Explanation } from "../components/Explanation";
 import { ReadingVisualizer } from "../components/ReadingVisualizer";
+import { AbilityRadar } from "../components/AbilityRadar";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
@@ -107,6 +108,29 @@ export default function RootLayout() {
   const [email, setEmail] = useState("");
   const [countdown, setCountdown] = useState<number | undefined>(undefined);
   const allComponents = [
+    {
+      name: "AbilityRadar",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">能力图谱雷达图示例</div>
+          <AbilityRadar
+            title="学习能力图谱"
+            abilities={[
+              { name: "词汇", value: 80, color: "#10b981" },
+              { name: "语法", value: 65, color: "#3b82f6" },
+              { name: "听力", value: 70, color: "#f59e42" },
+              { name: "口语", value: 60, color: "#ef4444" },
+              { name: "阅读", value: 90, color: "#6366f1" },
+              { name: "写作", value: 55, color: "#14b8a6" }
+            ]}
+          />
+        </div>
+      ),
+      code:
+        `<AbilityRadar title="学习能力图谱" abilities={[{ name: '词汇', value: 80 }, { name: '语法', value: 65 }, { name: '听力', value: 70 }, { name: '口语', value: 60 }, { name: '阅读', value: 90 }, { name: '写作', value: 55 }]} />`,
+      grid: "full"
+    },
     {
       name: "ReadingVisualizer",
       category: "交互",
@@ -408,6 +432,7 @@ export default function RootLayout() {
         {filtered.map(c => {
           // grid === 'full' 时始终占据整行
           let gridStyle: React.CSSProperties | undefined = undefined;
+          //@ts-ignore
           if (c.grid === 'full') {
             gridStyle = { gridColumn: '1 / -1' };
           } else if ('grid' in c && c.grid) {
