@@ -459,16 +459,11 @@ export default function RootLayout() {
     (category === "全部" || c.category === category) &&
     c.name.toLowerCase().includes(search.toLowerCase())
   );
-  // ...existing code...
-  // 需引入 next/head
-  // ...existing code...
   return (
     <>
       {/* SEO Canonical 链接，使用 next/head 以避免 hydration 错误 */}
       {typeof window === 'undefined' ? null : null}
       <div className="container-prose py-8 min-h-screen">
-        {/* 语义化 H2 标题，利于 SEO */}
-        {/* <h2 className="text-2xl font-bold mb-6 text-emerald-700">Liquid Glass UI Component Showcase</h2> */}
         <div className="flex gap-4 mb-8 items-center">
           <Input placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
           <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
