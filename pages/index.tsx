@@ -21,6 +21,7 @@ import { ImageQuiz } from "../components/ImageQuiz";
 import { Explanation } from "../components/Explanation";
 import { ReadingVisualizer } from "../components/ReadingVisualizer";
 import { AbilityRadar } from "../components/AbilityRadar";
+import { ReadAloud } from "../components/ReadAloud";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
@@ -129,7 +130,7 @@ export default function RootLayout() {
       ),
       code:
         `<AbilityRadar title="学习能力图谱" abilities={[{ name: '词汇', value: 80 }, { name: '语法', value: 65 }, { name: '听力', value: 70 }, { name: '口语', value: 60 }, { name: '阅读', value: 90 }, { name: '写作', value: 55 }]} />`,
-      grid: "full"
+      grid: 'full'
     },
     {
       name: "ReadingVisualizer",
@@ -161,6 +162,19 @@ export default function RootLayout() {
         `<ReadingVisualizer text="The quick brown fox jumps over the lazy dog." annotations={[{ start: 4, end: 9, type: '重点', color: '#10b981', note: '核心词组' }, { start: 16, end: 19, type: '生词', color: '#f59e42', note: '需掌握' }]} mindmap={{ id: 'root', title: '解题思路', children: [{ id: '1', title: '理解主干结构', note: '主谓宾', color: '#10b981' }, { id: '2', title: '识别重点词组', children: [{ id: '2-1', title: 'brown fox', note: '形容词+名词' }, { id: '2-2', title: 'lazy dog', note: '形容词+名词' }] }, { id: '3', title: '生词掌握', children: [{ id: '3-1', title: 'jumps', note: '动作' }] }] }} />`,
       grid: "full"
     },
+      {
+    name: "ReadAloud",
+    category: "交互",
+    preview: (
+      <div className="space-y-6">
+        <div className="mb-2 text-xs text-gray-500">点读组件示例（点击单词播放语音）</div>
+        <ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />
+      </div>
+    ),
+    code:
+      `<ReadAloud text="The quick brown fox jumps over the lazy dog." lang="en-US" />`,
+    grid: undefined
+  },
     {
       name: "ClozeInput",
       category: "交互",
