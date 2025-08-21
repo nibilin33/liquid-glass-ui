@@ -80,7 +80,7 @@ export default function RootLayout() {
   const [tablePage, setTablePage] = useState(1);
   const tableColumns = [
     { key: 'name', title: '姓名', sortable: true },
-    { key: 'age', title: '年龄', align: 'center' as const, sortable: true, render: (v: any) => <span className="font-bold text-emerald-600">{v}</span> },
+    { key: 'age', title: '年龄', sortable: true, render: (v: any) => <span className="font-bold text-emerald-600">{v}</span> },
     { key: 'city', title: '城市' }
   ];
   const tableData = [
