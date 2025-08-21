@@ -9,6 +9,7 @@ import { GlassTooltip } from "../components/GlassTooltip";
 import { GlassTabs } from "../components/GlassTabs";
 import { GlassDropdown } from "../components/GlassDropdown";
 import { GlassCheckbox } from "../components/GlassCheckbox";
+import { Table } from "../components/Table";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
@@ -76,7 +77,52 @@ export default function RootLayout() {
   const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   // 在渲染时插入 GlassCheckbox 示例
+  const [tablePage, setTablePage] = useState(1);
+  const tableColumns = [
+    { key: 'name', title: '姓名', sortable: true },
+    { key: 'age', title: '年龄', align: 'center' as const, sortable: true, render: (v: any) => <span className="font-bold text-emerald-600">{v}</span> },
+    { key: 'city', title: '城市' }
+  ];
+  const tableData = [
+    { name: '张三', age: 22, city: '上海' },
+    { name: '李四', age: 28, city: '北京' },
+    { name: '王五', age: 35, city: '广州' },
+    { name: '赵六', age: 19, city: '深圳' },
+    { name: '钱七', age: 41, city: '杭州' },
+    { name: '孙八', age: 25, city: '成都' },
+    { name: '周九', age: 30, city: '重庆' },
+    { name: '吴十', age: 27, city: '南京' },
+    { name: '郑十一', age: 33, city: '苏州' },
+    { name: '王十二', age: 24, city: '武汉' }
+  ];
+
   const allComponents = [
+    {
+      name: "Table",
+      category: "布局",
+      preview: (
+        <div style={{ height: 320 }}>
+          <Table
+            columns={tableColumns}
+            data={tableData}
+            page={tablePage}
+            pageSize={5}
+            total={tableData.length}
+            onPageChange={setTablePage}
+          />
+        </div>
+      ),
+      code:
+        `<Table
+  columns={[{ key: 'name', title: '姓名', sortable: true }, { key: 'age', title: '年龄', align: 'center', sortable: true, render: (v) => <span className='font-bold text-emerald-600'>{v}</span> }, { key: 'city', title: '城市' }]}
+  data={[{ name: '张三', age: 22, city: '上海' }, ...]}
+  page={tablePage}
+  pageSize={5}
+  total={tableData.length}
+  onPageChange={setTablePage}
+/>
+`
+    },
     {
       name: "Checkbox",
       category: "基础",

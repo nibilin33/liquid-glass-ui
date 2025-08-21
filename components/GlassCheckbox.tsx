@@ -22,7 +22,7 @@ export function GlassCheckbox({ label, checked, onChange, className = '', ...res
             <MTCheckbox
                 checked={checked}
                 onChange={e => onChange?.(e.target.checked)}
-                className="liquid-glass"
+                className="liquid-glass checked:bg-emerald-500 checked:border-emerald-500 focus:ring-emerald-500"
                 {...(rest as any)} />
             {label && <span className="text-white text-base font-medium drop-shadow-sm">{label}</span>}
         </motion.label>
