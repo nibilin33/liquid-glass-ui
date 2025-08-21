@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://liquidglass.liqueai.com
+
+# Sitemaps
+Sitemap: https://liquidglass.liqueai.com/sitemap.xml
