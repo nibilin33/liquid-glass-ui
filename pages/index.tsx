@@ -10,6 +10,7 @@ import { Tabs } from "../components/Tabs";
 import { Dropdown } from "../components/Dropdown";
 import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
+import { Ordering } from "../components/Ordering";
 
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
@@ -145,9 +146,19 @@ export default function RootLayout() {
             placeholder="请输入邮箱"
           />
         </div>
-
       ),
       code: `<Input placeholder="输入内容" label="输入框" /> <Input label="邮箱" required validate={async (v) => !v.includes('@') ? '请输入有效邮箱' : ''} />`
+    },
+    {
+      name: "Ordering",
+      category: "交互",
+      preview: (
+        <div>
+          <div className="mb-2 text-xs text-gray-500">可拖拽列表项进行排序</div>
+          <Ordering items={["苹果", "香蕉", "橙子"]} onChange={newOrder => console.log(newOrder)} />
+        </div>
+      ),
+      code: `<Ordering items={["苹果", "香蕉", "橙子"]} onChange={newOrder => console.log(newOrder)} />`
     },
     ...components
   ];

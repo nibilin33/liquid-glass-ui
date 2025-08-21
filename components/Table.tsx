@@ -133,8 +133,16 @@ export const Table: React.FC<TableProps & { bodyHeight?: number | string }> = ({
                                     <span className="flex items-center gap-1">
                                         {col.title}
                                         {col.sortable && (
-                                            <span className="text-xs">
-                                                {sortKey === col.key ? (sortOrder === 'asc' ? '▲' : '▼') : '↕'}
+                                            <span className="ml-1">
+                                                {sortKey === col.key ? (
+                                                    sortOrder === 'asc' ? (
+                                                        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="inline align-middle"><path d="M10 6l4 6H6l4-6z" fill="#10b981"/></svg>
+                                                    ) : (
+                                                        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="inline align-middle"><path d="M10 14l-4-6h8l-4 6z" fill="#10b981"/></svg>
+                                                    )
+                                                ) : (
+                                                    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" className="inline align-middle"><path d="M10 6l4 6H6l4-6z" fill="#d1d5db"/><path d="M10 14l-4-6h8l-4 6z" fill="#d1d5db"/></svg>
+                                                )}
                                             </span>
                                         )}
                                     </span>
