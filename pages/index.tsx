@@ -79,9 +79,11 @@ export default function RootLayout() {
     <div className="container-prose py-8 min-h-screen">
       <div className="flex gap-4 mb-8 items-center">
         <GlassInput placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
-        <div className="flex gap-2">
+        <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
           {categories.map(cat => (
-            <GlassButton key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"}>{cat}</GlassButton>
+            <GlassButton key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"} className="min-w-[80px]">
+              {cat}
+            </GlassButton>
           ))}
         </div>
       </div>
