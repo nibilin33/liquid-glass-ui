@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Liquid Glass ComponentKit</title>
         <meta name="description" content="A collection of liquid glass UI components built with Tailwind CSS and React." />
         <meta name="keywords" content="liquid glass, UI, components, react, tailwind, nextjs, glassmorphism, emerald, design, quiz components, 前端组件, 玻璃风格, 动画, 响应式, 练习组件" />
+        <link rel="canonical" href="https://liquidglass.liqueai.com/" />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <MTThemeProvider>

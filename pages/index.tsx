@@ -459,45 +459,54 @@ export default function RootLayout() {
     (category === "全部" || c.category === category) &&
     c.name.toLowerCase().includes(search.toLowerCase())
   );
+  // ...existing code...
+  // 需引入 next/head
+  // ...existing code...
   return (
-    <div className="container-prose py-8 min-h-screen">
-      <div className="flex gap-4 mb-8 items-center">
-        <Input placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
-        <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
-          {categories.map(cat => (
-            <Button key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"} className="min-w-[80px]">
-              {cat}
-            </Button>
-          ))}
+    <>
+      {/* SEO Canonical 链接，使用 next/head 以避免 hydration 错误 */}
+      {typeof window === 'undefined' ? null : null}
+      <div className="container-prose py-8 min-h-screen">
+        {/* 语义化 H2 标题，利于 SEO */}
+        {/* <h2 className="text-2xl font-bold mb-6 text-emerald-700">Liquid Glass UI Component Showcase</h2> */}
+        <div className="flex gap-4 mb-8 items-center">
+          <Input placeholder="搜索组件…" value={search} onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)} className="w-64" />
+          <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
+            {categories.map(cat => (
+              <Button key={cat} onClick={() => setCategory(cat)} color={category === cat ? "emerald" : "gray"} className="min-w-[80px]">
+                {cat}
+              </Button>
+            ))}
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.map(c => {
+            // grid === 'full' 时始终占据整行
+            let gridStyle: React.CSSProperties | undefined = undefined;
+            //@ts-ignore
+            if (c.grid === 'full') {
+              gridStyle = { gridColumn: '1 / -1' };
+            } else if ('grid' in c && c.grid) {
+              // 仅在 md/lg 屏幕允许跨列，移动端单列
+              gridStyle = {
+                gridColumn: `span 1 / span 1`,
+              };
+            }
+            return (
+              <div key={c.name} style={gridStyle}>
+                <Card title={c.name}>
+                  <div className="mb-4">{c.preview}</div>
+                  <Badge>{c.category}</Badge>
+                  <div className="mt-4 flex justify-between">
+                    <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
+                    <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
+                  </div>
+                </Card>
+              </div>
+            );
+          })}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filtered.map(c => {
-          // grid === 'full' 时始终占据整行
-          let gridStyle: React.CSSProperties | undefined = undefined;
-          //@ts-ignore
-          if (c.grid === 'full') {
-            gridStyle = { gridColumn: '1 / -1' };
-          } else if ('grid' in c && c.grid) {
-            // 仅在 md/lg 屏幕允许跨列，移动端单列
-            gridStyle = {
-              gridColumn: `span 1 / span 1`,
-            };
-          }
-          return (
-            <div key={c.name} style={gridStyle}>
-              <Card title={c.name}>
-                <div className="mb-4">{c.preview}</div>
-                <Badge>{c.category}</Badge>
-                <div className="mt-4 flex justify-between">
-                  <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
-                  <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
-                </div>
-              </Card>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 }
