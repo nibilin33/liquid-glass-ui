@@ -16,7 +16,7 @@ interface GlassSidebarProps {
 export function GlassSidebar({ items = [] }: GlassSidebarProps) {
   return (
     <motion.aside
-      className="w-64 p-6 liquid-glass hidden md:flex flex-col"
+      className="p-6 liquid-glass hidden md:flex flex-col"
       initial={{ x: -50, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
