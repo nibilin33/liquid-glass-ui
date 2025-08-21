@@ -135,7 +135,7 @@ export default function RootLayout() {
       ),
       code:
         `<ReadingVisualizer text="The quick brown fox jumps over the lazy dog." annotations={[{ start: 4, end: 9, type: '重点', color: '#10b981', note: '核心词组' }, { start: 16, end: 19, type: '生词', color: '#f59e42', note: '需掌握' }]} mindmap={{ id: 'root', title: '解题思路', children: [{ id: '1', title: '理解主干结构', note: '主谓宾', color: '#10b981' }, { id: '2', title: '识别重点词组', children: [{ id: '2-1', title: 'brown fox', note: '形容词+名词' }, { id: '2-2', title: 'lazy dog', note: '形容词+名词' }] }, { id: '3', title: '生词掌握', children: [{ id: '3-1', title: 'jumps', note: '动作' }] }] }} />`,
-      grid: 3// 新增 grid 占用格数
+      grid: "full"
     },
     {
       name: "ClozeInput",
@@ -405,21 +405,30 @@ export default function RootLayout() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filtered.map(c => (
-          <div
-            key={c.name}
-            style={'grid' in c ? { gridColumn: `span ${c.grid} / span ${c.grid}` } : undefined}
-          >
-            <Card title={c.name}>
-              <div className="mb-4">{c.preview}</div>
-              <Badge>{c.category}</Badge>
-              <div className="mt-4 flex justify-between">
-                <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
-                <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
-              </div>
-            </Card>
-          </div>
-        ))}
+        {filtered.map(c => {
+          // grid === 'full' 时始终占据整行
+          let gridStyle: React.CSSProperties | undefined = undefined;
+          if (c.grid === 'full') {
+            gridStyle = { gridColumn: '1 / -1' };
+          } else if ('grid' in c && c.grid) {
+            // 仅在 md/lg 屏幕允许跨列，移动端单列
+            gridStyle = {
+              gridColumn: `span 1 / span 1`,
+            };
+          }
+          return (
+            <div key={c.name} style={gridStyle}>
+              <Card title={c.name}>
+                <div className="mb-4">{c.preview}</div>
+                <Badge>{c.category}</Badge>
+                <div className="mt-4 flex justify-between">
+                  <Button onClick={() => navigator.clipboard.writeText(c.code || "")}>复制源码</Button>
+                  <Button onClick={() => window.location.href = `/showcase/${c.name.toLowerCase()}`}>查看详情</Button>
+                </div>
+              </Card>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
