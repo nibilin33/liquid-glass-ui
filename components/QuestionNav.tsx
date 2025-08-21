@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Button } from './Button';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import {
     TypeWriter
 } from './TypeWriter';
@@ -54,9 +55,9 @@ export function QuestionNav({ current, total, title, onPrev, onNext, prevDisable
                 color="gray"
                 onClick={handlePrev}
                 disabled={prevDisabled || currentIndex <= 1}
-                className="w-10 h-10 rounded-full text-lg shadow"
+                className="w-10 h-10 rounded-full text-lg shadow flex items-center justify-center"
             >
-                &lt;
+                <FaChevronLeft />
             </Button>
             <div className="flex-1 flex flex-col items-center justify-center">
                 <div className="text-xs text-emerald-500 font-bold mb-1">第 {currentIndex} / {total} 题</div>
@@ -74,9 +75,9 @@ export function QuestionNav({ current, total, title, onPrev, onNext, prevDisable
                 color="gray"
                 onClick={handleNext}
                 disabled={nextDisabled || currentIndex >= total}
-                className="w-10 h-10 rounded-full text-lg shadow"
+                className="w-10 h-10 rounded-full text-lg shadow flex items-center justify-center"
             >
-                &gt;
+                <FaChevronRight />
             </Button>
         </div>
     );

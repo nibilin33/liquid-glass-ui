@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './Button';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 function getDaysInMonth(year: number, month: number) {
     return new Date(year, month + 1, 0).getDate();
@@ -56,12 +57,12 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
             style={{ minHeight: 480 }}
         >
             <div className="flex items-center justify-center w-full mb-3 gap-3">
-                <Button color="gray" onClick={handlePrevMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100">&lt;</Button>
+                <Button color="gray" onClick={handlePrevMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100 flex items-center justify-center"><FaChevronLeft /></Button>
                 <div className="flex flex-col items-center justify-center px-7 py-3 rounded-2xl bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 shadow-lg border border-emerald-100">
                     <div className="text-2xl font-extrabold text-emerald-700 tracking-wide leading-tight drop-shadow-lg">{viewYear}</div>
                     <div className="text-lg font-bold text-emerald-600 tracking-wide leading-tight">{String(viewMonth + 1).padStart(2, '0')}月</div>
                 </div>
-                <Button color="gray" onClick={handleNextMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100">&gt;</Button>
+                <Button color="gray" onClick={handleNextMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100 flex items-center justify-center"><FaChevronRight /></Button>
             </div>
             <div className="w-full grid grid-cols-7 gap-2 sm:gap-3 md:gap-4 mb-3">
                 {['日', '一', '二', '三', '四', '五', '六'].map((w, i) => (
