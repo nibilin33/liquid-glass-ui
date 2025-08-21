@@ -1,10 +1,7 @@
 'use client'
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTheme } from '../context/ThemeContext';
 
-export function GlassModal({ isOpen, onClose, children }: any) {
-  const { isGlass } = useTheme();
+export function Modal({ isOpen, onClose, children }: any) {
 
   if (!isOpen) return null;
 
@@ -16,11 +13,11 @@ export function GlassModal({ isOpen, onClose, children }: any) {
       exit={{ opacity: 0 }}
     >
       <div
-        className={`fixed inset-0 ${isGlass ? 'bg-white/20 backdrop-blur-xl' : 'bg-black/40'}`}
+        className={`fixed inset-0  bg-white/20 backdrop-blur-xl`}
         onClick={onClose}
       />
       <motion.div
-        className={`${isGlass ? 'liquid-glass p-6' : 'bg-white p-6 rounded-xl shadow-lg'}`}
+        className={`liquid-glass p-6`}
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.8 }}

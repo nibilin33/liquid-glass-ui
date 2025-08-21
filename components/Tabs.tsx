@@ -12,7 +12,7 @@ interface GlassTabsProps {
   tabs: Tab[]
 }
 
-export function GlassTabs({ tabs }: GlassTabsProps) {
+export function Tabs({ tabs }: GlassTabsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
   const { isGlass } = useTheme()
 

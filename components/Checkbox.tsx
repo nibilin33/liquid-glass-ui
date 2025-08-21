@@ -11,7 +11,7 @@ export interface GlassCheckboxProps {
     [key: string]: any;
 }
 
-export function GlassCheckbox({ label, checked, onChange, className = '', ...rest }: GlassCheckboxProps) {
+export function Checkbox({ label, checked, onChange, className = '', ...rest }: GlassCheckboxProps) {
     return (
         <motion.label
             whileHover={{ scale: 1.05 }}

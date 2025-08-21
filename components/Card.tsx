@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Card, CardBody } from '@material-tailwind/react';
+import { Card as MtCard, CardBody } from '@material-tailwind/react';
 import type { ReactNode } from 'react';
 
 interface GlassCardProps {
@@ -9,10 +9,10 @@ interface GlassCardProps {
   className?: string;
 }
 
-export function GlassCard({ title, children, className = '' }: GlassCardProps) {
+export function Card({ title, children, className = '' }: GlassCardProps) {
   return (
     <motion.div whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-      <Card
+      <MtCard
         className={`liquid-glass p-4 ${className}`}
         placeholder={undefined}
         onResize={undefined}
@@ -30,7 +30,7 @@ export function GlassCard({ title, children, className = '' }: GlassCardProps) {
           <h3 className="text-white font-bold mb-2">{title}</h3>
           {children}
         </CardBody>
-      </Card>
+      </MtCard>
     </motion.div>
   );
 }

@@ -13,7 +13,7 @@ interface GlassSidebarProps {
   items?: GlassSidebarItem[];
 }
 
-export function GlassSidebar({ items = [] }: GlassSidebarProps) {
+export function Sidebar({ items = [] }: GlassSidebarProps) {
   return (
     <motion.aside
       className="p-6 liquid-glass hidden md:flex flex-col"

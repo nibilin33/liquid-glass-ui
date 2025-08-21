@@ -3,7 +3,7 @@ import '../components/globals.css';
 import { ThemeProvider as MTThemeProvider } from "@material-tailwind/react";
 import { ThemeProvider } from "../context/ThemeContext";
 import type { AppProps } from "next/app";
-import GlassHeader from "../components/GlassHeader";
+import GlassHeader from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {

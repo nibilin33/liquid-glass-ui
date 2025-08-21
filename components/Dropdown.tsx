@@ -9,7 +9,7 @@ interface GlassDropdownProps {
   items: { label: string; onClick: () => void }[]
 }
 
-export function GlassDropdown({ label, items }: GlassDropdownProps) {
+export function Dropdown({ label, items }: GlassDropdownProps) {
   const { isGlass } = useTheme()
   const [open, setOpen] = useState(false)
 

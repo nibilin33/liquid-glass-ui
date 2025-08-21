@@ -1,8 +1,8 @@
 'use client'
 import { motion } from 'framer-motion';
-import { GlassButton } from './GlassButton';
+import { Button } from './Button';
 
-export function GlassNavbar() {
+export function Navbar() {
   return (
     <motion.header
       className="h-16 px-6 flex items-center justify-between liquid-glass"
@@ -11,7 +11,7 @@ export function GlassNavbar() {
       transition={{ duration: 0.5 }}
     >
       <h1 className="text-lg font-semibold text-white">Liquid Dashboard</h1>
-      <GlassButton>Log out</GlassButton>
+      <Button>Log out</Button>
     </motion.header>
   );
 }

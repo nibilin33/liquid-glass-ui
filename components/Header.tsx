@@ -4,7 +4,7 @@ export interface GlassHeaderProps {
   navLinks?: Array<{ label: string; href: string; ariaLabel?: string; title?: string; github?: boolean }>;
 }
 
-export default function GlassHeader({
+export default function Header({
   title = "Liquid Glass ComponentKit",
   navLinks = [
     { label: "GitHub", href: "https://github.com/nibilin33/liquid-glass-ui", ariaLabel: "GitHub 仓库", title: "GitHub", github: true }

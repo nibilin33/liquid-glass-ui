@@ -8,7 +8,7 @@ export interface GlassTooltipProps {
   trigger?: 'hover' | 'click';
 }
 
-export function GlassTooltip({ content, children, trigger = 'hover' }: GlassTooltipProps) {
+export function Tooltip({ content, children, trigger = 'hover' }: GlassTooltipProps) {
   const [open, setOpen] = useState(false);
 
   if (!content || !children) return <>{children}</>;

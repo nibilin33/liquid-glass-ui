@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { Input as MTInput } from '@material-tailwind/react';
 
-export function GlassInput(props: any) {
+export function Input(props: any) {
   // 过滤掉 label 属性，或强制 label 隐藏
   const { label, ...rest } = props;
   return (
