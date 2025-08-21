@@ -60,30 +60,32 @@ export default function Header({
       {/* 移动端抽屉导航 */}
       {menuOpen && (
         <motion.div
-          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex justify-end"
+          className="fixed inset-0 z-50 flex justify-end"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
+          {/* 半透明渐变遮罩 */}
+          <div className="flex-1 bg-gradient-to-br from-emerald-100/60 via-white/40 to-blue-100/60 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
           <motion.div
-            className="w-64 h-full bg-white/90 shadow-xl p-6 flex flex-col gap-6"
+            className="w-72 h-full bg-gradient-to-br from-white/80 via-emerald-50/90 to-blue-50/80 shadow-2xl rounded-l-3xl p-7 flex flex-col gap-7 border-l border-emerald-100"
             initial={{ x: 100 }}
             animate={{ x: 0 }}
             exit={{ x: 100 }}
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           >
             <button
-              className="self-end mb-2 text-emerald-700"
+              className="self-end mb-2 text-emerald-700 hover:bg-emerald-100/60 rounded-full p-2 transition"
               aria-label="Close navigation menu"
               onClick={() => setMenuOpen(false)}
             >
-              <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+              <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="currentColor" strokeOpacity="0.15" fill="white" /><path strokeLinecap="round" strokeLinejoin="round" d="M8 8l8 8M8 16l8-8"/></svg>
             </button>
             {navLinks.map(link => (
               <a
                 key={link.href}
                 href={link.href}
-                className="liquid-glass px-5 py-3 rounded-xl flex items-center gap-2 text-emerald-700 font-semibold shadow-glass text-lg"
+                className="liquid-glass px-6 py-4 rounded-2xl flex items-center gap-3 text-emerald-700 font-semibold shadow-glass text-lg hover:bg-emerald-50/60 transition"
                 aria-label={link.ariaLabel || link.label}
                 title={link.title || link.label}
                 target={link.github ? "_blank" : undefined}
@@ -97,8 +99,6 @@ export default function Header({
               </a>
             ))}
           </motion.div>
-          {/* 点击遮罩关闭 */}
-          <div className="flex-1" onClick={() => setMenuOpen(false)} />
         </motion.div>
       )}
     </header>
