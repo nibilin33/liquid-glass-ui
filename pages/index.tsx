@@ -13,12 +13,14 @@ import { Table } from "../components/Table";
 import { Ordering } from "../components/Ordering";
 import { ClozeInput } from "../components/ClozeInput";
 import { Recorder } from "../components/Recorder";
+import { Checkin } from "../components/Checkin";
+import { CheckinCalendar } from "../components/CheckinCalendar";
+
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
   { name: "Button", category: "基础", preview: <Button>按钮</Button>, code: `<Button>按钮</Button>` },
   { name: "Card", category: "基础", preview: <Card title="卡片">内容</Card>, code: `<Card title="卡片">内容</Card>` },
-  // Checkbox 示例将在组件内动态生成
   {
     name: "Badge",
     category: "基础",
@@ -133,6 +135,45 @@ export default function RootLayout() {
       code:
         `<ClozeInput text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}." answers={["thought", "would be easy", "find", "way", "wrong"]} />\n` +
         `<ClozeInput text="The capital of France is {0}." answers={["Paris"]} letterMode />`
+    },
+    {
+      name: "Checkin",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div>
+            <div className="mb-2 text-xs text-gray-500">打卡组件示例</div>
+            <Checkin totalDays={21} onCheckin={day => alert(`已打卡第${day}天`)} />
+          </div>
+        </div>
+      ),
+      code:
+        `<Checkin totalDays={21} onCheckin={day => alert('已打卡第' + day + '天')} />`
+    },
+    {
+      name: "CheckinCalendar",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div>
+            <div className="mb-2 text-xs text-gray-500">台历风格打卡组件示例（支持历史月份切换）</div>
+            <CheckinCalendar
+              records={{
+                "2025-08": [1],
+                "2025-07": [1]
+              }}
+            />
+          </div>
+        </div>
+      ),
+      code:
+        `<CheckinCalendar
+      records={{
+                "2025-08": [1],
+                "2025-07": [1]
+              }}
+    onCheckin={date => alert('已打卡：' + date)}
+  />`
     },
     {
       name: "Recorder",
