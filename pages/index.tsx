@@ -17,6 +17,7 @@ import { Checkin } from "../components/Checkin";
 import { CheckinCalendar } from "../components/CheckinCalendar";
 import { LearningTimeline } from "../components/LearningTimeline";
 import { QuestionNav } from "../components/QuestionNav";
+import { ImageQuiz } from "../components/ImageQuiz";
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -317,6 +318,23 @@ export default function RootLayout() {
         </div>
       ),
       code: `<Ordering items={["苹果", "香蕉", "橙子"]} onChange={newOrder => console.log(newOrder)} />`
+    },
+    {
+      name: "ImageQuiz",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div className="mb-2 text-xs text-gray-500">看图描述题型示例</div>
+          <ImageQuiz
+            imageUrl="/favicon.png"
+            question="请用一句话描述下图内容。"
+            maxLength={80}
+            onSubmit={async desc => desc.length > 10 ? "描述已提交！" : "请补充更完整的描述。"}
+          />
+        </div>
+      ),
+      code:
+        `<ImageQuiz imageUrl="/favicon.png" question="请用一句话描述下图内容。" maxLength={80} onSubmit={async desc => desc.length > 10 ? '描述已提交！' : '请补充更完整的描述。'} />`
     },
     ...components
   ];
