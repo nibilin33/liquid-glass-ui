@@ -674,69 +674,95 @@ export default function RootLayout() {
       {/* SEO Canonical 链接，使用 next/head 以避免 hydration 错误 */}
       {typeof window === "undefined" ? null : null}
       <div className="container-prose py-8 min-h-screen">
-        <div className="flex gap-4 mb-8 items-center">
-          <Input
-            placeholder="搜索组件…"
-            value={search}
-            onChange={(e: { target: { value: SetStateAction<string> } }) =>
-              setSearch(e.target.value)
-            }
-            className="w-64"
-          />
-          <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
-            {categories.map((cat) => (
-              <Button
-                key={cat}
-                onClick={() => setCategory(cat)}
-                color={category === cat ? "emerald" : "gray"}
-                className="min-w-[80px]"
-              >
-                {cat}
-              </Button>
-            ))}
+        {/* 页面主标题 */}
+        <div className="flex flex-col items-center text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent drop-shadow-lg mb-4 tracking-tight">
+            Liquid Glass UI Component Library
+          </h1>
+          <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium shadow mb-4">
+            Modern Glassmorphism for Education & Web Design
+          </span>
+        </div>
+        {/* 简介段落 */}
+        <section className="mb-10 mx-auto max-w-2xl rounded-xl bg-white/60 backdrop-blur-lg shadow-lg p-6 border border-emerald-100">
+          <h2 className="text-2xl font-semibold text-emerald-700 mb-3 tracking-tight">Empowering Modern Education & Design</h2>
+          <p className="mb-3 text-gray-700 leading-relaxed">
+            <span className="font-bold text-emerald-600">Liquid Glass UI</span> is a unique, up-to-date component library inspired by glassmorphism and Apple’s design system. Our components are crafted for modern educational platforms, interactive learning tools, and visually stunning web applications. All content is original, reliable, and focused on helping educators, designers, and developers build better user experiences.
+          </p>
+          <p className="mb-1 text-gray-700 leading-relaxed">
+            Explore our showcase below to discover practical, expert-designed UI elements. Each component is documented with clear examples and use cases, ensuring you can integrate them easily and confidently into your projects.
+          </p>
+        </section>
+        {/* 搜索与分类 */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold mb-2">Browse Components</h2>
+          <div className="flex gap-4 items-center">
+            <Input
+              placeholder="Search components…"
+              value={search}
+              onChange={(e: { target: { value: SetStateAction<string> } }) =>
+                setSearch(e.target.value)
+              }
+              className="w-64"
+            />
+            <div className="flex gap-2 overflow-x-auto flex-nowrap md:flex-wrap w-full scrollbar-hide">
+              {categories.map((cat) => (
+                <Button
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                  color={category === cat ? "emerald" : "gray"}
+                  className="min-w-[80px]"
+                >
+                  {cat}
+                </Button>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filtered.map((c) => {
-            // grid === 'full' 时始终占据整行
-            let gridStyle: React.CSSProperties | undefined = undefined;
-            //@ts-ignore
-            if (c.grid === "full") {
-              gridStyle = { gridColumn: "1 / -1" };
-            } else if ("grid" in c && c.grid) {
-              // 仅在 md/lg 屏幕允许跨列，移动端单列
-              gridStyle = {
-                gridColumn: `span 1 / span 1`,
-              };
-            }
-            return (
-              <div key={c.name} style={gridStyle}>
-                <Card title={c.name}>
-                  <div className="mb-4">{c.preview}</div>
-                  <Badge>{c.category}</Badge>
-                  <div className="mt-4 flex justify-between">
-                    <Button
-                      title="Copy Liquid Glass UI Code"
-                      onClick={() => navigator.clipboard.writeText(c.code || "")}
-                    >
-                      <FaCopy className="inline" />
-                    </Button>
-                    <Button
-                      title="View Liquid Glass UI Showcase"
-                      color="blue"
-                      onClick={() =>
-                        (window.location.href = `/showcase/${c.name.toLowerCase()}`)
-                      }
-                    >
-                      <FaEye className="inline" />
-  
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            );
-          })}
-        </div>
+        </section>
+        {/* 组件展示区块 */}
+        <section>
+          <h2 className="text-xl font-semibold mb-4">Component Showcase</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filtered.map((c) => {
+              // grid === 'full' 时始终占据整行
+              let gridStyle: React.CSSProperties | undefined = undefined;
+              //@ts-ignore
+              if (c.grid === "full") {
+                gridStyle = { gridColumn: "1 / -1" };
+              } else if ("grid" in c && c.grid) {
+                // 仅在 md/lg 屏幕允许跨列，移动端单列
+                gridStyle = {
+                  gridColumn: `span 1 / span 1`,
+                };
+              }
+              return (
+                <div key={c.name} style={gridStyle}>
+                  <Card title={c.name}>
+                    <div className="mb-4">{c.preview}</div>
+                    <Badge>{c.category}</Badge>
+                    <div className="mt-4 flex justify-between">
+                      <Button
+                        title="Copy Liquid Glass UI Code"
+                        onClick={() => navigator.clipboard.writeText(c.code || "")}
+                      >
+                        <FaCopy className="inline" />
+                      </Button>
+                      <Button
+                        title="View Liquid Glass UI Showcase"
+                        color="blue"
+                        onClick={() =>
+                          (window.location.href = `/showcase/${c.name.toLowerCase()}`)
+                        }
+                      >
+                        <FaEye className="inline" />
+                      </Button>
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
+        </section>
       </div>
     </>
   );
