@@ -12,6 +12,7 @@ import { Checkbox } from "../components/Checkbox";
 import { Table } from "../components/Table";
 import { Ordering } from "../components/Ordering";
 import { ClozeInput } from "../components/ClozeInput";
+import { Recorder } from "../components/Recorder";
 const categories = ["全部", "基础", "交互", "导航", "布局"];
 
 const components = [
@@ -98,41 +99,69 @@ export default function RootLayout() {
 
   const [email, setEmail] = useState("");
   const allComponents = [
-        {
-          name: "ClozeInput",
-          category: "交互",
-          preview: (
-            <div className="space-y-6">
-              <div>
-                <div className="mb-2 text-xs text-gray-500">普通模式（每个空一个输入框）</div>
-                <ClozeInput
-                  text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}."
-                  answers={["thought", "would be easy", "find", "way", "wrong"]}
-                />
-              </div>
-              <div>
-                <div className="mb-2 text-xs text-gray-500">letter-by-letter 模式（每个字母一个输入框）</div>
-                <ClozeInput
-                  text="The capital of France is {0}."
-                  answers={["Paris"]}
-                  letterMode
-                />
-              </div>
-              <div>
-                <div className="mb-2 text-xs text-gray-500">letter-by-letter + prefill（部分字母预填）</div>
-                <ClozeInput
-                  text="The capital of France is {0}."
-                  answers={["Paris"]}
-                  letterMode
-                  prefill={[['P', null, null, null, null]]}
-                />
-              </div>
-            </div>
-          ),
-          code:
-            `<ClozeInput text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}." answers={["thought", "would be easy", "find", "way", "wrong"]} />\n` +
-            `<ClozeInput text="The capital of France is {0}." answers={["Paris"]} letterMode />`
-        },
+    {
+      name: "ClozeInput",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div>
+            <div className="mb-2 text-xs text-gray-500">普通模式（每个空一个输入框）</div>
+            <ClozeInput
+              text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}."
+              answers={["thought", "would be easy", "find", "way", "wrong"]}
+            />
+          </div>
+          <div>
+            <div className="mb-2 text-xs text-gray-500">letter-by-letter 模式（每个字母一个输入框）</div>
+            <ClozeInput
+              text="The capital of France is {0}."
+              answers={["Paris"]}
+              letterMode
+            />
+          </div>
+          <div>
+            <div className="mb-2 text-xs text-gray-500">letter-by-letter + prefill（部分字母预填）</div>
+            <ClozeInput
+              text="The capital of France is {0}."
+              answers={["Paris"]}
+              letterMode
+              prefill={[['P', null, null, null, null]]}
+            />
+          </div>
+        </div>
+      ),
+      code:
+        `<ClozeInput text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}." answers={["thought", "would be easy", "find", "way", "wrong"]} />\n` +
+        `<ClozeInput text="The capital of France is {0}." answers={["Paris"]} letterMode />`
+    },
+    {
+      name: "Recorder",
+      category: "交互",
+      preview: (
+        <div className="space-y-6">
+          <div>
+            <div className="mb-2 text-xs text-gray-500">口语题录音示例</div>
+            <Recorder
+              question="请用英文介绍你自己。"
+              maxDuration={30}
+              onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')}
+            />
+          </div>
+          <div>
+            <div className="mb-2 text-xs text-gray-500">跟读题录音示例</div>
+            <Recorder
+              question="请跟读下方原文音频。"
+              referenceAudio="/demo.mp3"
+              maxDuration={20}
+              onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')}
+            />
+          </div>
+        </div>
+      ),
+      code:
+        `<Recorder question="请用英文介绍你自己。" maxDuration={30} onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')} />\n` +
+        `<Recorder question="请跟读下方原文音频。" referenceAudio="/demo.mp3" maxDuration={20} onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')} />`
+    },
     {
       name: "Table",
       category: "布局",
