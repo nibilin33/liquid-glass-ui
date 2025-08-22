@@ -10,7 +10,7 @@ export interface TypeWriterProps {
 }
 
 export function TypeWriter({ text, delay = 0.04, className = '', style = {}, cursor = false }: TypeWriterProps) {
-  const letters = text.split("");
+  const letters = Array.from(text);
   return (
     <span className={className} style={{ display: 'inline-flex', ...style }}>
       {letters.map((char, i) => (
@@ -19,7 +19,7 @@ export function TypeWriter({ text, delay = 0.04, className = '', style = {}, cur
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * delay, type: 'spring', stiffness: 320, damping: 22 }}
-        >{char}</motion.span>
+        >{char === ' ' ? <>&nbsp;</> : char}</motion.span>
       ))}
       {cursor && <span className="inline-block animate-pulse text-emerald-400">|</span>}
     </span>
