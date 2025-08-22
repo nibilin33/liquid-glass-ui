@@ -84,7 +84,7 @@ export const Table: React.FC<TableProps & { bodyHeight?: number | string }> = ({
                     className="liquid-glass px-2 py-1 rounded-xl text-sm text-emerald-700 font-semibold shadow-glass transition hover:scale-105 disabled:opacity-40"
                     disabled={currentPage === 1}
                     onClick={() => onPageChange?.(currentPage - 1)}
-                >上一页</button>
+                >Prev</button>
                 {pages.map((p, idx) =>
                     typeof p === 'number' ? (
                         <button
@@ -106,7 +106,7 @@ export const Table: React.FC<TableProps & { bodyHeight?: number | string }> = ({
                     className="liquid-glass text-sm px-2 py-1 rounded-xl text-emerald-700 font-semibold shadow-glass transition hover:scale-105 disabled:opacity-40"
                     disabled={currentPage === pageCount}
                     onClick={() => onPageChange?.(currentPage + 1)}
-                >下一页</button>
+                >Next</button>
             </div>
         );
     };
