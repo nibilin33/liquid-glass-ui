@@ -1,0 +1,26 @@
+# 仅发布 dist 目录和必要的声明文件
+/dist
+/index.d.ts
+
+# 排除源码、配置、测试、文档等
+/components
+/context
+/pages
+/public
+/node_modules
+/tsconfig*.json
+/package.json
+/README.md
+/.gitignore
+/.eslintrc*
+/*.lock
+/*.log
+/out
+/.next
+/.npmignore
+
+# 允许 package.json, README.md, LICENSE, 入口文件
+!package.json
+!README.md
+!LICENSE
+!index.ts
