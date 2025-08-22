@@ -684,14 +684,33 @@ export default function RootLayout() {
             Modern Glassmorphism for Education & Web Design
           </span>
         </div>
-        {/* 简介段落 */}
+        {/* 简介段落 + SEO 优化信息 */}
         <section className="mb-10 mx-auto max-w-2xl rounded-xl bg-white/60 backdrop-blur-lg shadow-lg p-6 border border-emerald-100">
           <h2 className="text-2xl font-semibold text-emerald-700 mb-3 tracking-tight">Empowering Modern Education & Design</h2>
           <p className="mb-3 text-gray-700 leading-relaxed">
-            <span className="font-bold text-emerald-600">Liquid Glass UI</span> is a unique, up-to-date component library inspired by glassmorphism and Apple’s design system. Our components are crafted for modern educational platforms, interactive learning tools, and visually stunning web applications. All content is original, reliable, and focused on helping educators, designers, and developers build better user experiences.
+            <span className="font-bold text-emerald-600">Liquid Glass UI</span> is a cutting-edge React component library featuring glassmorphism, interactive quizzes, timelines, check-in calendars, mindmaps, recorders, and markdown explanations. Perfect for EdTech, online learning, and modern web design.
           </p>
           <p className="mb-1 text-gray-700 leading-relaxed">
-            Explore our showcase below to discover practical, expert-designed UI elements. Each component is documented with clear examples and use cases, ensuring you can integrate them easily and confidently into your projects.
+            <b>Key Features:</b> <br />
+            <ul className="list-disc pl-5 mb-2">
+              <li>Glassmorphism design: frosted panels, gradients, glowing effects</li>
+              <li>Education-focused: interactive quizzes, timelines, check-in, mindmap, recorder, explanation</li>
+              <li>Responsive & accessible: mobile-friendly, keyboard navigation, ARIA support</li>
+              <li>Easy integration: plug-and-play React components, TypeScript support</li>
+              <li>SEO optimized: semantic HTML, rich metadata, fast performance</li>
+            </ul>
+          </p>
+          <p className="mb-1 text-gray-700 leading-relaxed">
+            <b>Use Cases:</b> <br />
+            <ul className="list-disc pl-5 mb-2">
+              <li>Online education platforms, learning management systems (LMS)</li>
+              <li>Quiz apps, exam systems, interactive classroom tools</li>
+              <li>Portfolio sites, SaaS dashboards, glassmorphism landing pages</li>
+              <li>Any project needing beautiful, modern, and educational UI components</li>
+            </ul>
+          </p>
+          <p className="mb-1 text-gray-700 leading-relaxed">
+            All components are documented with clear examples and use cases. Explore the showcase below to discover practical, expert-designed UI elements for your next project.
           </p>
         </section>
         {/* 搜索与分类 */}
