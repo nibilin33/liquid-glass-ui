@@ -1,26 +1,29 @@
-# 仅发布 dist 目录和必要的声明文件
-/dist
-/index.d.ts
+docs
+demo.png
+components
+context
+pages
+public
+node_modules
+tsconfig*.json
+next-env.d.ts
+next-sitemap.config.js
+next.config.js
+postcss.config.js
+tailwind.config.js
+tsconfig.tsbuildinfo
+out
+.next
+.npmignore
+.gitignore
+.eslintrc*
+*.lock
+*.log
 
-# 排除源码、配置、测试、文档等
-/components
-/context
-/pages
-/public
-/node_modules
-/tsconfig*.json
-/package.json
-/README.md
-/.gitignore
-/.eslintrc*
-/*.lock
-/*.log
-/out
-/.next
-/.npmignore
-
-# 允许 package.json, README.md, LICENSE, 入口文件
-!package.json
+# 只发布 dist（不含 tsbuildinfo）、index.ts、index.d.ts、README.md、LICENSE、package.json
+!dist/**
+!index.ts
+!index.d.ts
 !README.md
 !LICENSE
-!index.ts
+!package.json

@@ -2,7 +2,15 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "noEmit": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "jsx": "react-jsx", // 或 "react"
+    "module": "esnext",
+    "target": "esnext",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["components", "index.ts"],
   "exclude": ["node_modules"]
