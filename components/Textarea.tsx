@@ -42,7 +42,7 @@ export function Textarea({ label, value, onChange, placeholder, required, error,
       />
       {typeof maxLength === 'number' && (
         <div className="text-xs text-gray-400 text-right select-none">
-          剩余 {Math.max(0, (maxLength ?? 0) - length)} 字
+          Left {Math.max(0, (maxLength ?? 0) - length)} characters
         </div>
       )}
       {error && <div className="text-xs text-red-400 mt-1">{error}</div>}

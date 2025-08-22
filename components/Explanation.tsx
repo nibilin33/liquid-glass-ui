@@ -9,7 +9,7 @@ export interface ExplanationProps {
     title?: string;
 }
 
-export const Explanation: React.FC<ExplanationProps> = ({ answer, explanation, defaultOpen = false, title = '查看答案与解析' }) => {
+export const Explanation: React.FC<ExplanationProps> = ({ answer, explanation, defaultOpen = false, title = 'Explanation' }) => {
 	const [open, setOpen] = useState(defaultOpen);
 	return (
 		<div className="liquid-glass rounded-xl shadow-glass bg-white/60 backdrop-blur p-0 w-full max-w-2xl mx-auto">
@@ -31,7 +31,7 @@ export const Explanation: React.FC<ExplanationProps> = ({ answer, explanation, d
 			>
 				{open && (
 					<div className="px-5 pb-5 pt-2 text-gray-700 text-base">
-						<div className="mb-2 font-bold text-emerald-600">答案：{answer}</div>
+						<div className="mb-2 font-bold text-emerald-600">{answer}</div>
                         <div className="explanation-markdown">
                             <ReactMarkdown >{explanation}</ReactMarkdown>
                         </div>

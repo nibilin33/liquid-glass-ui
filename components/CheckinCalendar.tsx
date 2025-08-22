@@ -60,16 +60,16 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
                 <Button color="gray" onClick={handlePrevMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100 flex items-center justify-center"><FaChevronLeft /></Button>
                 <div className="flex flex-col items-center justify-center px-7 py-3 rounded-2xl bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 shadow-lg border border-emerald-100">
                     <div className="text-2xl font-extrabold text-emerald-700 tracking-wide leading-tight drop-shadow-lg">{viewYear}</div>
-                    <div className="text-lg font-bold text-emerald-600 tracking-wide leading-tight">{String(viewMonth + 1).padStart(2, '0')}月</div>
+                    <div className="text-lg font-bold text-emerald-600 tracking-wide leading-tight">{String(viewMonth + 1).padStart(2, '0')} / {viewYear}</div>
                 </div>
                 <Button color="gray" onClick={handleNextMonth} className="w-12 h-12 rounded-2xl text-xl shadow-md bg-white/70 border border-emerald-100 flex items-center justify-center"><FaChevronRight /></Button>
             </div>
-            <div className="w-full grid grid-cols-7 gap-2 sm:gap-3 md:gap-4 mb-3">
-                {['日', '一', '二', '三', '四', '五', '六'].map((w, i) => (
-                    <div key={i} className="text-base sm:text-sm md:text-sm text-emerald-500 text-center font-bold tracking-wide drop-shadow-sm" style={{ letterSpacing: 2 }}>{w}</div>
+            <div className="w-full grid grid-cols-7 gap-2 sm:gap-3 md:gap-4 mb-3 text-center">
+                {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((w, i) => (
+                    <div key={i} className="w-10 text-base sm:text-sm md:text-sm text-emerald-500 font-bold tracking-wide drop-shadow-sm flex items-center justify-center" style={{ letterSpacing: 2 }}>{w}</div>
                 ))}
             </div>
-            <div className="w-full grid grid-cols-7 gap-2 sm:gap-3 md:gap-4">
+            <div className="w-full grid grid-cols-7 gap-2 sm:gap-3 md:gap-4 text-center">
                 {Array(firstDayOfWeek).fill(null).map((_, i) => (
                     <div key={'empty-' + i} />
                 ))}
@@ -84,7 +84,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
                                 ? 'border-emerald-400 text-emerald-700 bg-emerald-100 drop-shadow-emerald'
                                 : 'border-gray-200 text-gray-400 hover:border-emerald-300 hover:text-emerald-600'}
             `}
-                        title={checkedDays.includes(i + 1) ? '已打卡' : '未打卡'}
+                        title={checkedDays.includes(i + 1) ? 'Checked in' : 'Not checked in'}
                         style={{ margin: '1px' }}
                     >
                         {i + 1}
@@ -92,7 +92,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
                 ))}
             </div>
             <div className="mt-6 text-lg text-emerald-700 font-semibold text-center bg-white/60 px-4 py-2 rounded-xl shadow border border-emerald-100">
-                本月已打卡 <span className="font-extrabold text-emerald-600 text-xl">{checkedDays.length}</span> 天
+                Checked in <span className="font-extrabold text-emerald-600 text-xl">{checkedDays.length}</span> days this month
             </div>
         </motion.div>
     );

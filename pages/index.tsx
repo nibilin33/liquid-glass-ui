@@ -111,8 +111,8 @@ const components = [
       <Dropdown
         label="Choose a Liquid Glass style"
         items={[
-          { label: "Frosted Liquid Glass", onClick: () => {} },
-          { label: "Gradient Liquid Glass", onClick: () => {} },
+          { label: "Frosted Liquid Glass", onClick: () => { } },
+          { label: "Gradient Liquid Glass", onClick: () => { } },
         ]}
       />
     ),
@@ -122,7 +122,7 @@ const components = [
 
 export default function RootLayout() {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("全部");
+  const [category, setCategory] = useState("All");
   const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   // 在渲染时插入 GlassCheckbox 示例
@@ -157,7 +157,7 @@ export default function RootLayout() {
   const allComponents = [
     {
       name: "Schedule",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">
@@ -259,42 +259,42 @@ export default function RootLayout() {
           />
         </div>
       ),
-      code: `<Schedule items={[{ week: '第1周', date: '2025-08-21', time: '08:00', title: '词汇复习', description: '背诵核心词汇', tags: ['英语'], color: '#f59e42', progress: 80 }, ...]} />`,
+      code: `<Schedule items={[{ week: 'Week 1', date: '2025-08-21', time: '08:00', title: 'Vocabulary Review', description: 'Memorize core vocabulary', tags: ['English'], color: '#f59e42', progress: 80 }, ...]} />`,
       grid: "full",
     },
     {
       name: "AbilityRadar",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
-          <div className="mb-2 text-xs text-gray-500">能力图谱雷达图示例</div>
+          <div className="mb-2 text-xs text-gray-500">Ability Radar Chart Example (Liquid Glass UI for EdTech)</div>
           <AbilityRadar
-            title="学习能力图谱"
+            title="Learning Ability Radar (Liquid Glass UI)"
             abilities={[
-              { name: "词汇", value: 80, color: "#10b981" },
-              { name: "语法", value: 65, color: "#3b82f6" },
-              { name: "听力", value: 70, color: "#f59e42" },
-              { name: "口语", value: 60, color: "#ef4444" },
-              { name: "阅读", value: 90, color: "#6366f1" },
-              { name: "写作", value: 55, color: "#14b8a6" },
+              { name: "Vocabulary", value: 80, color: "#10b981" },
+              { name: "Grammar", value: 65, color: "#3b82f6" },
+              { name: "Listening", value: 70, color: "#f59e42" },
+              { name: "Speaking", value: 60, color: "#ef4444" },
+              { name: "Reading", value: 90, color: "#6366f1" },
+              { name: "Writing", value: 55, color: "#14b8a6" },
             ]}
           />
         </div>
       ),
-      code: `<AbilityRadar title="学习能力图谱" abilities={[{ name: '词汇', value: 80 }, { name: '语法', value: 65 }, { name: '听力', value: 70 }, { name: '口语', value: 60 }, { name: '阅读', value: 90 }, { name: '写作', value: 55 }]} />`,
+      code: `<AbilityRadar title="Learning Ability Radar (Liquid Glass UI)" abilities={[{ name: 'Vocabulary', value: 80 }, { name: 'Grammar', value: 65 }, { name: 'Listening', value: 70 }, { name: 'Speaking', value: 60 }, { name: 'Reading', value: 90 }, { name: 'Writing', value: 55 }]} />`,
       grid: "full",
     },
     {
       name: "ReadingVisualizer",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">
-            阅读可视化（文本标注+思维导图）
+            Reading Visualization (Text Annotation + Mind Map)
           </div>
           <ReadingVisualizer
             text={
-              "Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools."
+              "Build stunning glassmorphism interfaces with Liquid Glass UI—Apple-inspired, interactive, and education-ready. Perfect for online learning, quizzes, timelines, check-in, mindmaps, recorders, and rich explanations. Empower your EdTech platform with modern design and seamless user experience."
             }
             annotations={[
               {
@@ -349,18 +349,18 @@ export default function RootLayout() {
           />
         </div>
       ),
-      code: `<ReadingVisualizer text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools." annotations={[{ start: 0, end: 24, type: 'Call to Action', color: '#10b981', note: 'Get started' }, { start: 89, end: 133, type: 'Education', color: '#f59e42', note: 'Education-focused' }]} mindmap={{ id: 'root', title: 'Showcase Structure', children: [{ id: '1', title: 'Glassmorphism UI', note: 'Apple-inspired design', color: '#10b981' }, { id: '2', title: 'Education Features', children: [{ id: '2-1', title: 'Learning Tools', note: 'Interactive components' }, { id: '2-2', title: 'Modern Classroom', note: 'Online education' }] }, { id: '3', title: 'Easy Integration', children: [{ id: '3-1', title: 'Download & Use', note: 'Quick setup' }] }] }} />`,
+      code: `<ReadingVisualizer text="Build stunning glassmorphism interfaces with Liquid Glass UI—Apple-inspired, interactive, and education-ready. Perfect for online learning, quizzes, timelines, check-in, mindmaps, recorders, and rich explanations. Empower your EdTech platform with modern design and seamless user experience." annotations={[{ start: 0, end: 24, type: 'Call to Action', color: '#10b981', note: 'Get started' }, { start: 89, end: 133, type: 'Education', color: '#f59e42', note: 'Education-focused' }]} mindmap={{ id: 'root', title: 'Showcase Structure', children: [{ id: '1', title: 'Glassmorphism UI', note: 'Apple-inspired design', color: '#10b981' }, { id: '2', title: 'Education Features', children: [{ id: '2-1', title: 'Learning Tools', note: 'Interactive components' }, { id: '2-2', title: 'Modern Classroom', note: 'Online education' }] }, { id: '3', title: 'Easy Integration', children: [{ id: '3-1', title: 'Download & Use', note: 'Quick setup' }] }] }} />`,
       grid: "full",
     },
     {
       name: "ClozeInput",
-      category: "交互",
+      category: "Interactive",
       grid: "full",
       preview: (
         <div className="space-y-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <div className="mb-2 text-xs text-gray-500">
-              普通模式（每个空一个输入框）
+              Normal Mode (One Input per Blank)
             </div>
             <ClozeInput
               text="Last Saturday, our family decided to visit a corn maze for the first time. We {0} it {1} to {2} our {3} out, but we were completely {4}."
@@ -369,7 +369,7 @@ export default function RootLayout() {
           </div>
           <div>
             <div className="mb-2 text-xs text-gray-500">
-              letter-by-letter 模式（每个字母一个输入框）
+              Letter-by-letter Mode (One Input per Letter)
             </div>
             <ClozeInput
               text="The capital of France is {0}."
@@ -379,7 +379,7 @@ export default function RootLayout() {
           </div>
           <div className="md:col-span-2">
             <div className="mb-2 text-xs text-gray-500">
-              letter-by-letter + prefill（部分字母预填）
+              Letter-by-letter + Prefill (Some Letters Pre-filled)
             </div>
             <ClozeInput
               text="The capital of France is {0}."
@@ -397,46 +397,46 @@ export default function RootLayout() {
 
     {
       name: "ReadAloud",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">
-            点读组件示例（点击单词播放语音）
+            Read Aloud Example (Click Word to Play Audio)
           </div>
           <ReadAloud
-            text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools."
+            text="Build stunning glassmorphism interfaces with Liquid Glass UI—Apple-inspired, interactive, and education-ready. Perfect for online learning, quizzes, timelines, check-in, mindmaps, recorders, and rich explanations. Empower your EdTech platform with modern design and seamless user experience."
             lang="en-US"
           />
         </div>
       ),
-      code: `<ReadAloud text="Start creating beautiful interfaces with Liquid Glass component library. Experience Apple's design system on the web. Perfect for building modern, education-focused platforms and interactive learning tools." lang="en-US" />`,
+      code: `<ReadAloud text="Build stunning glassmorphism interfaces with Liquid Glass UI—Apple-inspired, interactive, and education-ready. Perfect for online learning, quizzes, timelines, check-in, mindmaps, recorders, and rich explanations. Empower your EdTech platform with modern design and seamless user experience." lang="en-US" />`,
       grid: undefined,
     },
     {
       name: "Checkin",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div>
-            <div className="mb-2 text-xs text-gray-500">打卡组件示例</div>
+            <div className="mb-2 text-xs text-gray-500">Check-in Component Example</div>
             <Checkin
               totalDays={21}
-              onCheckin={(day) => alert(`已打卡第${day}天`)}
+              onCheckin={(day) => alert(`Checked in on day ${day}`)}
             />
           </div>
         </div>
       ),
-      code: `<Checkin totalDays={21} onCheckin={day => alert('已打卡第' + day + '天')} />`,
+      code: `<Checkin totalDays={21} onCheckin={day => alert('Checked in on day ' + day)} />`,
     },
     {
       name: "CheckinCalendar",
-      category: "交互",
+      category: "Interactive",
       grid: "full",
       preview: (
         <div className="space-y-6">
           <div>
             <div className="mb-2 text-xs text-gray-500">
-              台历风格打卡组件示例（支持历史月份切换）
+              Calendar-style Check-in (Supports Month Switching)
             </div>
             <CheckinCalendar
               records={{
@@ -452,35 +452,35 @@ export default function RootLayout() {
                 "2025-08": [1],
                 "2025-07": [1]
               }}
-    onCheckin={date => alert('已打卡：' + date)}
+  onCheckin={date => alert('Checked in: ' + date)}
   />`,
     },
     {
       name: "LearningTimeline",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">
-            学习轨迹时间轴组件示例
+            Learning Timeline Component
           </div>
           <LearningTimeline
             nodes={[
               {
                 date: "2025-08-01",
-                title: "单词记忆",
-                description: "完成100个新单词",
+                title: "Vocabulary Memorization",
+                description: "Completed 100 new words",
                 status: "done",
               },
               {
                 date: "2025-08-02",
-                title: "语法练习",
-                description: "掌握时态用法",
+                title: "Grammar Practice",
+                description: "Mastered tense usage",
                 status: "doing",
               },
               {
                 date: "2025-08-03",
-                title: "听力训练",
-                description: "听力材料30分钟",
+                title: "Listening Training",
+                description: "30 minutes of listening material",
                 status: "todo",
               },
             ]}
@@ -491,29 +491,29 @@ export default function RootLayout() {
     },
     {
       name: "QuestionNav",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div className="mb-2 text-xs text-gray-500">
-            套题导航组件示例（含倒计时自动下一题）
+            Question Navigation Example (Countdown Auto Next, Glassmorphism, Interactive Quiz, EdTech)
           </div>
           <div className="flex flex-col justify-center items-center gap-4">
             <QuestionNav
               current={2}
               total={5}
-              title="语法填空题"
+              title="Listening"
               countdown={countdown}
               onPrev={() => true}
               onNext={() => true}
             />
-            <Button onClick={() => setCountdown(8)}>显示计时</Button>
+            <Button onClick={() => setCountdown(8)}>Show Countdown</Button>
           </div>
         </div>
       ),
       code: `<QuestionNav
   current={2}
   total={5}
-  title="语法填空题"
+  title="Listening Comprehension"
   countdown={countdown}
   onPrev={() => true}
   onNext={() => true}
@@ -522,58 +522,58 @@ export default function RootLayout() {
     },
     {
       name: "Explanation",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
-          <div className="mb-2 text-xs text-gray-500">
-            手风琴风格答案解析（支持 markdown）
-          </div>
-          <Explanation
-            answer="42"
-            explanation={
-              "**解析：**\n\n- 这是一个示例 markdown 解析区块。\n- 支持列表、代码、引用等格式。\n\n> 你可以在这里展示详细解题思路。\n\n```js\nconsole.log('Hello, world!')\n```"
-            }
-            defaultOpen={false}
-          />
+            <div className="mb-2 text-xs text-gray-500">
+              Glassmorphism Answer Explanation (Markdown Supported, Interactive, EdTech, Quiz, Learning)
+            </div>
+            <Explanation
+              answer="42"
+              explanation={
+                "**Explanation:**\n\n- This is a sample markdown explanation block for interactive quizzes and education platforms built with Liquid Glass UI.\n- Supports lists, code, quotes, and rich formatting for glassmorphism learning experiences.\n\n> You can showcase detailed solution steps and reasoning here for better understanding.\n\n```js\nconsole.log('Hello, Liquid Glass UI!')\n```"
+              }
+              defaultOpen={false}
+            />
         </div>
       ),
-      code: `<Explanation answer="42" explanation={"**解析：**\n\n- 这是一个示例 markdown 解析区块。\n- 支持列表、代码、引用等格式。\n\n> 你可以在这里展示详细解题思路。\n\n\`\`\`js\nconsole.log('Hello, world!')\n\`\`\`"} />`,
+        code: `<Explanation answer="42" explanation={"**Explanation:**\n\n- This is a sample markdown explanation block for interactive quizzes and education platforms built with Liquid Glass UI.\n- Supports lists, code, quotes, and rich formatting for glassmorphism learning experiences.\n\n> You can showcase detailed solution steps and reasoning here for better understanding.\n\n\`\`\`js\nconsole.log('Hello, Liquid Glass UI!')\n\`\`\`"} />`,
     },
     {
       name: "Recorder",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div className="space-y-6">
           <div>
-            <div className="mb-2 text-xs text-gray-500">口语题录音示例</div>
-            <Recorder
-              question="请用英文介绍你自己。"
-              maxDuration={30}
-              onSubmit={(blob) =>
-                alert("已提交音频，大小：" + blob.size + "字节")
-              }
-            />
+              <div className="mb-2 text-xs text-gray-500">Speaking Recorder</div>
+              <Recorder
+                question="Please introduce yourself in English."
+                maxDuration={30}
+                onSubmit={(blob) =>
+                  alert("Audio submitted! Size: " + blob.size + " bytes")
+                }
+              />
           </div>
           <div>
-            <div className="mb-2 text-xs text-gray-500">跟读题录音示例</div>
-            <Recorder
-              question="请跟读下方原文音频。"
-              referenceAudio="/demo.mp3"
-              maxDuration={20}
-              onSubmit={(blob) =>
-                alert("已提交音频，大小：" + blob.size + "字节")
-              }
-            />
+              <div className="mb-2 text-xs text-gray-500">Read-Aloud Recorder</div>
+              <Recorder
+                question="Please read aloud the reference audio below."
+                referenceAudio="/demo.mp3"
+                maxDuration={20}
+                onSubmit={(blob) =>
+                  alert("Audio submitted! Size: " + blob.size + " bytes")
+                }
+              />
           </div>
         </div>
       ),
-      code:
-        `<Recorder question="请用英文介绍你自己。" maxDuration={30} onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')} />\n` +
-        `<Recorder question="请跟读下方原文音频。" referenceAudio="/demo.mp3" maxDuration={20} onSubmit={blob => alert('已提交音频，大小：' + blob.size + '字节')} />`,
+        code:
+          `<Recorder question="Please introduce yourself in English." maxDuration={30} onSubmit={blob => alert('Audio submitted! Size: ' + blob.size + ' bytes')} />\n` +
+          `<Recorder question="Please read aloud the reference audio below." referenceAudio="/demo.mp3" maxDuration={20} onSubmit={blob => alert('Audio submitted! Size: ' + blob.size + ' bytes')} />`,
     },
     {
       name: "Table",
-      category: "布局",
+      category: "Layout",
       preview: (
         <div style={{ height: 320 }}>
           <Table
@@ -598,75 +598,76 @@ export default function RootLayout() {
     },
     {
       name: "Checkbox",
-      category: "基础",
+      category: "Basic",
       preview: (
         <Checkbox
-          label="同意协议"
+          label="I agree to the terms and conditions"
           checked={checkboxChecked}
           onChange={setCheckboxChecked}
         />
       ),
-      code: `<Checkbox label="同意协议" checked={checked} onChange={setChecked} />`,
+      code: `<Checkbox label="I agree to the terms and conditions" checked={checked} onChange={setChecked} />`,
     },
     {
       name: "Input",
-      category: "基础",
+      category: "Basic",
       preview: (
         <div>
-          <Input placeholder="输入内容" label="输入框" />
+          <Input placeholder="Enter text" label="Input Field" />
           <div className="my-4" />
           <Input
-            label="邮箱"
+            label="Email"
             required
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
             validate={async (v: any) =>
-              !v.includes("@") ? "请输入有效邮箱" : ""
+              !v.includes("@") ? "Please enter a valid email" : ""
             }
-            placeholder="请输入邮箱"
+            placeholder="Please enter your email"
           />
         </div>
       ),
-      code: `<Input placeholder="输入内容" label="输入框" /> <Input label="邮箱" required validate={async (v) => !v.includes('@') ? '请输入有效邮箱' : ''} />`,
+      code: `<Input placeholder="Enter text" label="Input Field" /> <Input label="Email" required validate={async (v) => !v.includes('@') ? 'Please enter a valid email' : ''} />`,
     },
     {
       name: "Ordering",
-      category: "交互",
+      category: "Interactive",
       preview: (
         <div>
-          <div className="mb-2 text-xs text-gray-500">可拖拽列表项进行排序</div>
+          <div className="mb-2 text-xs text-gray-500">Draggable list items for sorting</div>
           <Ordering
-            items={["苹果", "香蕉", "橙子"]}
+            items={["Apple", "Banana", "Orange"]}
             onChange={(newOrder) => console.log(newOrder)}
           />
         </div>
       ),
-      code: `<Ordering items={["苹果", "香蕉", "橙子"]} onChange={newOrder => console.log(newOrder)} />`,
+      code: `<Ordering items={["Apple", "Banana", "Orange"]} onChange={newOrder => console.log(newOrder)} />`,
     },
     {
       name: "ImageQuiz",
-      category: "交互",
+      category: "Interactive",
+      grid: "full",
       preview: (
         <div className="space-y-6">
-          <div className="mb-2 text-xs text-gray-500">看图描述题型示例</div>
+          <div className="mb-2 text-xs text-gray-500">Image Description Quiz Example</div>
           <ImageQuiz
             imageUrl="/favicon.png"
-            question="请用一句话描述下图内容。"
+            question="Please describe the content of the image below in one sentence."
             maxLength={80}
             onSubmit={async (desc) =>
-              desc.length > 10 ? "描述已提交！" : "请补充更完整的描述。"
+              desc.length > 10 ? "Description submitted!" : "Please provide a more complete description."
             }
           />
         </div>
       ),
-      code: `<ImageQuiz imageUrl="/favicon.png" question="请用一句话描述下图内容。" maxLength={80} onSubmit={async desc => desc.length > 10 ? '描述已提交！' : '请补充更完整的描述。'} />`,
+      code: `<ImageQuiz imageUrl="/favicon.png" question="Please describe the content of the image below in one sentence." maxLength={80} onSubmit={async desc => desc.length > 10 ? 'Description submitted!' : 'Please provide a more complete description.'} />`,
     },
     ...components,
   ];
 
   const filtered = allComponents.filter(
     (c) =>
-      (category === "全部" || c.category === category) &&
+      (category === "All" || c.category === category) &&
       c.name.toLowerCase().includes(search.toLowerCase())
   );
   return (

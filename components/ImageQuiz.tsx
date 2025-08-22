@@ -34,14 +34,14 @@ export const ImageQuiz: React.FC<ImageQuizProps> = ({ imageUrl, question, maxLen
         >
             <div className="flex flex-col md:flex-row gap-6 items-center w-full">
                 <div className="w-full md:w-1/2 flex justify-center items-center">
-                    <img src={imageUrl} alt="看图描述" className="w-full max-h-64 object-contain rounded-xl shadow" />
+                    <img src={imageUrl} alt="Image description" className="w-full max-h-64 object-contain rounded-xl shadow" />
                 </div>
                 <div className="w-full md:w-1/2 flex flex-col gap-4">
                     {question && <div className="text-base font-semibold text-emerald-700 mb-2 text-center md:text-left">{question}</div>}
                     <Textarea
                         value={desc}
                         onChange={e => setDesc(e.target.value)}
-                        placeholder="请描述你看到的内容..."
+                        placeholder="Please describe the content you see..."
                         maxLength={maxLength}
                         rows={4}
                         className="w-full"
@@ -55,7 +55,7 @@ export const ImageQuiz: React.FC<ImageQuizProps> = ({ imageUrl, question, maxLen
                         loading={loading}
                         color="emerald"
                     >
-                        提交
+                        Submit
                     </Button>
                     {feedback && (
                         <Feedback correct={true} message={feedback} />

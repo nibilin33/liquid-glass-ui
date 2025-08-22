@@ -71,7 +71,7 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
             className="liquid-glass rounded-2xl p-6 shadow-glass bg-white/60 backdrop-blur w-full max-w-2xl mx-auto"
         >
             <div className="mb-4 text-lg font-semibold text-gray-800 text-center">Type the missing letters to complete the text below.</div>
-            <div className="mb-6 text-base text-gray-700 leading-relaxed text-center space-y-3">
+            <div className="mb-6 text-base text-gray-700 leading-relaxed flex flex-wrap items-center justify-center gap-y-3">
                 {parts.map((part, i) => {
                     if (i % 2 === 0) return <span key={i}>{part}</span>;
                     // 输入框
@@ -103,7 +103,7 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
                                             value={inputs[idx][letterIdx] as string}
                                             onChange={e => handleChange(idx, letterIdx, e.target.value)}
                                             disabled={submitted || isPrefilled}
-                                            className={`w-8 h-10 text-center px-0 py-0 rounded-lg border-2 outline-none transition-all shadow-glass bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 backdrop-blur font-semibold text-lg focus:border-emerald-400 focus:ring-2 focus:ring-emerald-300 hover:shadow-[0_0_8px_2px_rgba(52,181,139,0.12)] ${isPrefilled ? 'bg-emerald-50 border-emerald-300 text-emerald-700 opacity-80' : (submitted ? (inputs[idx][letterIdx].trim().toLowerCase() === answers[idx][letterIdx].toLowerCase() ? 'border-emerald-400 text-emerald-700 bg-emerald-50' : 'border-red-400 text-red-500 bg-red-50') : 'border-gray-200 text-gray-700')}`}
+                                            className={`w-8 h-10 text-center ml-1 px-0 py-0 rounded-lg border-2 outline-none transition-all shadow-glass bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 backdrop-blur font-semibold text-lg focus:border-emerald-400 focus:ring-2 focus:ring-emerald-300 hover:shadow-[0_0_8px_2px_rgba(52,181,139,0.12)] ${isPrefilled ? 'bg-emerald-50 border-emerald-300 text-emerald-700 opacity-80' : (submitted ? (inputs[idx][letterIdx].trim().toLowerCase() === answers[idx][letterIdx].toLowerCase() ? 'border-emerald-400 text-emerald-700 bg-emerald-50' : 'border-red-400 text-red-500 bg-red-50') : 'border-gray-200 text-gray-700')}`}
                                             style={{ boxShadow: '0 2px 12px rgba(52,181,139,0.08)' }}
                                             animate={{ scale: submitted ? 1.08 : 1 }}
                                         />

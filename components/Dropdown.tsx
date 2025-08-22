@@ -21,6 +21,9 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
     <div className="relative inline-block text-left">
       <Button
         color="emerald"
+        style={{
+          textTransform: 'none'
+        }}
         onClick={() => setOpen(!open)}
       >
         {displayLabel}

@@ -19,7 +19,7 @@ export function Checkin({ totalDays = 21, onCheckin }: CheckinProps) {
   };
   return (
     <div className="liquid-glass rounded-2xl p-6 shadow-glass bg-white/60 backdrop-blur w-full max-w-md mx-auto flex flex-col items-center gap-6">
-      <div className="text-lg font-bold text-emerald-700 mb-2">{totalDays}天打卡挑战</div>
+  <div className="text-lg font-bold text-emerald-700 mb-2">{totalDays}-Day Challenge</div>
       <div className="flex gap-2 flex-wrap justify-center mb-4">
         {[...Array(totalDays)].map((_, i) => (
           <motion.div
@@ -33,14 +33,14 @@ export function Checkin({ totalDays = 21, onCheckin }: CheckinProps) {
           </motion.div>
         ))}
       </div>
-      <div className="text-base text-gray-700 mb-2">已打卡 <span className="font-bold text-emerald-600">{checkedDays.length}</span> 天，连续 <span className="font-bold text-emerald-600">{checkedDays.length}</span> 天</div>
+      <div className="text-base text-gray-700 mb-2">Checked in <span className="font-bold text-emerald-600">{checkedDays.length}</span> days, consecutive <span className="font-bold text-emerald-600">{checkedDays.length}</span> days</div>
       <Button
         color={isTodayChecked ? 'gray' : 'emerald'}
         onClick={handleCheckin}
         disabled={isTodayChecked || today > totalDays}
         className="w-32 h-12 text-lg font-bold rounded-xl shadow-lg"
       >
-        {isTodayChecked ? '今日已打卡' : '立即打卡'}
+        {isTodayChecked ? 'Checked in today' : 'Check in now'}
       </Button>
     </div>
   );
