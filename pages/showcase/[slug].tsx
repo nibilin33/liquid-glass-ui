@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
 import { Card } from '../../components/Card';
-import {
-    TypeWriter
-} from '../../components/TypeWriter';   
+import { TypeWriter } from '../../components/TypeWriter';   
 
 export default function ShowcaseDetail() {
   const router = useRouter();

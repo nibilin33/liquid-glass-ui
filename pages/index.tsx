@@ -24,10 +24,52 @@ import { ReadingVisualizer } from "../components/ReadingVisualizer";
 import { AbilityRadar } from "../components/AbilityRadar";
 import { Schedule } from "../components/Schedule";
 import { ReadAloud } from "../components/ReadAloud";
+import { PriceSets } from "components/PriceSets";
 
 const categories = ["All", "Basic", "Interactive", "Navigation", "Layout"];
 
 const components = [
+  {
+    name: "PriceSets",
+    category: "Layout",
+    grid: "full",
+    preview: (
+      <PriceSets
+        sets={[
+          {
+            name: "Basic Plan",
+            price: "$10/month",
+            features: [ 
+              { text: "Feature 1", supported: true },
+              { text: "Feature 2", supported: false }
+            ],
+          },
+          {
+            name: "Pro Plan",
+            price: "$20/month",
+            features: [
+              { text: "Feature 1", supported: true },
+              { text: "Feature 2", supported: true },
+              { text: "Feature 3", supported: false },
+              { text: "Feature 4", supported: false }
+            ],
+            highlight: true,
+          },
+          {
+            name: "Enterprise Plan",
+            price: "$30/month",
+            features: [
+              { text: "Feature 1", supported: true },
+              { text: "Feature 2", supported: true },
+              { text: "Feature 3", supported: true },
+              { text: "Feature 4", supported: false },
+              { text: "Feature 5", supported: false }
+            ],
+          },
+        ]}
+      />
+    ),
+  },
   {
     name: "Button",
     category: "Basic",

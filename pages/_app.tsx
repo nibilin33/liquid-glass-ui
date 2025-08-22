@@ -17,7 +17,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="liquid glass, UI, components, react, tailwind, nextjs, glassmorphism, emerald, design, quiz components, 前端组件, 玻璃风格, 动画, 响应式, 练习组件" />
         <link rel="canonical" href="https://liquidglass.liqueai.com/" />
         <link rel="icon" href="/favicon.png" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
       </Head>
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-HY16TGS4ZE"

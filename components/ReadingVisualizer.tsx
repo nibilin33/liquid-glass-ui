@@ -80,13 +80,13 @@ export const ReadingVisualizer: React.FC<ReadingVisualizerProps> = ({ text, anno
   return (
     <div className="liquid-glass rounded-2xl shadow-glass bg-white/60 backdrop-blur p-6 w-full max-w-4xl mx-auto flex flex-col md:flex-row gap-8">
       <div className="md:w-1/2 w-full">
-        <div className="font-semibold text-emerald-700 mb-2">阅读文本</div>
+        <div className="font-semibold text-emerald-700 mb-2">Passage</div>
         <div className="text-base leading-relaxed text-gray-700">
           {renderAnnotatedText(text, annotations)}
         </div>
       </div>
       <div className="md:w-1/2 w-full">
-        <div className="font-semibold text-emerald-700 mb-2">解题思维导图</div>
+        <div className="font-semibold text-emerald-700 mb-2">Mindmap</div>
         <div className="bg-white/50 rounded-xl p-4 shadow">
           <MindmapTree node={mindmap} />
         </div>
