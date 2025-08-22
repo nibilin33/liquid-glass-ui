@@ -76,7 +76,7 @@ const AINodeCardComp: React.FC<{ node: AINode; nodeMap: Record<string, AINode> }
 
 		return (
 				<motion.div
-					className={`relative rounded-xl border-2 p-2 shadow-2xl backdrop-blur-xl transition-all
+					className={`relative rounded-xl border-2 p-4 shadow-2xl backdrop-blur-xl transition-all
 						${node.type === 'action'
 							? 'border-emerald-400 bg-gradient-to-br from-emerald-200/70 via-white/80 to-emerald-100/80 shadow-emerald-300/30'
 							: 'border-gray-200 bg-gradient-to-br from-white/60 via-emerald-100/40 to-white/80'}
