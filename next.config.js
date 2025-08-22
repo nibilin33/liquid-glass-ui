@@ -5,6 +5,6 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['example.com'], // Replace with your image domains
+    domains: ['liquidglass.liqueai.com'], // Replace with your image domains
   },
 };
