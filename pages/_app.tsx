@@ -13,13 +13,22 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Liquid Glass UI Component Library – Modern Glassmorphism React & Tailwind CSS Kit</title>
-        <meta name="description" content="A collection of liquid glass UI components built with Tailwind CSS and React." />
-        <meta name="keywords" content="liquid glass, UI, components, react, tailwind, nextjs, glassmorphism, emerald, design, quiz components, 前端组件, 玻璃风格, 动画, 响应式, 练习组件" />
+        <meta name="description" content="A collection of liquid glass UI components built with Tailwind CSS and React. Modern glassmorphism for education, design, and web apps." />
+        <meta name="keywords" content="liquid glass, UI, components, react, tailwind, nextjs, glassmorphism, emerald, design, quiz components, education, learning, web app, UI kit, open source" />
+        <meta name="author" content="liqueai.com" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#10b981" />
         <meta property="og:title" content="Liquid Glass UI Component Library – Modern Glassmorphism React & Tailwind CSS Kit" />
         <meta property="og:description" content="A collection of liquid glass UI components built with Tailwind CSS and React. Modern glassmorphism for education, design, and web apps." />
         <meta property="og:url" content="https://liquidglass.liqueai.com/" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://liquidglass.liqueai.com/og-image.png" />
+        <meta property="og:site_name" content="Liquid Glass UI" />
+        <meta property="og:locale" content="en_US" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Liquid Glass UI Component Library – Modern Glassmorphism React & Tailwind CSS Kit" />
+        <meta name="twitter:description" content="A collection of liquid glass UI components built with Tailwind CSS and React. Modern glassmorphism for education, design, and web apps." />
+        <meta name="twitter:image" content="https://liquidglass.liqueai.com/og-image.png" />
         <link rel="canonical" href="https://liquidglass.liqueai.com/" />
         <link rel="icon" href="/favicon.ico" type='image/x-icon' sizes="16x16"/>
       </Head>
