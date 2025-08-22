@@ -18,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="author" content="liqueai.com" />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#10b981" />
+        <meta name="baidu-site-verification" content="codeva-rHX2WveDDk" />
         <meta property="og:title" content="Liquid Glass UI Component Library – Modern Glassmorphism React & Tailwind CSS Kit" />
         <meta property="og:description" content="A collection of liquid glass UI components built with Tailwind CSS and React. Modern glassmorphism for education, design, and web apps." />
         <meta property="og:url" content="https://liquidglass.liqueai.com/" />
