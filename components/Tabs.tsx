@@ -1,7 +1,6 @@
 'use client'
 import { useState, ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from '../context/ThemeContext'
 
 interface Tab {
   label: string
@@ -14,18 +13,11 @@ interface GlassTabsProps {
 
 export function Tabs({ tabs }: GlassTabsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
-  const { isGlass } = useTheme()
 
   const tabClass = (active: boolean) =>
-    `px-4 py-2 rounded-t-xl cursor-pointer transition-all ${
-      isGlass
-        ? `liquid-glass ${active ? 'bg-white/30' : 'bg-white/10'}`
-        : `${active ? 'bg-gray-200' : 'bg-gray-100'}`
-    }`
+    `px-4 py-2 rounded-t-xl cursor-pointer transition-all liquid-glass ${active ? 'bg-white/30' : 'bg-white/10'}`
 
-  const contentClass = isGlass
-    ? 'liquid-glass p-4 mt-2'
-    : 'bg-white p-4 mt-2 rounded-xl shadow-md'
+  const contentClass = `liquid-glass p-4 mt-2`
 
   return (
     <div className="w-full">
