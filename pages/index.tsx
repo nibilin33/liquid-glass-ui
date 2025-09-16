@@ -827,7 +827,7 @@ export default function RootLayout() {
         <section className="mb-10 mx-auto max-w-2xl rounded-xl bg-white/60 backdrop-blur-lg shadow-lg p-6 border border-emerald-100">
           <h2 className="text-2xl font-semibold text-emerald-700 mb-3 tracking-tight">Empowering Modern Education & Design</h2>
           <p className="mb-3 text-gray-700 leading-relaxed">
-            <span className="font-bold text-emerald-600">Liquid Glass UI</span> is a cutting-edge React component library featuring glassmorphism, interactive quizzes, timelines, check-in calendars, mindmaps, recorders, and markdown explanations. Perfect for EdTech, online learning, and modern web design.
+            <span className="font-bold text-emerald-600">Liquid Glass UI</span> a modern glassmorphism React component library for Tailwind CSS and Next.js. It includes both essential UI elements (Button, Card, Modal, Table, etc.) and unique educational components (Quiz, Timeline, Check-in, Mindmap) for EdTech, dashboards, SaaS, and modern web apps.
           </p>
           <p className="mb-1 text-gray-700 leading-relaxed">
             <b>Key Features:</b> <br />
