@@ -7,6 +7,7 @@ import { Header as GlassHeader } from "../components/Header";
 import { Footer }  from "../components/Footer";
 import Head from 'next/head';
 import Script from 'next/script';
+import { Toaster } from "react-hot-toast";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Footer />
         </ThemeProvider>
       </MTThemeProvider>
+      <Toaster position="top-center" />
     </>
 
   );
