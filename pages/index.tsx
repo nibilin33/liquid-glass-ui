@@ -817,10 +817,10 @@ export default function RootLayout() {
         {/* 页面主标题 */}
         <div className="flex flex-col items-center text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent drop-shadow-lg mb-4 tracking-tight">
-            Liquid Glass UI Component Library
+              Liquid Glass UI – Tailwind Glassmorphism React Components & Next.js Library
           </h1>
           <span className="inline-block px-4 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-medium shadow mb-4">
-            Modern Glassmorphism for Education & Web Design
+              Modern Glassmorphism for Education, Next.js & Web Design
           </span>
         </div>
         {/* 简介段落 + SEO 优化信息 */}
