@@ -2,8 +2,8 @@ import { SetStateAction, useState, useRef } from "react";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { Input } from "../components/Input";
-import ShowcaseCard from './components/ShowcaseCard';
-import allComponents from "./data";
+import ShowcaseCard from '../previews/ShowcaseCard';
+import allComponents from "../data";
 
 const categories = ["All", "Basic", "Interactive", "Navigation", "Layout"];
 

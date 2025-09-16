@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { AIFlow, AIFlowRef, AINode } from "../../components/AIFlow";
-import { Button } from "../../components/Button";
+import { AIFlow, AIFlowRef, AINode } from "../components/AIFlow";
+import { Button } from "../components/Button";
 
 export default function AIFlowPreview() {
   const flowRef = useRef<AIFlowRef>(null);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Table } from "../../components/Table";
+import { Table } from "../components/Table";
 
 export default function TablePreview() {
   const [page, setPage] = useState(1);

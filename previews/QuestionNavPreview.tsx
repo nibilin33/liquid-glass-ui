@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { QuestionNav } from "../../components/QuestionNav";
-import { Button } from "../../components/Button";
+import { QuestionNav } from "../components/QuestionNav";
+import { Button } from "../components/Button";
 
 export default function QuestionNavPreview() {
   const [countdown, setCountdown] = useState<number | undefined>(undefined);
