@@ -5,7 +5,6 @@ import { FaCopy, FaEye } from "react-icons/fa";
 import { Badge } from "../../components/Badge";
 import { Button } from "../../components/Button";
 import dynamic from "next/dynamic";
-// 动态导入代码高亮
 // 动态导入 SyntaxHighlighter 及主题
 const SyntaxHighlighter = dynamic(
   async () => {
