@@ -25,3 +25,4 @@ export { ReadAloud } from './ReadAloud';
 export { PriceSets } from './PriceSets';
 export { Header } from './Header';
 export { Footer } from './Footer';
+export { AutoHighlight, Highlight } from './AutoHighlight';

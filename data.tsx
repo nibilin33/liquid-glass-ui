@@ -18,6 +18,7 @@ import { AbilityRadar } from "./components/AbilityRadar";
 import { Schedule } from "./components/Schedule";
 import { ReadAloud } from "./components/ReadAloud";
 import { PriceSets } from "./components/PriceSets";
+import { AutoHighlight } from "./components/AutoHighlight";
 
 const CheckboxPreview = React.lazy(() => import("./previews/CheckboxPreview"));
 const InputPreview = React.lazy(() => import("./previews/InputPreview"));
@@ -67,6 +68,27 @@ const components = [
         ]}
       />
     ),
+  },
+    {
+    name: "AutoHighlight",
+    category: "Basic",
+    preview: (
+      <div className="space-y-4">
+        <div className="text-lg font-semibold">AutoHighlight Example</div>
+        <div className="text-4xl font-extrabold leading-tight">
+          <AutoHighlight
+            text="Why do the best experts choose Rush Analytics?"
+            highlights={["the", "best experts", "choose", "Rush Analytics"]}
+            color="#FFE066"
+          />
+        </div>
+      </div>
+    ),
+    code: `<AutoHighlight
+  text="Why do the best experts choose Rush Analytics?"
+  highlights={["the", "best experts", "choose", "Rush Analytics"]}
+  color="#FFE066"
+/>`,
   },
   {
     name: "Button",
