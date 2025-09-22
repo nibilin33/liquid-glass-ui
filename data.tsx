@@ -290,17 +290,17 @@ const allComponents = [
     code: `<Schedule items={[{ week: 'Week 1', date: '2025-08-21', time: '08:00', title: 'Vocabulary Review', description: 'Memorize core vocabulary', tags: ['English'], color: '#f59e42', progress: 80 }, ...]} />`,
     grid: "full",
   },
-  // {
-  //   name: "Answersheet",
-  //   category: "Interactive",
-  //   preview: (
-  //     <React.Suspense fallback={<div>Loading...</div>}>
-  //       <AnswersheetPreview />
-  //     </React.Suspense>
-  //   ),
-  //   grid: "full",
-  //   code: `<AnswersheetRenderer id="answersheet" markdown={"# Liquid Glass Component SEO Answersheet\\n [id=section1 type=section topic=liquid-glass-ui]\\n ## Section 1: Liquid Glass UI Overview\\n 1. What is Liquid Glass UI?\\n - A modern UI library inspired by glassmorphism design principles, featuring frosted glass effects, vibrant gradients, and interactive components.\\n 2. List three key features of Liquid Glass UI.\\n - Frosted glass panels with blur effects\\n - Interactive learning components (quizzes, timelines)\\n - Seamless integration with React applications\\n [id=section2 type=section topic=components]\\n ## Section 2: Components in Liquid Glass UI\\n 1. Name five components provided by Liquid Glass UI.\\n - Button, Card, Modal, Tooltip, Tabs\\n 2. Describe the purpose of the AbilityRadar component.\\n - The AbilityRadar component visualizes multiple skill dimensions in a radar chart format, useful for displaying learning progress or skill assessments.\\n [id=section3 type=section topic=usage]\\n ## Section 3: Usage and Integration\\n 1. How do you install Liquid Glass UI in a React project?\\n - Using npm: npm install liquid-glass-ui or yarn add liquid-glass-ui\\n 2. Provide a basic example of using the Button component from Liquid Glass UI.\\n - import { Button } from 'liquid-glass-ui';\\n - <Button color='green'>Click Me</Button>"} onSubmit={(answers) => console.log(answers)} />`,
-  // },
+  {
+    name: "Answersheet",
+    category: "Interactive",
+    preview: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <AnswersheetPreview />
+      </React.Suspense>
+    ),
+    grid: "full",
+    code: `<AnswersheetRenderer id="answersheet" markdown={"# Liquid Glass Component SEO Answersheet\\n [id=section1 type=section topic=liquid-glass-ui]\\n ## Section 1: Liquid Glass UI Overview\\n 1. What is Liquid Glass UI?\\n - A modern UI library inspired by glassmorphism design principles, featuring frosted glass effects, vibrant gradients, and interactive components.\\n 2. List three key features of Liquid Glass UI.\\n - Frosted glass panels with blur effects\\n - Interactive learning components (quizzes, timelines)\\n - Seamless integration with React applications\\n [id=section2 type=section topic=components]\\n ## Section 2: Components in Liquid Glass UI\\n 1. Name five components provided by Liquid Glass UI.\\n - Button, Card, Modal, Tooltip, Tabs\\n 2. Describe the purpose of the AbilityRadar component.\\n - The AbilityRadar component visualizes multiple skill dimensions in a radar chart format, useful for displaying learning progress or skill assessments.\\n [id=section3 type=section topic=usage]\\n ## Section 3: Usage and Integration\\n 1. How do you install Liquid Glass UI in a React project?\\n - Using npm: npm install liquid-glass-ui or yarn add liquid-glass-ui\\n 2. Provide a basic example of using the Button component from Liquid Glass UI.\\n - import { Button } from 'liquid-glass-ui';\\n - <Button color='green'>Click Me</Button>"} onSubmit={(answers) => console.log(answers)} />`,
+  },
   {
     name: "AbilityRadar",
     category: "Interactive",
