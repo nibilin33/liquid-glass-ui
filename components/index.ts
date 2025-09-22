@@ -26,3 +26,4 @@ export { PriceSets } from './PriceSets';
 export { Header } from './Header';
 export { Footer } from './Footer';
 export { AutoHighlight, Highlight } from './AutoHighlight';
+export { AnswersheetRenderer } from './AnswersheetRenderer';
