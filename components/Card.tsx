@@ -13,20 +13,12 @@ interface GlassCardProps {
 export function Card({ title, children, className = '', onClick }: GlassCardProps) {
   return (
     <motion.div whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={onClick}>
+      {/* @ts-ignore */}
       <MtCard
         className={`liquid-glass p-4`}
-        placeholder={undefined}
-        onResize={undefined}
-        onResizeCapture={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
       >
+         {/* @ts-ignore */}
         <CardBody
-          placeholder={undefined}
-          onResize={undefined}
-          onResizeCapture={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
           className={className}
         >
          {title && <h3 className="text-white font-bold mb-2">{title}</h3>}

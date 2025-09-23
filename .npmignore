@@ -19,7 +19,9 @@ out
 .eslintrc*
 *.lock
 *.log
-
+previews/**
+mcp-server/**
+data.tsx
 # 只发布 dist（不含 tsbuildinfo）、index.ts、index.d.ts、README.md、LICENSE、package.json
 !dist/**
 !index.ts
