@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Feedback } from './Feedback';
 import { Button } from './Button';
 
 export interface ClozeInputProps {
+    autosubmit?: boolean; // 是否在填完自动提交
     text: string; // 题干，使用 {n} 占位
     answers: string[]; // 正确答案数组（每个空填一个词或短语）
     letterMode?: boolean; // 是否每个字母一个输入框
@@ -12,7 +13,7 @@ export interface ClozeInputProps {
 }
 
 // 题干格式示例："We {0} to {1} our {2} out, but we were completely {3}."
-export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmit }: ClozeInputProps) {
+export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmit, autosubmit }: ClozeInputProps) {
     const [submitted, setSubmitted] = useState(false);
     const [correct, setCorrect] = useState(false);
 
@@ -28,34 +29,70 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
         });
     });
 
+    // 题干格式示例："We {0} to {1} our {2} out, but we were completely {3}."
+    // 新增：输入框 refs
+    const inputRefs = useRef<any>([]);
+
+    // 自动提交检测
+    const checkAndAutoSubmit = (nextInputs: any) => {
+        if (!autosubmit) return;
+        let filled = false;
+        if (!letterMode) {
+            filled = nextInputs.every((v: string) => v && v.length > 0);
+        } else {
+            filled = nextInputs.every((arr: string[]) => arr.every((v: string) => v && v.length > 0));
+        }
+        if (filled && !submitted) {
+            handleSubmit(nextInputs);
+        }
+    };
+
     const handleChange = (blankIdx: number, letterIdx: number, val: string) => {
         if (!letterMode) {
             const next = [...inputs];
             next[blankIdx] = val;
             setInputs(next);
+            checkAndAutoSubmit(next);
+            // 自动 focus 下一个空
+            if (val.length > 0 && inputRefs.current[blankIdx + 1]) {
+                inputRefs.current[blankIdx + 1].focus();
+            }
         } else {
             // prefill 不可修改
             if (prefill && prefill[blankIdx] && prefill[blankIdx][letterIdx] != null) return;
-            const next = inputs.map(arr => [...arr]);
+            const next = inputs.map((arr: string[]) => [...arr]);
             next[blankIdx][letterIdx] = val;
             setInputs(next);
+            checkAndAutoSubmit(next);
+            // 自动 focus 下一个字母
+            if (val.length > 0) {
+                const nextLetter = inputRefs.current[`${blankIdx}-${letterIdx + 1}`];
+                if (nextLetter) {
+                    nextLetter.focus();
+                } else {
+                    // 跳到下一个空的第一个字母
+                    const nextBlank = inputRefs.current[`${blankIdx + 1}-0`];
+                    if (nextBlank) nextBlank.focus();
+                }
+            }
         }
     };
 
     // 处理提交
-    const handleSubmit = () => {
+    const handleSubmit = (inputOverride?: any) => {
+        const useInputs = inputOverride || inputs;
         let isCorrect = false;
         if (!letterMode) {
-            isCorrect = inputs.every((v, i) => v.trim().toLowerCase() === answers[i].trim().toLowerCase());
+            isCorrect = useInputs.every((v: string, i: number) => v.trim().toLowerCase() === answers[i].trim().toLowerCase());
         } else {
-            isCorrect = inputs.every((arr, i) => arr.join('').trim().toLowerCase() === answers[i].trim().toLowerCase());
+            isCorrect = useInputs.every((arr: string[], i: number) => arr.join('').trim().toLowerCase() === answers[i].trim().toLowerCase());
         }
         setSubmitted(true);
         setCorrect(isCorrect);
         if (!letterMode) {
-            onSubmit?.(inputs as string[], isCorrect);
+            onSubmit?.(useInputs as string[], isCorrect);
         } else {
-            onSubmit?.(inputs.map(arr => arr.join('')), isCorrect);
+            onSubmit?.(useInputs.map((arr: string[]) => arr.join('')), isCorrect);
         }
     };
 
@@ -73,7 +110,7 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
             <div className="mb-4 text-lg font-semibold text-gray-800 text-center">Type the missing letters to complete the text below.</div>
             <div className="mb-6 text-base text-gray-700 leading-relaxed flex flex-wrap items-center justify-center gap-y-3">
                 {parts.map((part, i) => {
-                    if (i % 2 === 0) return <span key={i}>{part}</span>;
+                    if ((i % 2) === 0) return <span key={i}>{part}</span>;
                     // 输入框
                     const idx = Number(part);
                     if (!letterMode) {
@@ -84,6 +121,7 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
                                 value={inputs[inputIdx++] as string}
                                 onChange={e => handleChange(idx, 0, e.target.value)}
                                 disabled={submitted}
+                                ref={el => { inputRefs.current[idx] = el; }}
                                 className={`mx-1 px-3 py-1.5 text-center rounded-xl border-2 outline-none transition-all shadow-glass bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 backdrop-blur font-semibold text-base focus:border-emerald-400 focus:ring-2 focus:ring-emerald-300 hover:shadow-[0_0_8px_2px_rgba(52,181,139,0.12)] ${submitted ? ((inputs[idx] as string).trim().toLowerCase() === answers[idx].trim().toLowerCase() ? 'border-emerald-400 text-emerald-700 bg-emerald-50' : 'border-red-400 text-red-500 bg-red-50') : 'border-gray-200 text-gray-700'}`}
                                 style={{ minWidth: '2.5em', height: '2.4em', width: `${Math.max(2.5, (inputs[idx] as string)?.length || 2.5)}em`, boxShadow: '0 2px 12px rgba(52,181,139,0.08)' }}
                                 animate={{ scale: submitted ? 1.08 : 1 }}
@@ -103,6 +141,7 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
                                             value={inputs[idx][letterIdx] as string}
                                             onChange={e => handleChange(idx, letterIdx, e.target.value)}
                                             disabled={submitted || isPrefilled}
+                                            ref={el => { inputRefs.current[`${idx}-${letterIdx}`] = el; }}
                                             className={`w-8 h-10 text-center ml-1 px-0 py-0 rounded-lg border-2 outline-none transition-all shadow-glass bg-gradient-to-br from-white/80 via-emerald-50 to-white/60 backdrop-blur font-semibold text-lg focus:border-emerald-400 focus:ring-2 focus:ring-emerald-300 hover:shadow-[0_0_8px_2px_rgba(52,181,139,0.12)] ${isPrefilled ? 'bg-emerald-50 border-emerald-300 text-emerald-700 opacity-80' : (submitted ? (inputs[idx][letterIdx].trim().toLowerCase() === answers[idx][letterIdx].toLowerCase() ? 'border-emerald-400 text-emerald-700 bg-emerald-50' : 'border-red-400 text-red-500 bg-red-50') : 'border-gray-200 text-gray-700')}`}
                                             style={{ boxShadow: '0 2px 12px rgba(52,181,139,0.08)' }}
                                             animate={{ scale: submitted ? 1.08 : 1 }}
@@ -115,11 +154,13 @@ export function ClozeInput({ text, answers, letterMode = false, prefill, onSubmi
                 })}
             </div>
             <div className="flex flex-col items-center justify-center gap-4 min-h-[96px]">
-                <Button
-                    onClick={handleSubmit}
-                    color="emerald"
-                >Submit</Button>
-                {submitted && (
+                {!autosubmit && (
+                  <Button
+                      onClick={() => handleSubmit()}
+                      color="emerald"
+                  >Submit</Button>
+                )}
+                {!autosubmit && submitted && (
                     <Feedback correct={correct} />
                 )}
             </div>
