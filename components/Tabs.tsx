@@ -15,7 +15,9 @@ export function Tabs({ tabs }: GlassTabsProps) {
   const [activeIndex, setActiveIndex] = useState(0)
 
   const tabClass = (active: boolean) =>
-    `px-4 py-2 rounded-t-xl cursor-pointer transition-all liquid-glass ${active ? 'bg-white/30' : 'bg-white/10'}`
+    `relative px-4 py-2 rounded-t-xl cursor-pointer transition-all liquid-glass font-semibold ${
+      active ? 'bg-white/70 text-emerald-700 shadow-lg' : 'bg-white/10 text-gray-500'
+    }`
 
   const contentClass = `liquid-glass p-4 mt-2`
 
@@ -27,15 +29,23 @@ export function Tabs({ tabs }: GlassTabsProps) {
             key={idx}
             className={tabClass(idx === activeIndex)}
             onClick={() => setActiveIndex(idx)}
+            style={{ position: 'relative' }}
           >
             {tab.label}
+            {idx === activeIndex && (
+              <motion.div
+                layoutId="tab-underline"
+                className="absolute left-2 right-2 -bottom-1 h-1 rounded bg-emerald-400"
+                style={{ zIndex: 2 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
           </div>
         ))}
       </div>
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeIndex}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
