@@ -1,6 +1,6 @@
 {
   "name": "liquid-glass-tailwind-react",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "liquid glass ui components, demonstrating a liquid glass effect using Tailwind CSS and React.",
   "main": "components/index.ts",
   "types": "components/index.d.ts",

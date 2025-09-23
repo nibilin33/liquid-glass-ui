@@ -8,7 +8,7 @@ interface LogoLoopProps {
 	className?: string;
 }
 
-export default function LogoLoop({ images, speed = 60, height = 64, className = '' }: LogoLoopProps) {
+export function LogoLoop({ images, speed = 60, height = 64, className = '' }: LogoLoopProps) {
 	const [isHover, setIsHover] = useState(false);
 	const controls = useAnimation();
 	const containerRef = useRef<HTMLDivElement>(null);

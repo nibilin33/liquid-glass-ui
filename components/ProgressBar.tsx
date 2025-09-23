@@ -26,16 +26,14 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
 	return (
 		<div className={`w-full liquid-glass rounded-xl shadow-glass px-2 py-2 ${className}`} style={style}>
-			<div className="flex items-center justify-between mb-1">
-				{showNumber && (
-					<motion.span
+			{showNumber && <div className="flex items-center justify-between mb-1">
+				<motion.span
 						style={{ fontVariantNumeric: 'tabular-nums' }}
 						className="text-emerald-700 font-bold text-base drop-shadow"
 					>
 						{numberMotion.get().toFixed(0)} / {max}
 					</motion.span>
-				)}
-			</div>
+			</div>}
 			<div className="w-full h-4 bg-emerald-100 rounded-xl overflow-hidden relative">
 				<motion.div
 					className={`h-full rounded-xl bg-emerald-500`}

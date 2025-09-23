@@ -27,3 +27,9 @@ export { Header } from './Header';
 export { Footer } from './Footer';
 export { AutoHighlight, Highlight } from './AutoHighlight';
 export { AnswersheetRenderer } from './AnswersheetRenderer';
+export { ProgressBar } from './ProgressBar';
+export { TypeWriter } from './TypeWriter';
+export { Timer } from './Timer';
+export { LogoLoop } from './LogoLoop';  
+// export { Switch } from './Switch';
+
