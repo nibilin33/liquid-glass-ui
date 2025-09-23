@@ -298,51 +298,56 @@ export const AnswersheetRenderer = forwardRef<AnswersheetRendererRef, Answershee
 
       if (q.type === "mc") {
         return (
-          <div key={q.id} className="p-3 my-2 border rounded">
-            <div className="font-semibold">
+          <div key={q.id} className="p-3 my-4 bg-white/90 shadow-sm rounded-xl">
+            <div className="font-semibold mb-2">
               <ReactMarkdown>{q.text}</ReactMarkdown>
             </div>
-
-            {(q.options || []).map((opt: string, idx: number) => {
-              const isSelected = q.mode === "multi" ? (userAns || []).includes(idx) : userAns === idx;
-              return (
-                <label
-                  key={idx}
-                  className={`block p-1 cursor-pointer rounded ${
-                    feedback
-                      ? feedback.correct && isSelected
-                        ? "bg-green-200"
-                        : !feedback.correct && isSelected
-                        ? "bg-red-200"
-                        : ""
-                      : ""
-                  }`}
-                >
-                  <input
-                    type={q.mode === "multi" ? "checkbox" : "radio"}
-                    name={q.id}
-                    checked={!!isSelected}
-                    onChange={(e) => {
-                      if (q.mode === "multi") {
-                        const prev = userAns || [];
-                        updateAnswer(
-                          q.id,
-                          e.target.checked ? [...prev, idx] : prev.filter((x: number) => x !== idx)
-                        );
-                      } else {
-                        updateAnswer(q.id, idx);
-                      }
-                    }}
-                  />
-                  <span className="ml-2">
-                    <ReactMarkdown>{opt}</ReactMarkdown>
-                  </span>
-                </label>
-              );
-            })}
-
+            <div className="space-y-2">
+              {(q.options || []).map((opt: string, idx: number) => {
+                const isSelected = q.mode === "multi" ? (userAns || []).includes(idx) : userAns === idx;
+                return (
+                  <label
+                    key={idx}
+                    className={`block px-3 py-2 cursor-pointer rounded-lg transition-all flex items-center gap-2 select-none
+                      ${q.mode === "multi" ? "group" : ""}
+                      ${feedback
+                        ? feedback.correct && isSelected
+                          ? "bg-green-100 text-green-800"
+                          : !feedback.correct && isSelected
+                          ? "bg-red-100 text-red-800"
+                          : ""
+                        : isSelected
+                        ? "bg-emerald-50 ring-2 ring-emerald-300 text-emerald-900"
+                        : "hover:bg-emerald-50/60"}
+                    `}
+                    style={{boxShadow: isSelected ? '0 2px 8px 0 rgba(16,185,129,0.08)' : undefined}}
+                  >
+                    <input
+                      type={q.mode === "multi" ? "checkbox" : "radio"}
+                      name={q.id}
+                      checked={!!isSelected}
+                      onChange={(e) => {
+                        if (q.mode === "multi") {
+                          const prev = userAns || [];
+                          updateAnswer(
+                            q.id,
+                            e.target.checked ? [...prev, idx] : prev.filter((x: number) => x !== idx)
+                          );
+                        } else {
+                          updateAnswer(q.id, idx);
+                        }
+                      }}
+                      className="form-checkbox h-5 w-5 text-emerald-500 border-2 border-emerald-200 bg-white rounded-md focus:ring-emerald-400 transition-all duration-150 mr-2 accent-emerald-500 shadow-sm"
+                    />
+                    <span className="ml-1 text-base">
+                      <ReactMarkdown>{opt}</ReactMarkdown>
+                    </span>
+                  </label>
+                );
+              })}
+            </div>
             {feedback && (
-              <div className="mt-1 text-sm">
+              <div className="mt-2 text-sm">
                 <Feedback
                   correct={!!feedback.correct}
                   message={feedback.message}
@@ -358,18 +363,19 @@ export const AnswersheetRenderer = forwardRef<AnswersheetRendererRef, Answershee
       // text / fill
       if (q.type === "text" || q.type === "fill") {
         return (
-          <div key={q.id} className="p-3 my-2 border rounded">
-            <div className="font-semibold">
+          <div key={q.id} className="p-3 my-4 bg-white/90 shadow-sm rounded-xl">
+            <div className="font-semibold mb-2">
               <ReactMarkdown>{q.text}</ReactMarkdown>
             </div>
             <input
               type="text"
               value={answers[q.id] || ""}
               onChange={(e) => updateAnswer(q.id, e.target.value)}
-              className="border p-1 rounded w-full mt-1"
+              className="border-b border-dashed border-emerald-300 bg-transparent p-1 rounded-none w-full mt-1 focus:outline-none focus:border-emerald-500 text-base"
+              style={{boxShadow: 'none'}}
             />
             {results?.results?.[q.id] && (
-              <div className="mt-1 text-sm">
+              <div className="mt-2 text-sm">
                 <Feedback
                   correct={!!results.results[q.id].correct}
                   message={results.results[q.id].message}
@@ -389,26 +395,35 @@ export const AnswersheetRenderer = forwardRef<AnswersheetRendererRef, Answershee
     // 渲染整个文档：section + items（同时保留常规 markdown 内容）
     // ---------------------------
     return (
-      <div className="space-y-6">
-        {sections.map((sec) => (
-          <section key={sec.id} className="p-3 border rounded">
-            {sec.topic && <h3 className="text-lg font-bold mb-2">{sec.topic}</h3>}
-
-            {sec.items.map((it: any, idx: number) => {
-              if (it.type === "content") {
-                return (
-                  <div key={idx} className="mb-2">
-                    <ReactMarkdown>{it.raw}</ReactMarkdown>
-                  </div>
-                );
-              }
-
-              if (it.type === "question") {
-                return <div key={it.question.id}>{renderQuestion(it.question)}</div>;
-              }
-
-              return null;
-            })}
+      <div className="space-y-2">
+        {sections.map((sec, secIdx) => (
+          <section
+            key={sec.id}
+            className={
+              `mt-0 mb-0 px-0 py-0 bg-transparent` +
+              (secIdx > 0 ? ' pt-8' : '')
+            }
+          >
+            {sec.topic && (
+              <h3 className="text-lg font-bold mb-5 text-emerald-900/90 tracking-wide">
+                {sec.topic}
+              </h3>
+            )}
+            <div className="space-y-5">
+              {sec.items.map((it: any, idx: number) => {
+                if (it.type === "content") {
+                  return (
+                    <div key={idx} className="mb-0 text-base text-gray-800/90 leading-relaxed">
+                      <ReactMarkdown>{it.raw}</ReactMarkdown>
+                    </div>
+                  );
+                }
+                if (it.type === "question") {
+                  return <div key={it.question.id}>{renderQuestion(it.question)}</div>;
+                }
+                return null;
+              })}
+            </div>
           </section>
         ))}
       </div>
