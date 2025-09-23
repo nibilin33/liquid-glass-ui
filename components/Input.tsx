@@ -38,7 +38,7 @@ export function Input(props: any) {
       <motion.div
         animate={{ scale: focused ? 1.04 : 1 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        className="w-full"
+        className="w-full inline-block"
       >
         <input
           {...rest}

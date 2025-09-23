@@ -12,14 +12,16 @@ export interface ScheduleItem {
   stage?: string; // 阶段分组
   tags?: string[]; // 标签
   progress?: number; // 进度百分比
+  extra?: Record<string, any>; // 额外字段
 }
 
 export interface ScheduleProps {
   items: ScheduleItem[];
   className?: string;
+  onItemClick?: (item: ScheduleItem) => void; // 新增
 }
 
-export function Schedule({ items, className = '' }: ScheduleProps) {
+export function Schedule({ items, className = '', onItemClick }: ScheduleProps) {
   // 按周分组
   const grouped = items.reduce((acc, item) => {
     const key = item.week || item.stage || '默认分组';
@@ -48,8 +50,9 @@ export function Schedule({ items, className = '' }: ScheduleProps) {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: sIdx * 0.1 + idx * 0.04 }}
-                  className={`liquid-glass rounded-lg shadow-glass border border-white/30 backdrop-blur px-3 py-2 flex flex-col gap-1 min-h-[56px] ${item.color ? 'text-white' : 'text-emerald-800'}`}
+                  className={`liquid-glass rounded-lg shadow-glass border border-white/30 backdrop-blur px-3 py-2 flex flex-col gap-1 min-h-[56px] ${item.color ? 'text-white' : 'text-emerald-800'} cursor-pointer`}
                   style={{ background: item.color ? item.color : 'rgba(255,255,255,0.7)' }}
+                  onClick={() => onItemClick?.(item)}
                 >
                   <div className={`flex items-center gap-2 text-xs font-mono ${item.color ? 'text-white/80' : 'text-gray-500'}`}>
                     <span>{item.date ? item.date : item.time}{item.endTime ? ` ~ ${item.endTime}` : ''}</span>

@@ -129,7 +129,7 @@ export function ClozeInput({
       className="liquid-glass rounded-2xl p-6 shadow-glass bg-white/60 backdrop-blur w-full max-w-2xl mx-auto"
     >
       {/* <div className="mb-4 text-lg font-semibold text-gray-800 text-center">Type the missing letters to complete the text below.</div> */}
-      <div className="mb-6 text-base text-gray-700 leading-relaxed flex flex-wrap items-center justify-center gap-y-3">
+      <div className="text-base text-gray-700 leading-relaxed flex flex-wrap items-center justify-center gap-y-3">
         {parts.map((part, i) => {
           if (i % 2 === 0) return <span key={i}>{part}</span>;
           // 输入框
@@ -206,7 +206,7 @@ export function ClozeInput({
         })}
       </div>
       {!autosubmit && (
-        <div className="flex flex-col items-center justify-center gap-4 min-h-[96px]">
+        <div className="mt-6 flex flex-col items-center justify-center gap-4 min-h-[96px]">
           <Button onClick={() => handleSubmit()} color="emerald">
             Submit
           </Button>

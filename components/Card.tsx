@@ -4,16 +4,17 @@ import { Card as MtCard, CardBody } from '@material-tailwind/react';
 import type { ReactNode } from 'react';
 
 interface GlassCardProps {
-  title: ReactNode;
+  title?: ReactNode;
   children: ReactNode;
   className?: string;
+  onClick?: () => void; // 新增
 }
 
-export function Card({ title, children, className = '' }: GlassCardProps) {
+export function Card({ title, children, className = '', onClick }: GlassCardProps) {
   return (
-    <motion.div whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+    <motion.div whileHover={{ y: -4, scale: 1.03 }} whileTap={{ scale: 0.97 }} onClick={onClick}>
       <MtCard
-        className={`liquid-glass p-4 ${className}`}
+        className={`liquid-glass p-4`}
         placeholder={undefined}
         onResize={undefined}
         onResizeCapture={undefined}
@@ -26,8 +27,9 @@ export function Card({ title, children, className = '' }: GlassCardProps) {
           onResizeCapture={undefined}
           onPointerEnterCapture={undefined}
           onPointerLeaveCapture={undefined}
+          className={className}
         >
-          <h3 className="text-white font-bold mb-2">{title}</h3>
+         {title && <h3 className="text-white font-bold mb-2">{title}</h3>}
           {children}
         </CardBody>
       </MtCard>
