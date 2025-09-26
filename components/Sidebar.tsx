@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 export type GlassSidebarItem =
@@ -16,15 +16,19 @@ interface GlassSidebarProps {
   onActiveChange?: (idx: number) => void;
 }
 
-export function Sidebar({ items = [], activeIndex: propActive, onActiveChange }: GlassSidebarProps) {
-  const [active, setActive] = useState<number>(propActive ?? 0);
+export function Sidebar({ items = [], activeIndex, onActiveChange }: GlassSidebarProps) {
+  const [active, setActive] = useState<number>(activeIndex ?? 0);
 
   const handleItemClick = (idx: number, handleClick?: () => void) => {
     setActive(idx);
     onActiveChange?.(idx);
     if (handleClick) handleClick();
   };
-
+  useEffect(()=>{
+    if (activeIndex !== undefined) {
+      setActive(activeIndex);
+    }
+  },[activeIndex])
   return (
     <motion.aside
       className="p-6 liquid-glass hidden md:flex flex-col"
@@ -36,7 +40,7 @@ export function Sidebar({ items = [], activeIndex: propActive, onActiveChange }:
         {items.map((item, idx) => {
           const label = typeof item === 'string' ? item : item.label;
           const handleClick = typeof item === 'object' && item.onClick ? item.onClick : undefined;
-          const isActive = idx === active;
+          const isActive = activeIndex !== undefined ? idx === activeIndex : idx === active;
           return (
             <motion.a
               key={label + idx}

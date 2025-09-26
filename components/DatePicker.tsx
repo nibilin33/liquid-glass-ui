@@ -9,6 +9,7 @@ interface DatePickerProps {
   min?: string;
   max?: string;
   className?: string;
+  placeholder?: string;
   label?: React.ReactNode; // 新增 label
   required?: boolean; // 新增 required
 }
@@ -17,7 +18,7 @@ function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-export function DatePicker({ value, onChange, min, max, className = "", label, required }: DatePickerProps) {
+export function DatePicker({ value, onChange, min, max, className = "", label, required, placeholder="" }: DatePickerProps) {
   const today = new Date();
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState<Date | null>(value ? new Date(value) : null);
@@ -103,7 +104,7 @@ export function DatePicker({ value, onChange, min, max, className = "", label, r
         required={required}
         className="liquid-glass px-3 py-2 rounded-lg border w-40 cursor-pointer bg-white/60 backdrop-blur shadow-inner focus:outline-emerald-400"
         value={selected ? selected.toISOString().slice(0, 10) : ""}
-        placeholder="Select date"
+        placeholder={placeholder}
         onClick={() => setShow((v) => !v)}
       />
       {show &&

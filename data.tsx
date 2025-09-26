@@ -140,11 +140,11 @@ const components = [
     name: "Modal",
     category: "Interactive",
     preview: (
-      <Modal open={true} title="Liquid Glass Modal">
+      <Modal isOpen={true} onClose={() => { }}>
         Liquid Glass Modal Content: Experience frosted glass, vibrant highlights, and the best of Liquid Glass UI.
       </Modal>
     ),
-    code: `<Modal open={true} title="Liquid Glass Modal">Liquid Glass Modal Content: Experience frosted glass, vibrant highlights, and the best of Liquid Glass UI.</Modal>`,
+    code: `<Modal isOpen={true} onClose={() => { }}>Liquid Glass Modal Content: Experience frosted glass, vibrant highlights, and the best of Liquid Glass UI.</Modal>`,
   },
   {
     name: 'Sidebar',

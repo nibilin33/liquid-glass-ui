@@ -33,4 +33,6 @@ export { Timer } from './Timer';
 export { LogoLoop } from './LogoLoop';  
 export { DatePicker } from './DatePicker';
 export { Switch } from './Switch';
+export { Textarea } from './Textarea';
+export { IconContainer } from './IconContainer';
 

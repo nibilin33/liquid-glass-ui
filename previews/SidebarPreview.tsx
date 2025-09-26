@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Sidebar } from "../components/Sidebar";
 
 export default function SidebarPreview() {
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(1);
 
   const items = [
     "Dashboard",

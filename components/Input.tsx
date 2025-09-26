@@ -28,7 +28,7 @@ export function Input(props: any) {
   };
 
   return (
-    <div className="w-full">
+    <div className={`${className}`}>
       {label && (
         <label className="block mb-2 text-sm font-semibold text-emerald-700 drop-shadow-sm select-none">
           {label}
@@ -46,7 +46,7 @@ export function Input(props: any) {
           required={required}
           aria-required={required}
           aria-invalid={!!error}
-          className={`liquid-glass px-4 py-2 rounded-xl text-gray-800 shadow-glass outline-none border transition-all ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-400 focus:shadow-[0_0_12px_2px_rgba(239,68,68,0.5)]' : 'border-transparent focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_0_12px_2px_rgba(52,181,139,0.5)]'} ${className}`}
+          className={`liquid-glass px-4 py-2 rounded-xl text-gray-800 shadow-glass outline-none border transition-all ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-400 focus:shadow-[0_0_12px_2px_rgba(239,68,68,0.5)]' : 'border-transparent focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_0_12px_2px_rgba(52,181,139,0.5)]'} w-full`}
           onFocus={e => { setFocused(true); props.onFocus?.(e); }}
           onBlur={async e => {
             setFocused(false);
