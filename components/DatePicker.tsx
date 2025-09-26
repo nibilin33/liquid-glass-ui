@@ -9,13 +9,15 @@ interface DatePickerProps {
   min?: string;
   max?: string;
   className?: string;
+  label?: React.ReactNode; // 新增 label
+  required?: boolean; // 新增 required
 }
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-export function DatePicker({ value, onChange, min, max, className = "" }: DatePickerProps) {
+export function DatePicker({ value, onChange, min, max, className = "", label, required }: DatePickerProps) {
   const today = new Date();
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState<Date | null>(value ? new Date(value) : null);
@@ -90,8 +92,15 @@ export function DatePicker({ value, onChange, min, max, className = "" }: DatePi
 
   return (
     <div ref={inputRef} className={`inline-block ${className}`}>
+      {label && (
+        <div className="mb-1 text-sm font-medium text-emerald-700 select-none">
+          {label}
+          {required && <span className="text-red-500 ml-0.5">*</span>}
+        </div>
+      )}
       <input
         readOnly
+        required={required}
         className="liquid-glass px-3 py-2 rounded-lg border w-40 cursor-pointer bg-white/60 backdrop-blur shadow-inner focus:outline-emerald-400"
         value={selected ? selected.toISOString().slice(0, 10) : ""}
         placeholder="Select date"
