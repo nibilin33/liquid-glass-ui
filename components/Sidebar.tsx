@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export type GlassSidebarItem =
@@ -11,9 +12,19 @@ export type GlassSidebarItem =
 
 interface GlassSidebarProps {
   items?: GlassSidebarItem[];
+  activeIndex?: number;
+  onActiveChange?: (idx: number) => void;
 }
 
-export function Sidebar({ items = [] }: GlassSidebarProps) {
+export function Sidebar({ items = [], activeIndex: propActive, onActiveChange }: GlassSidebarProps) {
+  const [active, setActive] = useState<number>(propActive ?? 0);
+
+  const handleItemClick = (idx: number, handleClick?: () => void) => {
+    setActive(idx);
+    onActiveChange?.(idx);
+    if (handleClick) handleClick();
+  };
+
   return (
     <motion.aside
       className="p-6 liquid-glass hidden md:flex flex-col"
@@ -25,14 +36,31 @@ export function Sidebar({ items = [] }: GlassSidebarProps) {
         {items.map((item, idx) => {
           const label = typeof item === 'string' ? item : item.label;
           const handleClick = typeof item === 'object' && item.onClick ? item.onClick : undefined;
+          const isActive = idx === active;
           return (
             <motion.a
               key={label + idx}
-              className="liquid-glass px-4 py-2 rounded-xl text-white cursor-pointer"
-              whileHover={{ scale: 1.03 }}
+              className={`relative liquid-glass px-4 py-2 cursor-pointer transition-all
+                ${isActive
+                  ? "bg-emerald-500/90 text-white shadow-xl ring-2 ring-emerald-300 font-semibold"
+                  : "text-emerald-700/70 hover:bg-white/10"}
+              `}
+              whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              onClick={handleClick}
+              onClick={() => handleItemClick(idx, handleClick)}
+              style={{
+                boxShadow: isActive
+                  ? "0 4px 24px 0 rgba(16,185,129,0.18), 0 1.5px 8px 0 rgba(16,185,129,0.10)"
+                  : undefined,
+                border: isActive ? "1.5px solid #34d399" : undefined,
+              }}
             >
+           {isActive && (
+              <span
+                className="absolute -left-4 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow"
+                style={{ boxShadow: "0 0 10px #fff" }}
+              />
+            )}
               {label}
             </motion.a>
           );

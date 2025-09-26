@@ -31,5 +31,6 @@ export { ProgressBar } from './ProgressBar';
 export { TypeWriter } from './TypeWriter';
 export { Timer } from './Timer';
 export { LogoLoop } from './LogoLoop';  
-// export { Switch } from './Switch';
+export { DatePicker } from './DatePicker';
+export { Switch } from './Switch';
 

@@ -3,7 +3,6 @@ import { Button } from "./components/Button";
 import { Card } from "./components/Card";
 import { Badge } from "./components/Badge";
 import { Modal } from "./components/Modal";
-import { Sidebar } from "./components/Sidebar";
 import { Tooltip } from "./components/Tooltip";
 import { Tabs } from "./components/Tabs";
 import { Dropdown } from "./components/Dropdown";
@@ -29,6 +28,8 @@ const RecorderPreview = React.lazy(() => import("./previews/RecorderPreview"));
 const OrderingPreview = React.lazy(() => import("./previews/OrderingPreview"));
 const AnswersheetPreview = React.lazy(() => import("./previews/AnswersheetPreview"));
 const DatePickerPreview = React.lazy(() => import("./previews/DatePickerPreview"));
+const SwitchPreview = React.lazy(() => import("./previews/SwtichPreview"));
+const SidebarPreview = React.lazy(() => import("./previews/SidebarPreview"));
 const components = [
   {
     name: "PriceSets",
@@ -99,6 +100,12 @@ const components = [
     code: `<Button>Button</Button>`,
   },
   {
+    name: 'Switch',
+    category: 'Basic',
+    preview: <SwitchPreview />,
+    code: `<Switch checked={on} onChange={setOn} label="Glassmorphism Switch" />`,
+  },
+  {
     name: "Card",
     category: "Basic",
     preview: (
@@ -140,10 +147,10 @@ const components = [
     code: `<Modal open={true} title="Liquid Glass Modal">Liquid Glass Modal Content: Experience frosted glass, vibrant highlights, and the best of Liquid Glass UI.</Modal>`,
   },
   {
-    name: "Sidebar",
-    category: "Navigation",
-    preview: <Sidebar items={[{ label: "Home" }, { label: "Components" }]} />,
-    code: `<Sidebar items={[{label: 'Liquid Glass Dashboard'}, {label: 'Liquid Glass UI'}]} />`,
+    name: 'Sidebar',
+    category: 'Navigation',
+    preview: <SidebarPreview />,
+    code: `<Sidebar items={['Dashboard', { label: 'Profile', onClick: () => alert('Profile clicked!') }, 'Settings', 'Help']} activeIndex={active} onActiveChange={setActive} />`,
   },
   {
     name: "Tooltip",
