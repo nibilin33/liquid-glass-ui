@@ -5,7 +5,7 @@ import { Button } from "../Button";
 
 export interface AIMessage {
   role: "user" | "ai";
-  content: string;
+  content: React.ReactNode | string; // 支持自定义组件
   loading?: boolean;
 }
 
