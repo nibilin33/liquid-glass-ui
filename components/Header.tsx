@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef, useLayoutEffect } from 'react';
 
 export interface GlassHeaderProps {
   title?: string;
@@ -21,6 +21,50 @@ export function Header({
 }: GlassHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+  const menuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const btnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [menuStyles, setMenuStyles] = useState<Record<string, React.CSSProperties>>({});
+
+  useLayoutEffect(() => {
+    if (!hovered) return;
+    const btn = btnRefs.current[hovered];
+    const menu = menuRefs.current[hovered];
+    if (btn && menu) {
+      const btnRect = btn.getBoundingClientRect();
+      const menuRect = menu.getBoundingClientRect();
+      const winW = window.innerWidth, winH = window.innerHeight;
+      let top = btnRect.bottom + 8;
+      let left = btnRect.left;
+      let right: number | undefined = undefined;
+      let transform = '';
+      let maxWidth = Math.min(winW - 24, 400); // 限制最大宽度
+      // 下方空间不足则向上弹出
+      if (btnRect.bottom + menuRect.height + 16 > winH) {
+        top = Math.max(8, btnRect.top - menuRect.height - 8);
+      }
+      // 右侧空间不足则左对齐
+      if (btnRect.left + menuRect.width > winW - 8) {
+        left = Math.max(8, winW - menuRect.width - 8);
+        right = undefined;
+        transform = 'unset';
+      }
+      // 菜单宽度小于按钮宽度时，left 取 btnRect.left
+      // 菜单宽度大于按钮宽度时，left 取 min(btnRect.left, winW - menuRect.width - 8)
+      if (menuRect.width > btnRect.width) {
+        left = Math.min(btnRect.left, winW - menuRect.width - 8);
+      }
+      setMenuStyles(s => ({ ...s, [hovered]: {
+        position: 'fixed',
+        top,
+        left,
+        right,
+        zIndex: 100,
+        maxWidth,
+        transform,
+        overflow: 'auto',
+      }}));
+    }
+  }, [hovered]);
 
   return (
     <header
@@ -56,6 +100,7 @@ export function Header({
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.96 }}
                   type="button"
+                  ref={el => { btnRefs.current[link.label] = el}}
                 >
                   {link.label}
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
@@ -63,11 +108,13 @@ export function Header({
                 <AnimatePresence>
                   {hovered === link.label && (
                     <motion.div
+                      ref={el => { menuRefs.current[link.label] = el }}
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.18 }}
-                      className="absolute left-0 top-full mt-2 min-w-[180px] bg-white/90 backdrop-blur border border-emerald-100 rounded-xl shadow-xl z-50"
+                      className="absolute left-0 top-full mt-2 min-w-[180px] max-w-[90vw] bg-white/90 backdrop-blur border border-emerald-100 rounded-xl shadow-xl z-50 overflow-auto"
+                      style={menuStyles[link.label]}
                     >
                       <ul className="py-2">
                         {link.dropdown.map(item => (

@@ -9,9 +9,10 @@ export interface LearningNode {
 
 export interface LearningTimelineProps {
   nodes: LearningNode[];
+  onNodeClick?: (node: LearningNode, index: number) => void; // 新增
 }
 
-export function LearningTimeline({ nodes }: LearningTimelineProps) {
+export function LearningTimeline({ nodes, onNodeClick }: LearningTimelineProps) {
   return (
     <div className="w-full max-w-xl mx-auto py-6">
           <div className="relative pl-6" style={{ position: 'relative' }}>
@@ -32,6 +33,7 @@ export function LearningTimeline({ nodes }: LearningTimelineProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.08, type: 'spring', stiffness: 320, damping: 22 }}
             className="mb-8 flex flex-col gap-2 relative"
+            onClick={() => onNodeClick?.(node, idx)} // 新增
           >
             <div
               className="absolute -left-8 w-6 h-6 rounded-full bg-gradient-to-br from-white/80 via-emerald-100 to-white/60 border-2 border-emerald-300 shadow-lg flex items-center justify-center"

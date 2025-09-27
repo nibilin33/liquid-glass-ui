@@ -35,4 +35,6 @@ export { DatePicker } from './DatePicker';
 export { Switch } from './Switch';
 export { Textarea } from './Textarea';
 export { IconContainer } from './IconContainer';
+export { TagInput } from './TagInput';
+export { AIChatBox } from './AIassistant';
 

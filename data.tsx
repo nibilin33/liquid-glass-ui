@@ -31,6 +31,7 @@ const DatePickerPreview = React.lazy(() => import("./previews/DatePickerPreview"
 const SwitchPreview = React.lazy(() => import("./previews/SwtichPreview"));
 const SidebarPreview = React.lazy(() => import("./previews/SidebarPreview"));
 const AIChatBoxPreview = React.lazy(() => import("./previews/AIchatboxPreview"));
+const TagInputPreview = React.lazy(() => import("./previews/TagInputPreview"));
 const components = [
   {
     name: "PriceSets",
@@ -99,6 +100,12 @@ const components = [
     category: "Basic",
     preview: <Button>Button</Button>,
     code: `<Button>Button</Button>`,
+  },
+  {
+    name: 'TagInput', 
+    category: 'Basic',
+    preview: <TagInputPreview />,
+    code: `<TagInput value={tags} onChange={setTags} placeholder="" maxTags={8} />`,
   },
   {
     name: 'Switch',
