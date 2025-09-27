@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from './Button'
 import { FaCheck } from 'react-icons/fa'
@@ -13,9 +13,43 @@ interface GlassDropdownProps {
 export function Dropdown({ label, items }: GlassDropdownProps) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<number | null>(null);
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
 
   // 当前显示文本
   const displayLabel = selected !== null ? items[selected]?.label : label;
+
+  useLayoutEffect(() => {
+    if (open && btnRef.current && menuRef.current) {
+      const btnRect = btnRef.current.getBoundingClientRect();
+      const menuRect = menuRef.current.getBoundingClientRect();
+      const winW = window.innerWidth, winH = window.innerHeight;
+      let top = btnRect.bottom + 8;
+      let left = btnRect.left;
+      let right: number | undefined = undefined;
+      let transform = '';
+      // 下方空间不足则向上弹出
+      if (btnRect.bottom + menuRect.height + 16 > winH) {
+        top = btnRect.top - menuRect.height - 8;
+      }
+      // 右侧空间不足则左对齐
+      if (btnRect.left + menuRect.width > winW - 8) {
+        left = undefined as any;
+        right = winW - btnRect.right;
+        transform = 'unset';
+      }
+      setMenuStyle({
+        position: 'fixed',
+        top,
+        left,
+        right,
+        zIndex: 100,
+        minWidth: btnRect.width,
+        transform,
+      });
+    }
+  }, [open]);
 
   return (
     <div className="relative inline-block text-left">
@@ -25,6 +59,7 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
           textTransform: 'none'
         }}
         onClick={() => setOpen(!open)}
+        ref={btnRef}
       >
         {displayLabel}
       </Button>
@@ -32,11 +67,13 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
       <AnimatePresence>
         {open && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             className={`absolute mt-2 w-56 rounded-xl shadow-lg border border-white/30 z-10 bg-emerald-50 p-4`}
+            style={menuStyle}
           >
             <div className="py-1">
               {items.map((item, idx) => (

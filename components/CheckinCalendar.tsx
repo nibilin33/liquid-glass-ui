@@ -92,7 +92,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
                 ))}
             </div>
             <div className="mt-6 text-lg text-emerald-700 font-semibold text-center bg-white/60 px-4 py-2 rounded-xl shadow border border-emerald-100">
-                Checked in <span className="font-extrabold text-emerald-600 text-xl">{checkedDays.length}</span> days this month
+                <span className="font-extrabold text-emerald-600 text-xl">{checkedDays.length}</span> days
             </div>
         </motion.div>
     );
