@@ -17,6 +17,13 @@ export default function InputPreview() {
         }
         placeholder="Please enter your email"
       />
+       <div className="my-4" />
+       <Input
+        type="file"
+        label="Upload File"
+        required
+        placeholder="Choose a file"
+      />
     </div>
   );
 }
