@@ -37,4 +37,5 @@ export { Textarea } from './Textarea';
 export { IconContainer } from './IconContainer';
 export { TagInput } from './TagInput';
 export { AIChatBox } from './AIassistant';
+export { SelectInput } from './SelectInput';
 

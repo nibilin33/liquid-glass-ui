@@ -32,6 +32,8 @@ const SwitchPreview = React.lazy(() => import("./previews/SwtichPreview"));
 const SidebarPreview = React.lazy(() => import("./previews/SidebarPreview"));
 const AIChatBoxPreview = React.lazy(() => import("./previews/AIchatboxPreview"));
 const TagInputPreview = React.lazy(() => import("./previews/TagInputPreview"));
+
+const SelectInputPreview = React.lazy(() => import("./previews/SelectInputPreview"));
 const components = [
   {
     name: "PriceSets",
@@ -94,6 +96,12 @@ const components = [
   highlights={["the", "best experts", "choose", "Rush Analytics"]}
   color="#FFE066"
 />`,
+  },
+  {
+    name: "SelectInput",
+    category: "Basic",
+    preview: <SelectInputPreview />,
+    code: `<SelectInput options={options} value={value} onChange={setValue} placeholder="请选择或输入水果" className="mb-4" />`,
   },
   {
     name: "Button",
