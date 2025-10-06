@@ -18,6 +18,14 @@ function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
 }
 
+// 工具函数：将 Date 格式化为 YYYY-MM-DD 字符串
+function formatDate(date: Date | null) {
+  if (!date) return '';
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
+}
 export function DatePicker({ value, onChange, min, max, className = "", label, required, placeholder="" }: DatePickerProps) {
   const today = new Date();
   const [show, setShow] = useState(false);
@@ -72,10 +80,9 @@ export function DatePicker({ value, onChange, min, max, className = "", label, r
   }, [show]);
   const handleSelect = (y: number, m: number, d: number) => {
     const date = new Date(y, m, d);
-    console.log(date);
     setSelected(date);
     setShow(false);
-    onChange?.(date.toISOString().slice(0, 10));
+    onChange?.(formatDate(date)); // 使用 formatDate
   };
 
   const days = getDaysInMonth(view.year, view.month);
@@ -103,7 +110,7 @@ export function DatePicker({ value, onChange, min, max, className = "", label, r
         readOnly
         required={required}
         className="liquid-glass px-3 py-2 rounded-lg border w-40 cursor-pointer bg-white/60 backdrop-blur shadow-inner focus:outline-emerald-400"
-        value={selected ? selected.toISOString().slice(0, 10) : ""}
+        value={formatDate(selected)} // 使用 formatDate// 使用 formatDate
         placeholder={placeholder}
         onClick={() => setShow((v) => !v)}
       />
