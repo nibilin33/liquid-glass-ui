@@ -38,4 +38,5 @@ export { IconContainer } from './IconContainer';
 export { TagInput } from './TagInput';
 export { AIChatBox } from './AIassistant';
 export { SelectInput } from './SelectInput';
+export { CodeInput } from './CodeInput';
 

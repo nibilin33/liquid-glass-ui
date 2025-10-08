@@ -34,6 +34,8 @@ const AIChatBoxPreview = React.lazy(() => import("./previews/AIchatboxPreview"))
 const TagInputPreview = React.lazy(() => import("./previews/TagInputPreview"));
 
 const SelectInputPreview = React.lazy(() => import("./previews/SelectInputPreview"));
+
+const CodeInputPreview = React.lazy(() => import("./previews/CodeInputPreview"));
 const components = [
   {
     name: "PriceSets",
@@ -102,6 +104,12 @@ const components = [
     category: "Basic",
     preview: <SelectInputPreview />,
     code: `<SelectInput options={options} value={value} onChange={setValue} placeholder="请选择或输入水果" className="mb-4" />`,
+  },
+  {
+    name: "CodeInput",
+    category: "Basic",
+    preview: <CodeInputPreview />,
+    code: `<CodeInput length={6} value={code} onChange={setCode} onComplete={handleComplete} />`,
   },
   {
     name: "Button",

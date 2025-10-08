@@ -4,15 +4,32 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 interface Tab {
   label: string
+  value: string
   content: ReactNode
 }
 
 interface GlassTabsProps {
   tabs: Tab[]
+  value?: string
+  onChange?: (value: string) => void
 }
 
-export function Tabs({ tabs }: GlassTabsProps) {
+export function Tabs({ tabs, value, onChange }: GlassTabsProps) {
+  const isControlled = value !== undefined && onChange !== undefined
   const [activeIndex, setActiveIndex] = useState(0)
+
+  // 受控模式下根据 value 查找索引
+  const currentIndex = isControlled
+    ? tabs.findIndex(tab => tab.value === value)
+    : activeIndex
+
+  const handleTabClick = (idx: number) => {
+    if (isControlled) {
+      onChange?.(tabs[idx].value)
+    } else {
+      setActiveIndex(idx)
+    }
+  }
 
   const tabClass = (active: boolean) =>
     `relative px-4 py-2 rounded-t-xl cursor-pointer transition-all liquid-glass font-semibold ${
@@ -26,13 +43,13 @@ export function Tabs({ tabs }: GlassTabsProps) {
       <div className="flex gap-2">
         {tabs.map((tab, idx) => (
           <div
-            key={idx}
-            className={tabClass(idx === activeIndex)}
-            onClick={() => setActiveIndex(idx)}
+            key={tab.value}
+            className={tabClass(idx === currentIndex)}
+            onClick={() => handleTabClick(idx)}
             style={{ position: 'relative' }}
           >
             {tab.label}
-            {idx === activeIndex && (
+            {idx === currentIndex && (
               <motion.div
                 layoutId="tab-underline"
                 className="absolute left-2 right-2 -bottom-1 h-1 rounded bg-emerald-400"
@@ -52,7 +69,7 @@ export function Tabs({ tabs }: GlassTabsProps) {
           transition={{ duration: 0.3 }}
           className={contentClass}
         >
-          {tabs[activeIndex].content}
+          {tabs[currentIndex]?.content}
         </motion.div>
       </AnimatePresence>
     </div>
