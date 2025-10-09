@@ -570,6 +570,7 @@ const allComponents = [
               title: "Vocabulary Memorization",
               description: "Completed 100 new words",
               status: "done",
+              children: <>复习了100个新单词</>
             },
             {
               date: "2025-08-02",

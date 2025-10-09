@@ -52,9 +52,9 @@ export function Input(props: any) {
         className="w-full inline-block"
       >
         {type === 'file' ? (
-          <div className="flex items-center liquid-glass px-4 py-2 rounded-xl shadow-glass border border-transparent focus-within:border-emerald-400 bg-white/60 backdrop-blur w-full">
+           <div className={`flex items-center liquid-glass px-4 py-2 rounded-xl shadow-glass border border-transparent focus-within:border-emerald-400 bg-white/60 backdrop-blur w-full ${rest.disabled ? 'opacity-60 pointer-events-none' : ''}`}>
             <label
-              className="px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg font-medium cursor-pointer shadow hover:bg-emerald-200 transition"
+              className={`px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg font-medium cursor-pointer shadow hover:bg-emerald-200 transition ${rest.disabled ? 'cursor-not-allowed bg-gray-100 text-gray-400 hover:bg-gray-100' : ''}`}
               htmlFor={rest.id || 'file-input'}
             >
               选择文件
@@ -88,7 +88,11 @@ export function Input(props: any) {
             aria-required={required}
             aria-invalid={!!error}
             type={type}
-            className={`liquid-glass px-4 py-2 rounded-xl text-gray-800 shadow-glass outline-none border transition-all ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-400 focus:shadow-[0_0_12px_2px_rgba(239,68,68,0.5)]' : 'border-transparent focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_0_12px_2px_rgba(52,181,139,0.5)]'} w-full`}
+            className={`liquid-glass px-4 py-2 rounded-xl text-gray-800 shadow-glass outline-none border transition-all ${
+              error
+                ? 'border-red-400 focus:border-red-500 focus:ring-red-400 focus:shadow-[0_0_12px_2px_rgba(239,68,68,0.5)]'
+                : 'border-transparent focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400 focus:shadow-[0_0_12px_2px_rgba(52,181,139,0.5)]'
+            } w-full ${rest.disabled ? 'bg-gray-100 text-gray-400 opacity-60 cursor-not-allowed' : ''}`}
             onFocus={e => { setFocused(true); props.onFocus?.(e); }}
             onBlur={async e => {
               setFocused(false);

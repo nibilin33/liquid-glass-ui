@@ -5,6 +5,7 @@ export interface LearningNode {
   title: string;
   description?: string;
   status?: 'done' | 'doing' | 'todo';
+  children?: React.ReactNode;
 }
 
 export interface LearningTimelineProps {
@@ -59,6 +60,7 @@ export function LearningTimeline({ nodes, onNodeClick }: LearningTimelineProps) 
               <div className="text-xs text-emerald-500 font-bold mb-1">{node.date}</div>
               <div className="text-lg font-bold text-emerald-700 mb-1">{node.title}</div>
               {node.description && <div className="text-gray-500 text-sm">{node.description}</div>}
+              {node.children && <div className="mt-2">{node.children}</div>}
             </div>
           </motion.div>
         ))}
