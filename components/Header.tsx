@@ -173,7 +173,7 @@ export function Header({
           {/* 半透明渐变遮罩 */}
           <div className="flex-1 bg-white/80" onClick={() => setMenuOpen(false)} />
           <motion.div
-            className="w-72 h-full bg-gradient-to-br from-white/80 via-emerald-50/90 to-blue-50/80 shadow-2xl rounded-l-3xl p-7 flex flex-col gap-7 border-l border-emerald-100 overflow-y-auto max-h-screen"
+            className="w-72 h-full bg-white/40 p-7 flex flex-col gap-1"
             initial={{ x: 100 }}
             animate={{ x: 0 }}
             exit={{ x: 100 }}
@@ -184,10 +184,10 @@ export function Header({
               aria-label="Close navigation menu"
               onClick={() => setMenuOpen(false)}
             >
-              <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="currentColor" strokeOpacity="0.15" fill="white" /><path strokeLinecap="round" strokeLinejoin="round" d="M8 8l8 8M8 16l8-8"/></svg>
+              <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" stroke="currentColor" strokeOpacity="0.15" fill="white" /><path strokeLinecap="round" strokeLinejoin="round" d="M8 8l8 8M8 16l8-8"/></svg>
             </button>
             {navLinks.map(link => (
-              <div key={link.label} className="relative bg-white/70 backdrop-blur p-1 rounded-xl">
+              <div key={link.label} className="relative bg-white p-1 rounded-xl">
                 {link.dropdown ? (
                   <>
                     <div className="font-semibold text-emerald-700 mb-1">{link.label}</div>

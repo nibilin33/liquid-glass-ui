@@ -10,9 +10,9 @@ interface GlassDropdownProps {
   defaultIndex?: number
 }
 
-export function Dropdown({ label, items }: GlassDropdownProps) {
+export function Dropdown({ label, items, defaultIndex }: GlassDropdownProps) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(defaultIndex ?? null); // 支持 defaultIndex
   const btnRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
@@ -29,11 +29,9 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
       let left = btnRect.left;
       let right: number | undefined = undefined;
       let transform = '';
-      // 下方空间不足则向上弹出
       if (btnRect.bottom + menuRect.height + 16 > winH) {
         top = btnRect.top - menuRect.height - 8;
       }
-      // 右侧空间不足则左对齐
       if (btnRect.left + menuRect.width > winW - 8) {
         left = undefined as any;
         right = winW - btnRect.right;
@@ -50,6 +48,11 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
       });
     }
   }, [open]);
+
+  // defaultIndex 变化时自动更新选中项
+  useLayoutEffect(() => {
+    setSelected(defaultIndex ?? null);
+  }, [defaultIndex]);
 
   return (
     <div className="relative inline-block text-left">
@@ -89,7 +92,7 @@ export function Dropdown({ label, items }: GlassDropdownProps) {
                   className={`w-full text-left px-4 py-2 text-sm focus:outline-none focus:bg-emerald-200 ${selected === idx ? 'bg-emerald-200 text-emerald-700 font-bold' : 'hover:bg-emerald-100'}`}
                 >
                   {item.label}
-                {selected === idx && <FaCheck className="ml-2 text-emerald-500 inline-block" size={14} />}
+                  {selected === idx && <FaCheck className="ml-2 text-emerald-500 inline-block" size={14} />}
                 </motion.button>
               ))}
             </div>
