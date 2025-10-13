@@ -34,7 +34,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
         }
         setViewYear(year);
         setViewMonth(month);
-        onMonthChange?.(year, month);
+        onMonthChange?.(year, month+1);
     };
     const handleNextMonth = () => {
         let year = viewYear;
@@ -45,7 +45,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
         }
         setViewYear(year);
         setViewMonth(month);
-        onMonthChange?.(year, month);
+        onMonthChange?.(year, month+1);
     };
 
     return (
