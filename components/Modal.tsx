@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion';
-
+import { useEffect } from 'react';
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -11,6 +11,16 @@ export interface ModalProps {
 }
 
 export function Modal({ isOpen, onClose, children, className = '', overlayClassName = '', style }: ModalProps) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
   if (!isOpen) return null;
 
   return (
@@ -23,9 +33,10 @@ export function Modal({ isOpen, onClose, children, className = '', overlayClassN
       <div
         className={`fixed inset-0 bg-white/20 backdrop-blur-xl ${overlayClassName}`}
         onClick={onClose}
+        style={{ touchAction: 'none', overflow: 'hidden' }}
       />
       <motion.div
-        className={`liquid-glass p-6 ${className}`}
+        className={`liquid-glass p-6 max-h-[80vh] overflow-y-auto ${className}`}
         style={style}
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
