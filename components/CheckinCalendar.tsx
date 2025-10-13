@@ -14,9 +14,10 @@ function getFirstDayOfWeek(year: number, month: number) {
 export interface CheckinCalendarProps {
     records?: Record<string, number[]>; // { '2025-08': [1,2,3,5,...] }
     onMonthChange?: (year: number, month: number) => void;
+    onDayClick?: (year: number, month: number, day: number) => void; 
 }
 
-export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendarProps) {
+export function CheckinCalendar({ records = {}, onMonthChange, onDayClick }: CheckinCalendarProps) {
     const today = new Date();
     const [viewYear, setViewYear] = useState(today.getFullYear());
     const [viewMonth, setViewMonth] = useState(today.getMonth());
@@ -86,6 +87,7 @@ export function CheckinCalendar({ records = {}, onMonthChange }: CheckinCalendar
             `}
                         title={checkedDays.includes(i + 1) ? 'Checked in' : 'Not checked in'}
                         style={{ margin: '1px' }}
+                        onClick={() => onDayClick?.(viewYear, viewMonth + 1, i + 1)} 
                     >
                         {i + 1}
                     </motion.div>
