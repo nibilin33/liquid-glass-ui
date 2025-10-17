@@ -164,7 +164,7 @@ const components = [
     name: "Modal",
     category: "Interactive",
     preview: (
-      <Modal isOpen={true} onClose={() => { }}>
+      <Modal isOpen={false} onClose={() => { }}>
         Liquid Glass Modal Content: Experience frosted glass, vibrant highlights, and the best of Liquid Glass UI.
       </Modal>
     ),

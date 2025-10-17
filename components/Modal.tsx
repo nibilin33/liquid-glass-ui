@@ -13,6 +13,7 @@ export interface ModalProps {
 export function Modal({ isOpen, onClose, children, className = '', overlayClassName = '', style }: ModalProps) {
   useEffect(() => {
     if (isOpen) {
+      console.log(isOpen,"fuckkk")
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
