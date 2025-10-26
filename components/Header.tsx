@@ -173,7 +173,7 @@ export function Header({
           {/* 半透明渐变遮罩 */}
           <div className="flex-1 bg-white/80" onClick={() => setMenuOpen(false)} />
           <motion.div
-            className="w-72 h-full bg-white/40 p-7 flex flex-col gap-1"
+            className="w-72 h-full bg-white/40 p-2 flex flex-col gap-1"
             initial={{ x: 100 }}
             animate={{ x: 0 }}
             exit={{ x: 100 }}
@@ -210,7 +210,7 @@ export function Header({
                 ) : (
                   <a
                     href={link.href}
-                    className="liquid-glass px-6 py-4 rounded-2xl flex items-center gap-3 text-emerald-700 font-semibold shadow-glass text-lg hover:bg-emerald-50/60 transition"
+                    className="liquid-glass px-6 py-2 rounded-2xl flex items-center gap-3 text-emerald-700 font-semibold shadow-glass text-lg hover:bg-emerald-50/60 transition"
                     aria-label={link.ariaLabel || link.label}
                     title={link.title || link.label}
                     target={link.github ? "_blank" : undefined}
