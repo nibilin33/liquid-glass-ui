@@ -1,16 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-
 /**
  * PenguinMouthSmall — 迷你版企鹅（嘴巴开合 + 花朵装饰）
  * - SVG 卡通企鹅，缩小至约 100x100 显示区域
  * - 头顶带一朵花
  * - 默认随机张嘴（2–6 秒一次），点击立即张嘴
  */
-export default function PenguinMouthSmall({
+export function PenguinMouthSmall({
   size = 100,
   speakDuration = 220,
-  minInterval = 2000,
-  maxInterval = 6000,
+  minInterval = 1000,
+  maxInterval = 3000,
 }: {
   size?: number | string;
   speakDuration?: number;

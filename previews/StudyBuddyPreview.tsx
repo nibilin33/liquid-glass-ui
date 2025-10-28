@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import StudyBuddy from '../components/StudyBuddy';
+import { StudyBuddy } from '../components/StudyBuddy';
 
 const StudyBuddyPreview: React.FC = () => {
   const [idleSeconds, setIdleSeconds] = useState<number>(6);

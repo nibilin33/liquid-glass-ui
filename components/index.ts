@@ -39,4 +39,6 @@ export { TagInput } from './TagInput';
 export { AIChatBox } from './AIassistant';
 export { SelectInput } from './SelectInput';
 export { CodeInput } from './CodeInput';
+export { PenguinMouthSmall } from './PenguinMouth';
+export { StudyBuddy } from './StudyBuddy';
 
