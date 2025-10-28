@@ -36,6 +36,8 @@ const TagInputPreview = React.lazy(() => import("./previews/TagInputPreview"));
 const SelectInputPreview = React.lazy(() => import("./previews/SelectInputPreview"));
 
 const CodeInputPreview = React.lazy(() => import("./previews/CodeInputPreview"));
+
+const StudyBuddyPreview = React.lazy(() => import("./previews/StudyBuddyPreview"));
 const components = [
   {
     name: "PriceSets",
@@ -192,12 +194,12 @@ const components = [
     preview: (
       <Tabs
         tabs={[
-          { label: "Overview", content: "Liquid Glass UI brings glassmorphism to education and design." },
-          { label: "Features", content: "Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI." },
+          { label: "Overview", content: "Liquid Glass UI brings glassmorphism to education and design.", value: 'overview' },
+          { label: "Features", content: "Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI.", value: 'features' },
         ]}
       />
     ),
-    code: `<Tabs tabs={[{label: 'Overview', content: 'Liquid Glass UI brings glassmorphism to education and design.'}, {label: 'Features', content: 'Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI.'}]} />`,
+    code: `<Tabs tabs={[{label: 'Overview', content: 'Liquid Glass UI brings glassmorphism to education and design.', value: 'overview'}, {label: 'Features', content: 'Explore frosted panels, gradients, and interactive learning tools with Liquid Glass UI.', value: 'features'}]} />`,
   },
   {
     name: "Dropdown",
@@ -343,6 +345,17 @@ const allComponents = [
     ),
     grid: "full",
     code: `<AIChatBox messages={initMessages} onSend={handleSend} placeholder="Chatting with AI..." />`,
+  },
+  {
+    name: "StudyBuddy",
+    category: "Interactive",
+    preview: (
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <StudyBuddyPreview />
+      </React.Suspense>
+    ),
+    grid: "full",
+    code: `<StudyBuddy idleSeconds={6} persistPosition={true} greeting={"需要我帮你复习或答疑吗？点我开始对话～"} />`,
   },
   {
     name: "DatePicker",

@@ -8,7 +8,7 @@ export default function AIchatboxPreview() {
   ]);
 
   // 模拟流式回复
-  const handleSend = async (msg, addMessage, replaceLast) => {
+  const handleSend = async (msg:any, addMessage:any, replaceLast:any) => {
     addMessage({ role: 'ai', content: '', loading: true });
     // 模拟 SSE 流式响应
     const reply = "This is a demonstration of the AI's streaming response, displaying as it generates.";
