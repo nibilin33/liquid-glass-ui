@@ -6,15 +6,17 @@ import React, { useEffect, useRef, useState } from "react";
  * - 默认随机张嘴（2–6 秒一次），点击立即张嘴
  */
 export function PenguinMouthSmall({
-  size = 100,
+  size = 64,
   speakDuration = 220,
   minInterval = 1000,
   maxInterval = 3000,
+  className = "",
 }: {
   size?: number | string;
   speakDuration?: number;
   minInterval?: number;
   maxInterval?: number;
+  className?: string; // 新增
 }) {
   const [speaking, setSpeaking] = useState(false);
   const timerRef = useRef<number | null>(null);
@@ -43,7 +45,10 @@ export function PenguinMouthSmall({
   }, [minInterval, maxInterval, speakDuration]);
 
   return (
-    <div className="flex items-center justify-center select-none" style={{ width: asPx, height: asPx }}>
+    <div
+      className={`flex items-center justify-center select-none ${className}`}
+      style={{ width: asPx, height: asPx }}
+    >
       <style>{`
         .penguin-mini:hover { filter: drop-shadow(0 2px 8px rgba(0,0,0,.25)); }
         .beak-top, .beak-bottom { transition: transform ${speakDuration}ms cubic-bezier(.2,.7,.2,1); transform-origin: 250px 235px; }
